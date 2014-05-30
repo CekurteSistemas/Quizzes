@@ -1,256 +1,52 @@
-# Quizzes
+# ZCE / ZCPE
 
-[![Latest stable version](https://poser.pugx.org/himedia/quizzes/v/stable.png "Latest stable version")](https://packagist.org/packages/himedia/quizzes)
+## Problema
 
-Plate-forme de quizzes à choix multiples (QCM) avec interface d'analyse des résultats.
+Existe um grupo de discussão chamado "Rumo a ZCE" onde os membros deste, postam questões da prova, sendo que, os participantes do grupo postam as suas dúvidas e também respostas, e chegam em um consenso de qual seria a alternativa correta, por conta disto, existe um banco de dados com pouco mais de 1100 perguntas cadastradas até o presente momento. Além disto, o ambiente em que as questões estão dispostas não oferece nenhum tipo de filtro, e também, não há a possibilidade de avaliar qual o grau de estudo dos profissionais que frequentam esta. Então, como ajudar esses profissionais a estudarem para a prova de certificação de forma dinâmica aproveitando-se do banco de dados disponível no grupo de discussão?
 
-*Technologies* : [Silex](http://silex.sensiolabs.org/), [Twig](http://twig.sensiolabs.org/),
-[Bootstrap](http://getbootstrap.com/2.3.2/), [Composer](http://getcomposer.org), aucune base de données.
+## Hipóteses do sistema
 
-## Sommaire
+Se o profissional que almeja a certificação ZCE utilizar a ferramenta realizando os simulados e, por conta disto, entender qual é o seu grau de estudo e áreas do conhecimento em que possuí deficiência, poderá então, focar os seus estudos nas áreas em que tem mais dificuldades afim de se preparar efetivamente para prova oficial.
 
-  * [Description](#description)
-  * [Installation et configuration](#installation-et-configuration)
-  * [Captures d'écran](#captures-d%C3%A9cran)
-  * [Copyrights & licensing](#copyrights--licensing)
-  * [Change log](#change-log)
-  * [Git branching model](#git-branching-model)
+## Justificativa
 
-## Description
+Segundo Heuser (2008) a avaliação de alunos faz parte do processo de desenvolvimento, sendo que, através do estabelecimento de critérios de avaliação é possível definir quais são os pontos fortes e quais os pontos fracos e que necessitam serem melhorados.
+Sendo assim, hoje, através do grupo de discussão, não é possível entender em que área do conhecimento os profissionais possuem dificuldades, afim de focarem os seus estudos em suas deficiências. Por conta disto, partindo de uma ferramenta de simulado pretende-se mostrar ao candidato após a conclusão do exame, qual a área do conhecimento em que ele possuí dificuldades e precisa dar atenção.
 
-### Deux zones
+## Objetivo Geral
 
-  * L'une publique pour choisir un questionnaire, le dérouler et obtenir score et statistiques.
-  * L'autre avec mot de passe pour accéder aux sessions passées, à leur score et statistiques,
-    à leur correction détaillée et au suivi temps réel des sessions en cours.
+Criar uma ferramenta afim de unificar as respostas do grupo de discussão oferecendo uma interface web e permitindo que o candidato realize um simulado de acordo com o banco de questões. Portanto, a ferramenta servirá como apoio de estudo para os profissionais que desejam obter a certificação ZCE.
 
-### Questionnaires
+## Objetivos Especificos
 
-La plate-forme de quizzes permet :
+- Montar um banco de dados importando perguntas e respostas do grupo de discussão e categorizando as perguntas em áreas do conhecimento;
+- Criar um ambiente de simulado para a prova;
+- Avaliar o conhecimento do candidato após a conclusão de um simulado de acordo com as áreas do conhecimento e expor para ele quais são as áreas em que este possuí mais dificuldades.
 
-  * d'héberger et proposer de multiples questionnaires,
-  * de proposer des sessions mélangeant plusieurs questionnaires,
-  * de réaliser des sessions ne portant que sur une partie des questions d'un ou plusieurs questionnaires,
-    questions tirées aléatoirement,
-  * de désactiver voire masquer des questionnaires tout en continuant de les inclure dans d'autres questionnaires,
-  * une grande facilité d'ajout de questionnaires, coloration syntaxique des bouts de code pouvant émailler
-    les questions et propositions de réponse,
-  * une impression du résultat des sessions.
+## O que é a ZCE?
 
-Dans un questionnaire :
+A ZCE, do inglês, Zend Certification Exam, é uma prova de certificação oferecida pela Zend que certifica que um profissional está apto a trabalhar com a tecnologia PHP, esta primeira certificação é nomeada pela instituição como Zend PHP Certification. Entretanto, existe uma segunda prova intitulada como Zend Framework Certification, esta por sua vez, avalia os conhecimentos do profissional no Framework oficial da Zend (ZEND, 2014).
+A prova de certificação Zend foi projetada tendo como base dois objetivos, são eles: testar o conhecimento do profissional na tecnologia PHP e, o segundo, fazer com que a prova extraia do profissional o máximo de sua vivência prática com a tecnologia (COGGESHALL; TABINI, 2005).
+Como o escopo do PHP é muito abrangente, as grandes empresas precisam ter uma maneira padrão e confiável de avaliar as habilidades e capacidades de um profissional que atue com a linguagem PHP. Sendo assim, o principal objetivo da prova é oferecer a empregadores e profissionais certificados uma forma de avaliação padrão (GUTMANS; SURASKI, 2006).
+A Zend é uma empresa PHP que ajuda outras empresas a desenvolverem e entregarem soluções rápidas e com alta qualidade, sejam elas: web ou mobile (ZEND, 2014).
+Enquanto que, perante a comunidade, busca integrar os desenvolvedores PHP e oferecer suporte para que estes profissionais criem soluções utilizando a tecnologia (ZEND, 2014).
+Hoje no Brasil, segundo a Zend (2014), a quantidade de profissionais certificados na tecnologia PHP é relativamente baixa, se comparado a quantidade de profissionais que trabalham com esta linguagem diariamente. Esta informação pode ser consultada no site da própria Zend em: Zend Certified Engineer Directory.
+Dentre os motivos para o baixo número de profissionais certificados, acredita-se que as principais causas sejam: o valor da prova que custa USS 195,00 e os custos com preparações, podendo chegar até os USS 1000,00 no site da própria instituição (ZEND, 2014).
 
-  * chaque question appartient à un thème afin de faciliter l'analyse des réponses, mais cette information
-    ne transparaît pas forcément dans l'énoncé des questions
-    (un seul thème est retenu par question par souci de simplicité),
-  * thèmes, questions et propositions arrivent dans un ordre différent à chaque session,
-  * le temps restant est affiché constamment,
-  * pas moyen de revenir sur une question précédente (page précédente sans effet),
-  * le barème est optimal lorsque toute question admet **au moins une bonne proposition**
-    et **au moins une mauvaise proposition**.
+## Referências
 
-### Barème
+COGGESHALL, John; TABINI, Marco. The Zend PHP Certification Practice Test Book. Toronto, Ca: Nanobooks, 2005.
 
-Le barème favorise l'absence de réponse à la mauvaise réponse.
-**Il vaut mieux s'abstenir lorsque l'on n'est pas sûr de soi.**
+HEUSER, Fernanda Müller. AVALIAÇÃO: sentença ou diagnóstico. 2008. Disponível em: <http://www.lume.ufrgs.br/bitstream/handle/10183/15997/000668672.pdf>. Acesso em: 03 fev. 2014.
 
-Ainsi de manière générale, si une question possède `P` propositions de réponse, alors :
+ZEND (Org.). Zend PHP 5 Certification - ZCE. 2014. Disponível em: <http://www.zend.com/en/services/certification/>. Acesso em: 21 abr. 2014.
 
-  * chaque question nécessite de cocher `1` à `P-1` cases et rapporte de `-1` à `1` point, `0` si non répondue.
-  * si une question requiert `N` cases cochées pour la bonne réponse, alors :
-     * chaque case bien cochée rapporte `1/N` point,
-     * chaque case mal cochée enlève `1/(P-N)` point.
+______. Zend and the PHP community. 2014. Disponível em: <http://www.zend.com/en/company/community/>. Acesso em: 21 abr. 2014.
 
-**Il en découle que les trois stratégies suivantes aboutissent à un score nul :**
-  * cocher toutes les cases,
-  * n'en cocher aucune
-  * et statistiquement cocher au hasard `1` à `P-1` cases.
+______. Zend Certified Engineer Directory. 2014. Disponível em: <http://www.zend.com/store/education/certification/yellow-pages.php>. Acesso em: 21 abr. 2014.
 
-## Installation et configuration
+______. Zend Online Training - Zend PHP Certification. 2014. Disponível em: <http://shop.zend.com/en/zend-certification/zend-php5-certification-voucher.html>. Acesso em: 23 abr. 2014.
 
-### Git clone
+______. Zend Online Training - Zend PHP Certification. 2014. Disponível em: <http://shop.zend.com/en/zend-certification/php5-certification-training.html>. Acesso em: 23 abr. 2014.
 
-Cloner dans le répertoire de votre choix, *par ex.* `/var/www/quizzes` (le répertoire doit être vide) :
-
-```bash
-$ git clone git@github.com:Hi-Media/Quizzes.git /var/www/quizzes
-```
-
-### Dépendences
-
-#### Composer
-
-La plupart des dépendences sont gérées par [composer](http://getcomposer.org).
-Lancer l'une des commandes suivantes :
-
-```bash
-$ composer install
-# or
-$ php composer.phar install
-```
-
-Au besoin, pour installer composer localement, lancer l'une des commandes suivantes :
-
-```bash
-$ curl -sS https://getcomposer.org/installer | php
-# or
-$ wget --no-check-certificate -q -O- https://getcomposer.org/installer | php
-```
-
-Lire <http://getcomposer.org/doc/00-intro.md#installation-nix> pour plus d'informations.
-
-#### Mailing
-
-L'envoi de mail exploite [mutt](http://www.mutt.org/).
-
-### Configuration
-
-#### Apache 2
-
-Les *rewrite rules* sont nécessaires.
-Un fichier `.htaccess` se trouve dans `/www` pour rediriger les URLs sur `/web/index.php`.
-Au besoin :
-
-```bash
-$ sudo a2enmod rewrite
-```
-
-Exemple de *virtual host* :
-
-```bash
-$ cat /etc/apache2/sites-enabled/quizzes.xyz.com
-
-<Directory /var/www/quizzes/web>
-    Options -Indexes
-    AllowOverride FileInfo
-    Order allow,deny
-    allow from all
-</Directory>
-
-<VirtualHost *:80>
-    ServerName    quizzes.xyz.com
-    ServerAlias    quizzes
-    ServerAdmin    admin@xyz.com
-    RewriteEngine    On
-    DocumentRoot    /var/www/quizzes/web
-
-    ErrorLog    /var/log/apache2/quizzes-error.log
-    CustomLog    /var/log/apache2/quizzes-access.log combined
-    LogLevel warn
-</VirtualHost>
-```
-
-#### Application
-Initialiser le fichier de configuration en dupliquant `conf/qcm-dist.php` et en l'adaptant :
-
-```bash
-$ cp '/var/www/quizzes/conf/qcm-dist.php' '/var/www/quizzes/conf/qcm.php'
-```
-
-Pour mettre à jour des comptes d'administration modifier la clé `'admin_accounts'`,
-tableau au format `login => md5(password)`.
-
-#### Mise à jour des questionnaires
-
-Les questionnaires sont cryptés en AES-256 sur le serveur web.
-
-Lors d'une mise à jour des questionnaires exécuter le script `/src/encrypt.php` afin de régénérer
-les `/resources/quizzes/*.enc.php` à partir des `/resources/quizzes/src/*.php`.
-Le répertoire `/resources/quizzes/src` n'est alors plus nécessaire, ainsi que `/src/encrypt.php`.
-
-**Des exemples de questionnaires sont disponibles dans `/resources/quizzes/examples` :**
-
-  * 2 mini questionnaires intitulés « *Additions* » et « *Multiplications* »,
-  * 1 questionnaire « *JavaScript* » d'une seule question mais illustrant l'insertion de code
-    avec coloration syntaxique,
-  * 1 questionnaire nommé « *Toutes les questions !* » expliquant comment déclarer un questionnaire
-    comme l'union d'autres questionnaires
-  * et 1 questionnaire intitulé « *Un petit peu de tout…* » piochant au hasard un nombre défini de question
-    parmi celles des autres questionnaires.
-
-Les copier dans `/resources/quizzes/src` pour les utiliser dans l'application…
-
-## Captures d'écran
-
-### Déroulement d'une session
-
-Choix de la session :
-
-[![Choix de la session](doc/images/choix_session2.png "Choix de la session")](doc/images/choix_session2.png)
-
-Un questionnaire peut être la réunion de plusieurs questionnaires ou une partie d'un autre questionnaire :
-
-[![Questionnaire à partir d'autres](doc/images/choix_session1.png "Questionnaire à partir d'autres")](doc/images/choix_session1.png)
-
-Identification du candidat :
-
-[![Identification du candidat](doc/images/identification.png "Identification du candidat")](doc/images/identification.png)
-
-Exemple d'affichage d'une question :
-
-[![Affichage d'une question](doc/images/question.png "Affichage d'une question")](doc/images/question.png)
-
-### Analyse
-
-Accueil de la section d'administration avec liste des sessions passées et en cours :
-
-[![Liste des sessions](doc/images/listing_sessions.png "Liste des sessions")](doc/images/listing_sessions.png)
-
-Résultat général d'une session :
-
-[![Résultat général d'une session](doc/images/resultat_global.png "Résultat général d'une session")](doc/images/resultat_global.png)
-
-Score par thème avec visualisation de la quantité de points perdus par pénalités :
-
-[![Score par thème](doc/images/score_par_theme.png "Score par thème")](doc/images/score_par_theme.png)
-
-Temps moyen de réponse par thème :
-
-[![Temps par thème](doc/images/temps_par_theme.png "Temps par thème")](doc/images/temps_par_theme.png)
-
-Catégorisation des réponses par thème :
-
-[![Catégorisation des réponses par thème](doc/images/categorisation_par_theme.png "Catégorisation des réponses par thème")](doc/images/categorisation_par_theme.png)
-
-Correction d'une question, accessible seulement à partir de la zone privée :
-
-[![Correction d'une question](doc/images/correction_question.png "Correction d'une question")](doc/images/correction_question.png)
-
-Configuration d'un questionnaire, dans `/resources/quizzes/src` :
-
-```php
-<?php
-
-return array(
-    'meta' => array(
-        'title' => 'POO et design patterns',
-        'time_limit' => 15*20,
-        'max_nb_questions' => 0,
-        'status' => 'available' // {'available', 'deactivated', 'hidden'}
-    ),
-    'questions' => array(
-        array(
-            'POO',
-            "Quel est le patron de conception central dans Doctrine 2 ?",
-            array(
-                "table data gateway" => false,
-                "active record" => false,
-                "data mapper" => true,
-                "row data gateway" => false,
-            )
-        ),
-        …
-    )
-);
-```
-
-## Copyrights & licensing
-
-Licensed under the GNU General Public License v3 (GPL-3.0+).
-See [LICENSE](LICENSE) file for details.
-
-## Change log
-See [CHANGELOG](CHANGELOG.md) file for details.
-
-## Git branching model
-The git branching model used for development is the one described and assisted
-by `twgit` tool: [https://github.com/Twenga/twgit](https://github.com/Twenga/twgit).
+______. Zend - The PHP Company. 2014. Disponível em: <http://www.zend.com/en/company/>. Acesso em: 21 abr. 2014.
