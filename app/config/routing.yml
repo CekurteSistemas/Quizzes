@@ -1,0 +1,52 @@
+# ------------------------------------------------------------------------------
+# CekurteUploaderBundle
+
+_imagine:
+    resource:   "@LiipImagineBundle/Resources/config/routing.xml"
+
+oneup_uploader:
+    resource:   .
+    type:       uploader
+
+cekurte_uploader:
+    resource:   "@CekurteUploaderBundle/Controller/"
+    type:       annotation
+    prefix:     /uploader/
+
+# ------------------------------------------------------------------------------
+# FOSJsRoutingBundle
+
+fos_js_routing:
+    resource:   "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+# ------------------------------------------------------------------------------
+# FOSUserBundle
+
+cekurte_custom_user:
+    resource:   "@CekurteCustomUserBundle/Resources/config/routing/fosuser.yml"
+    prefix:     /admin/
+
+fos_user_security:
+    resource:   "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_register:
+    resource:   "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix:     /register
+
+# ------------------------------------------------------------------------------
+# OAuth
+
+hwi_oauth_security:
+    resource:   "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:     /connect
+
+hwi_oauth_connect:
+    resource:   "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+    prefix:     /connect
+
+hwi_oauth_redirect:
+    resource:   "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:     /connect
+
+facebook_login:
+    pattern:    /connect/check-facebook
