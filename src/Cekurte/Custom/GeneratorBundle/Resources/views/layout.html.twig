@@ -1,0 +1,69 @@
+{% extends '@CekurteGeneratorBundleVendor/layout.html.twig' %}
+{%- block app_title -%}{{ 'ZCE / ZCPE' | trans }}{%- endblock -%}
+
+{%- set menu_active = '' -%}
+
+{%- block menu %}
+<li class="{% if menu_active == 'home' %}active{% endif %}">
+    <a href="{{ path("admin") }}"><span class="glyphicon glyphicon-home"></span> {{ 'Home' | trans }}</a>
+</li>
+
+<li class="dropdown {% if menu_active == 'band' %} active{% endif %}">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-tasks"></span> <span>Provas</span> <b class="caret"></b></a>
+    <ul class="dropdown-menu">
+        <li>
+            <a href="#"><span class="glyphicon glyphicon-th-list"></span> Questionarios</a>
+        </li>
+    </ul>
+</li>
+{%- endblock %}
+
+{%- block menu_right -%}
+    {%- if app.user.username is defined -%}
+        <li class="dropdown pull-right{% if menu_active == 'user' %} active{% endif %}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <span>{{ app.user.username }}</span> <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="{{ path("_admin_fos_user_profile_show") }}"><span class="glyphicon glyphicon-cog"></span> {{ 'Perfil' | trans }}</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="{{ path("_admin_fos_user_security_logout") }}"><span class="glyphicon glyphicon-log-out"></span> {{ 'Sair' | trans }}</a>
+                </li>
+            </ul>
+        </li>
+    {%- endif -%}
+{%- endblock -%}
+
+
+{%- block stylesheets -%}
+    {{ parent() }}
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Lobster:400" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic" rel="stylesheet">
+    <style type="text/css">
+        span, p, small, a, button, input, label, table td {
+            font-family: "Open Sans";
+        }
+        h1, h2, h3, h4, h5, h6, footer a {
+            font-family: "Lobster";
+        }
+        footer a {
+            font-family: 'Source Sans Pro';
+            font-size: 15px;
+        }
+    </style>
+{%- endblock -%}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/cekurtecustomgenerator/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('bundles/cekurtecustomgenerator/ckeditor/adapters/jquery.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).on('ready', function() {
+            $( 'textarea.ckeditor' ).ckeditor();
+        });
+    </script>
+{% endblock %}

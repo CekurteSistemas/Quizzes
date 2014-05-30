@@ -1,0 +1,171 @@
+<?php
+
+namespace Cekurte\Custom\UserBundle\Entity;
+
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="auth_user")
+ */
+class User extends BaseUser
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Id
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Cekurte\Custom\UserBundle\Entity\Group", inversedBy="users")
+     * @ORM\JoinTable(name="auth_user_group",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+     * )
+     */
+    protected $groups;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @Assert\NotNull()
+     */
+    protected $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
+     */
+    protected $picture;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="birthday", type="date", nullable=true)
+     */
+    protected $birthday;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created", type="datetime", nullable=false)
+     */
+    protected $created;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated", type="datetime", nullable=true)
+     */
+    protected $updated;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="deleted", type="boolean", nullable=false)
+     */
+    protected $deleted;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook_id", type="string", length=255, nullable=true)
+     */
+    protected $facebook_id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook_access_token", type="string", length=255, nullable=true)
+     */
+    protected $facebook_access_token;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="linkedin_id", type="string", length=255, nullable=true)
+     */
+    protected $linkedin_id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="linkedin_access_token", type="string", length=255, nullable=true)
+     */
+    protected $linkedin_access_token;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="google_plus_id", type="string", length=255, nullable=true)
+     */
+    protected $google_plus_id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="google_plus_token", type="string", length=255, nullable=true)
+     */
+    protected $google_plus_token;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitter_id", type="string", length=255, nullable=true)
+     */
+    protected $twitter_id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitter_token", type="string", length=255, nullable=true)
+     */
+    protected $twitter_token;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sound_cloud_id", type="string", length=255, nullable=true)
+     */
+    protected $sound_cloud_id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sound_cloud_token", type="string", length=255, nullable=true)
+     */
+    protected $sound_cloud_token;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="myspace_id", type="string", length=255, nullable=true)
+     */
+    protected $myspace_id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="myspace_token", type="string", length=255, nullable=true)
+     */
+    protected $myspace_token;
+
+    /**
+     * @var \City
+     *
+     * @ORM\ManyToOne(targetEntity="City")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="city_id", referencedColumnName="id")
+     * })
+     */
+    protected $city;
+}
