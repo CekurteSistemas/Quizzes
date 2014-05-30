@@ -9,6 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="auth_user")
+ * @ORM\HasLifecycleCallbacks
  */
 class User extends BaseUser
 {
@@ -107,6 +108,15 @@ class User extends BaseUser
         parent::__construct();
 
         $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->setCreated(new \DateTime('NOW'));
+        $this->setDeleted(false);
     }
 
     /**

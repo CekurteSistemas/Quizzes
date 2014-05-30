@@ -51,6 +51,7 @@ class AppKernel extends Kernel
             // Bundles do Projeto "/src"
             new Cekurte\Custom\UserBundle\CekurteCustomUserBundle(),
             new Cekurte\Custom\GeneratorBundle\CekurteCustomGeneratorBundle(),
+            new Cekurte\ZCPEBundle\CekurteZCPEBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
