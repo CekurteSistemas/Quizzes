@@ -6,6 +6,8 @@ Cekurte\Custom\UserBundle\Entity\User:
         enabled: true
         plainPassword: 123
         city: @city4549
+        created: <dateTime()>
+        deleted: false
         groups:
             - @groupAdmin
     userDefault:
@@ -15,5 +17,7 @@ Cekurte\Custom\UserBundle\Entity\User:
         enabled: true
         plainPassword: 123
         city: @city4549
+        created: <dateTime()>
+        deleted: false
         groups:
             - @groupDefault
