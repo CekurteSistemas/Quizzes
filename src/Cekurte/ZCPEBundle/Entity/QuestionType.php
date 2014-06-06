@@ -29,6 +29,16 @@ class QuestionType extends DefaultFieldsBaseEntity
     private $title;
 
     /**
+     * Get title
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+
+    /**
      * Get id
      *
      * @return integer

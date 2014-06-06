@@ -1,0 +1,16 @@
+Cekurte\ZCPEBundle\Entity\QuestionType:
+    questionType1:
+        title: "Single Choice"
+        deleted: false
+        createdBy: @userAdmin
+        createdAt: <dateTime()>
+    questionType2:
+        title: "Multiple Choice"
+        deleted: false
+        createdBy: @userAdmin
+        createdAt: <dateTime()>
+    questionType3:
+        title: "Text"
+        deleted: false
+        createdBy: @userAdmin
+        createdAt: <dateTime()>

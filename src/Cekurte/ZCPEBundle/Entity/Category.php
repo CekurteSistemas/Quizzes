@@ -51,6 +51,16 @@ class Category extends DefaultFieldsBaseEntity
     }
 
     /**
+     * Get title
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+
+    /**
      * Get id
      *
      * @return integer

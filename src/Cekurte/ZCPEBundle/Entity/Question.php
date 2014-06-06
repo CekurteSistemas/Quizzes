@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Question
  *
  * @ORM\Table(name="question")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="\Cekurte\ZCPEBundle\Entity\Repository\QuestionRepository")
  */
 class Question extends DefaultFieldsBaseEntity
 {

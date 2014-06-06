@@ -44,3 +44,4 @@ cekurte_fixtures:
         - CekurteCustomUserBundle/User
         - CekurteZCPEBundle/Category
         - CekurteZCPEBundle/Plataform
+        - CekurteZCPEBundle/QuestionType

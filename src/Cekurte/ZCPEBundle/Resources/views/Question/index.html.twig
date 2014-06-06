@@ -1,0 +1,74 @@
+{% extends 'CekurteGeneratorBundle::layout.html.twig' %}
+
+{% set title    = 'Question'|trans %}
+{% set subtitle = 'List'|trans %}
+
+{% block search -%}
+    {% include 'CekurteZCPEBundle:Question:search.html.twig' %}
+{% endblock %}
+
+{% block links -%}
+    {% embed 'CekurteGeneratorBundle:Action:search.html.twig' only %}
+    {% endembed %}
+    {% embed 'CekurteGeneratorBundle:Action:create.html.twig' with {
+        'route': 'admin_question_new'
+    } only %}
+    {% endembed %}
+    {% embed 'CekurteGeneratorBundle:Action:export.html.twig' with {
+        'route': 'admin_question_export'
+    } only %}
+    {% endembed %}
+{% endblock %}
+
+{% block links_footer -%}
+    {{ knp_pagination_render(pagination) }}
+{% endblock %}
+
+{% block content -%}
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th{% if pagination.isSorted('ck.questionType') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Questiontype'|trans, 'ck.questionType', {'title' : 'Order by'|trans ~ ' ' ~ 'Questiontype'|trans}) }}</th>
+                    <th{% if pagination.isSorted('ck.category') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Category'|trans, 'ck.category', {'title' : 'Order by'|trans ~ ' ' ~ 'Category'|trans}) }}</th>
+                    <th{% if pagination.isSorted('ck.title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'ck.title', {'title' : 'Order by'|trans ~ ' ' ~ 'Title'|trans}) }}</th>
+                    {% if cekurte_is_granted('RETRIEVE') or cekurte_is_granted('UPDATE') or cekurte_is_granted('DELETE') %}
+                        <th class="action">{{ 'Actions'|trans }}</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+            {% for entity in pagination %}
+                <tr>
+                    <td><a href="{{ path('admin_question_show', { 'id': entity.id }) }}">{{ entity.questionType }}</a></td>
+                    <td>{{ entity.category }}</td>
+                    <td>{{ entity.title }}</td>
+                    {% if cekurte_is_granted('RETRIEVE') or cekurte_is_granted('UPDATE') or cekurte_is_granted('DELETE') %}
+                        <td>
+                            {% embed 'CekurteGeneratorBundle:Action:retrieve.html.twig' with {
+                                'route'             : 'admin_question_show',
+                                'identifierKey'     : 'id',
+                                'identifierValue'   : entity.id
+                            } only %}
+                            {% endembed  %}
+                            {% embed 'CekurteGeneratorBundle:Action:update.html.twig' with {
+                                'route' : 'admin_question_edit',
+                                'identifierKey'     : 'id',
+                                'identifierValue'   : entity.id
+                            } only %}
+                            {% endembed  %}
+                            {% embed 'CekurteGeneratorBundle:Action:delete.html.twig' with {
+                                'route'             : 'admin_question_delete',
+                                'identifierKey'     : 'id',
+                                'identifierValue'   : entity.id,
+                                'form'              : delete_form,
+                            } only %}
+                            {% endembed  %}
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

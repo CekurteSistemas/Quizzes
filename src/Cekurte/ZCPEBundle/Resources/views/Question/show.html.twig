@@ -1,0 +1,96 @@
+{% extends 'CekurteGeneratorBundle::layout.html.twig' %}
+
+{% set title    = 'Question'|trans %}
+{% set subtitle = 'Details'|trans %}
+
+{% block links -%}
+    {% embed 'CekurteGeneratorBundle:Action:list.html.twig' with {
+        'route'      : 'admin_question'
+    } only %}
+    {% endembed %}
+    {% embed 'CekurteGeneratorBundle:Action:update.html.twig' with {
+        'route'             : 'admin_question_edit',
+        'identifierKey'     : 'id',
+        'identifierValue'   : entity.id,
+        'show_label'        : true
+    } only %}
+    {% endembed %}
+    {% embed 'CekurteGeneratorBundle:Action:create.html.twig' with {
+        'route'      : 'admin_question_new',
+    } only %}
+    {% endembed %}
+    {% embed 'CekurteGeneratorBundle:Action:delete.html.twig' with {
+        'route'             : 'admin_question_delete',
+        'identifierKey'     : 'id',
+        'identifierValue'   : entity.id,
+        'form'              : delete_form,
+        'show_label'        : true
+    } only %}
+    {% endembed %}
+{% endblock %}
+
+{% block content -%}
+    <div class="table-responsive">
+        <table class="table table-hover table-show">
+            <tbody>
+                <tr>
+                    <th>{{ 'Questiontype'|trans }}</th>
+                    <td>{{ entity.questionType }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Answer'|trans }}</th>
+                    <td>{{ entity.answer }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Category'|trans }}</th>
+                    <td>{{ entity.category }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Tag'|trans }}</th>
+                    <td>{{ entity.tag }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Deletedby'|trans }}</th>
+                    <td>{{ entity.deletedBy }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Updatedby'|trans }}</th>
+                    <td>{{ entity.updatedBy }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Createdby'|trans }}</th>
+                    <td>{{ entity.createdBy }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Googlegroupsid'|trans }}</th>
+                    <td>{{ entity.googleGroupsId }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Title'|trans }}</th>
+                    <td>{{ entity.title }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Difficulty'|trans }}</th>
+                    <td>{{ entity.difficulty }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Comment'|trans }}</th>
+                    <td>{{ entity.comment|raw }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Deleted'|trans }}</th>
+                    <td>{{ entity.deleted == true ? 'Yes'|trans : 'No'|trans }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Deletedat'|trans }}</th><td>{{ entity.deletedAt|date('d/m/Y H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Updatedat'|trans }}</th><td>{{ entity.updatedAt|date('d/m/Y H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Createdat'|trans }}</th><td>{{ entity.createdAt|date('d/m/Y H:i:s') }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
