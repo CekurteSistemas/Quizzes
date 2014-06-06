@@ -31,7 +31,7 @@ class Question extends DefaultFieldsBaseEntity
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=100, nullable=false)
+     * @ORM\Column(name="title", type="text", nullable=false)
      */
     private $title;
 

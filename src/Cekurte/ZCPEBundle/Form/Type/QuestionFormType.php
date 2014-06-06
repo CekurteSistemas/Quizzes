@@ -34,16 +34,14 @@ class QuestionFormType extends AbstractType
         } else {
 
             $builder
-                ->add('questionType')
                 ->add('category')
                 ->add('googleGroupsId')
-                ->add('title')
-                ->add('difficulty')
-                ->add('comment', 'textarea', array(
+                ->add('title', 'textarea', array(
                     'attr'  => array(
                         'class' => 'ckeditor'
                     )
                 ))
+                ->add('questionType')
             ;
         }
     }
