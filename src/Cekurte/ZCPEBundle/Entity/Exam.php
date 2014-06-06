@@ -52,5 +52,105 @@ class Exam extends DefaultFieldsCreatedBaseEntity
      */
     private $plataform;
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
+    /**
+     * Set startedIn
+     *
+     * @param \DateTime $startedIn
+     * @return Exam
+     */
+    public function setStartedIn($startedIn)
+    {
+        $this->startedIn = $startedIn;
+
+        return $this;
+    }
+
+    /**
+     * Get startedIn
+     *
+     * @return \DateTime
+     */
+    public function getStartedIn()
+    {
+        return $this->startedIn;
+    }
+
+    /**
+     * Set finishedIn
+     *
+     * @param \DateTime $finishedIn
+     * @return Exam
+     */
+    public function setFinishedIn($finishedIn)
+    {
+        $this->finishedIn = $finishedIn;
+
+        return $this;
+    }
+
+    /**
+     * Get finishedIn
+     *
+     * @return \DateTime
+     */
+    public function getFinishedIn()
+    {
+        return $this->finishedIn;
+    }
+
+    /**
+     * Set duration
+     *
+     * @param \DateTime $duration
+     * @return Exam
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Get duration
+     *
+     * @return \DateTime
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     * Set plataform
+     *
+     * @param \Cekurte\ZCPEBundle\Entity\Plataform $plataform
+     * @return Exam
+     */
+    public function setPlataform(\Cekurte\ZCPEBundle\Entity\Plataform $plataform = null)
+    {
+        $this->plataform = $plataform;
+
+        return $this;
+    }
+
+    /**
+     * Get plataform
+     *
+     * @return \Cekurte\ZCPEBundle\Entity\Plataform
+     */
+    public function getPlataform()
+    {
+        return $this->plataform;
+    }
 }

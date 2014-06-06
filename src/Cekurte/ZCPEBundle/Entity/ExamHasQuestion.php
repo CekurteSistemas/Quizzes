@@ -60,5 +60,118 @@ class ExamHasQuestion
      */
     private $answer;
 
+    /**
+     * Set answerText
+     *
+     * @param string $answerText
+     * @return ExamHasQuestion
+     */
+    public function setAnswerText($answerText)
+    {
+        $this->answerText = $answerText;
 
+        return $this;
+    }
+
+    /**
+     * Get answerText
+     *
+     * @return string
+     */
+    public function getAnswerText()
+    {
+        return $this->answerText;
+    }
+
+    /**
+     * Set answerComment
+     *
+     * @param string $answerComment
+     * @return ExamHasQuestion
+     */
+    public function setAnswerComment($answerComment)
+    {
+        $this->answerComment = $answerComment;
+
+        return $this;
+    }
+
+    /**
+     * Get answerComment
+     *
+     * @return string
+     */
+    public function getAnswerComment()
+    {
+        return $this->answerComment;
+    }
+
+    /**
+     * Set exam
+     *
+     * @param \Cekurte\ZCPEBundle\Entity\Exam $exam
+     * @return ExamHasQuestion
+     */
+    public function setExam(\Cekurte\ZCPEBundle\Entity\Exam $exam)
+    {
+        $this->exam = $exam;
+
+        return $this;
+    }
+
+    /**
+     * Get exam
+     *
+     * @return \Cekurte\ZCPEBundle\Entity\Exam
+     */
+    public function getExam()
+    {
+        return $this->exam;
+    }
+
+    /**
+     * Set question
+     *
+     * @param \Cekurte\ZCPEBundle\Entity\Question $question
+     * @return ExamHasQuestion
+     */
+    public function setQuestion(\Cekurte\ZCPEBundle\Entity\Question $question)
+    {
+        $this->question = $question;
+
+        return $this;
+    }
+
+    /**
+     * Get question
+     *
+     * @return \Cekurte\ZCPEBundle\Entity\Question
+     */
+    public function getQuestion()
+    {
+        return $this->question;
+    }
+
+    /**
+     * Set answer
+     *
+     * @param \Cekurte\ZCPEBundle\Entity\Answer $answer
+     * @return ExamHasQuestion
+     */
+    public function setAnswer(\Cekurte\ZCPEBundle\Entity\Answer $answer = null)
+    {
+        $this->answer = $answer;
+
+        return $this;
+    }
+
+    /**
+     * Get answer
+     *
+     * @return \Cekurte\ZCPEBundle\Entity\Answer
+     */
+    public function getAnswer()
+    {
+        return $this->answer;
+    }
 }

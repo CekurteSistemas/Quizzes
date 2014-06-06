@@ -35,4 +35,77 @@ class Answer extends DefaultFieldsBaseEntity
      */
     private $question;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->question = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Answer
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Add question
+     *
+     * @param \Cekurte\ZCPEBundle\Entity\Question $question
+     * @return Answer
+     */
+    public function addQuestion(\Cekurte\ZCPEBundle\Entity\Question $question)
+    {
+        $this->question[] = $question;
+
+        return $this;
+    }
+
+    /**
+     * Remove question
+     *
+     * @param \Cekurte\ZCPEBundle\Entity\Question $question
+     */
+    public function removeQuestion(\Cekurte\ZCPEBundle\Entity\Question $question)
+    {
+        $this->question->removeElement($question);
+    }
+
+    /**
+     * Get question
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getQuestion()
+    {
+        return $this->question;
+    }
 }

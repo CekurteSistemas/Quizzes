@@ -5,12 +5,12 @@ namespace Cekurte\ZCPEBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Plataform
+ * QuestionType
  *
- * @ORM\Table(name="plataform")
+ * @ORM\Table(name="question_type")
  * @ORM\Entity
  */
-class Plataform extends DefaultFieldsBaseEntity
+class QuestionType extends DefaultFieldsBaseEntity
 {
     /**
      * @var integer
@@ -27,4 +27,5 @@ class Plataform extends DefaultFieldsBaseEntity
      * @ORM\Column(name="title", type="string", length=100, nullable=false)
      */
     private $title;
+
 }

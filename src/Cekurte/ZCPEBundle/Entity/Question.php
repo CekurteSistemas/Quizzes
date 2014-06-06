@@ -104,4 +104,237 @@ class Question extends DefaultFieldsBaseEntity
      */
     private $tag;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->answer = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->category = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tag = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set googleGroupsId
+     *
+     * @param integer $googleGroupsId
+     * @return Question
+     */
+    public function setGoogleGroupsId($googleGroupsId)
+    {
+        $this->googleGroupsId = $googleGroupsId;
+
+        return $this;
+    }
+
+    /**
+     * Get googleGroupsId
+     *
+     * @return integer
+     */
+    public function getGoogleGroupsId()
+    {
+        return $this->googleGroupsId;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Question
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set difficulty
+     *
+     * @param integer $difficulty
+     * @return Question
+     */
+    public function setDifficulty($difficulty)
+    {
+        $this->difficulty = $difficulty;
+
+        return $this;
+    }
+
+    /**
+     * Get difficulty
+     *
+     * @return integer
+     */
+    public function getDifficulty()
+    {
+        return $this->difficulty;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     * @return Question
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Set questionType
+     *
+     * @param \Cekurte\ZCPEBundle\Entity\QuestionType $questionType
+     * @return Question
+     */
+    public function setQuestionType(\Cekurte\ZCPEBundle\Entity\QuestionType $questionType = null)
+    {
+        $this->questionType = $questionType;
+
+        return $this;
+    }
+
+    /**
+     * Get questionType
+     *
+     * @return \Cekurte\ZCPEBundle\Entity\QuestionType
+     */
+    public function getQuestionType()
+    {
+        return $this->questionType;
+    }
+
+    /**
+     * Add answer
+     *
+     * @param \Cekurte\ZCPEBundle\Entity\Answer $answer
+     * @return Question
+     */
+    public function addAnswer(\Cekurte\ZCPEBundle\Entity\Answer $answer)
+    {
+        $this->answer[] = $answer;
+
+        return $this;
+    }
+
+    /**
+     * Remove answer
+     *
+     * @param \Cekurte\ZCPEBundle\Entity\Answer $answer
+     */
+    public function removeAnswer(\Cekurte\ZCPEBundle\Entity\Answer $answer)
+    {
+        $this->answer->removeElement($answer);
+    }
+
+    /**
+     * Get answer
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAnswer()
+    {
+        return $this->answer;
+    }
+
+    /**
+     * Add category
+     *
+     * @param \Cekurte\ZCPEBundle\Entity\Category $category
+     * @return Question
+     */
+    public function addCategory(\Cekurte\ZCPEBundle\Entity\Category $category)
+    {
+        $this->category[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \Cekurte\ZCPEBundle\Entity\Category $category
+     */
+    public function removeCategory(\Cekurte\ZCPEBundle\Entity\Category $category)
+    {
+        $this->category->removeElement($category);
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Add tag
+     *
+     * @param \Cekurte\ZCPEBundle\Entity\Tag $tag
+     * @return Question
+     */
+    public function addTag(\Cekurte\ZCPEBundle\Entity\Tag $tag)
+    {
+        $this->tag[] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Remove tag
+     *
+     * @param \Cekurte\ZCPEBundle\Entity\Tag $tag
+     */
+    public function removeTag(\Cekurte\ZCPEBundle\Entity\Tag $tag)
+    {
+        $this->tag->removeElement($tag);
+    }
+
+    /**
+     * Get tag
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTag()
+    {
+        return $this->tag;
+    }
 }

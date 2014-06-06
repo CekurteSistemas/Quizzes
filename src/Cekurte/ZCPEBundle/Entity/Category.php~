@@ -5,12 +5,12 @@ namespace Cekurte\ZCPEBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Plataform
+ * Category
  *
- * @ORM\Table(name="plataform")
+ * @ORM\Table(name="category")
  * @ORM\Entity
  */
-class Plataform extends DefaultFieldsBaseEntity
+class Category extends DefaultFieldsBaseEntity
 {
     /**
      * @var integer
@@ -27,4 +27,19 @@ class Plataform extends DefaultFieldsBaseEntity
      * @ORM\Column(name="title", type="string", length=100, nullable=false)
      */
     private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Question", mappedBy="category")
+     */
+    private $question;
+
 }
