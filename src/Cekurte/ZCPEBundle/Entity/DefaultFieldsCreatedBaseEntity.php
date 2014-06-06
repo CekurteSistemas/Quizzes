@@ -6,13 +6,18 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * DefaultFieldsCreatedBaseEntity
+ *
+ * @ORM\MappedSuperclass
  */
-abstract class DefaultFieldsCreatedBaseEntity
+class DefaultFieldsCreatedBaseEntity
 {
     /**
-     * @var integer
+     * @var \Cekurte\Custom\UserBundle\Entity\User
      *
-     * @ORM\Column(name="created_by", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="\Cekurte\Custom\UserBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="created_by", referencedColumnName="id", nullable=false)
+     * })
      */
     protected $createdBy;
 
@@ -26,12 +31,13 @@ abstract class DefaultFieldsCreatedBaseEntity
     /**
      * Set createdBy
      *
-     * @param integer $createdBy
+     * @param \Cekurte\Custom\UserBundle\Entity\User $user
+     *
      * @return mixed
      */
-    public function setCreatedBy($createdBy)
+    public function setCreatedBy(\Cekurte\Custom\UserBundle\Entity\User $user = null)
     {
-        $this->createdBy = $createdBy;
+        $this->createdBy = $user;
 
         return $this;
     }
@@ -39,7 +45,7 @@ abstract class DefaultFieldsCreatedBaseEntity
     /**
      * Get createdBy
      *
-     * @return integer
+     * @return \Cekurte\Custom\UserBundle\Entity\User
      */
     public function getCreatedBy()
     {

@@ -1,0 +1,43 @@
+{% extends 'CekurteGeneratorBundle::layout.html.twig' %}
+
+{% set title    = 'Tag'|trans %}
+{% set subtitle = 'Details'|trans %}
+
+{% block links -%}
+    {% embed 'CekurteGeneratorBundle:Action:list.html.twig' with {
+        'route'      : 'admin_tag'
+    } only %}
+    {% endembed %}
+    {% embed 'CekurteGeneratorBundle:Action:update.html.twig' with {
+        'route'             : 'admin_tag_edit',
+        'identifierKey'     : 'id',
+        'identifierValue'   : entity.id,
+        'show_label'        : true
+    } only %}
+    {% endembed %}
+    {% embed 'CekurteGeneratorBundle:Action:create.html.twig' with {
+        'route'      : 'admin_tag_new',
+    } only %}
+    {% endembed %}
+    {% embed 'CekurteGeneratorBundle:Action:delete.html.twig' with {
+        'route'             : 'admin_tag_delete',
+        'identifierKey'     : 'id',
+        'identifierValue'   : entity.id,
+        'form'              : delete_form,
+        'show_label'        : true
+    } only %}
+    {% endembed %}
+{% endblock %}
+
+{% block content -%}
+    <div class="table-responsive">
+        <table class="table table-hover table-show">
+            <tbody>
+                <tr>
+                    <th>{{ 'Title'|trans }}</th>
+                    <td>{{ entity.title }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

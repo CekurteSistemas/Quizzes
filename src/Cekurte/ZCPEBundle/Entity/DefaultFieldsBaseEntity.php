@@ -6,20 +6,25 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * DefaultFieldsBaseEntity
+ *
+ * @ORM\MappedSuperclass
  */
-abstract class DefaultFieldsBaseEntity extends DefaultFieldsCreatedBaseEntity
+class DefaultFieldsBaseEntity extends DefaultFieldsCreatedBaseEntity
 {
     /**
      * @var boolean
      *
      * @ORM\Column(name="is_deleted", type="boolean", nullable=false)
      */
-    protected $isDeleted;
+    protected $deleted;
 
     /**
-     * @var integer
+     * @var \Cekurte\Custom\UserBundle\Entity\User
      *
-     * @ORM\Column(name="deleted_by", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="\Cekurte\Custom\UserBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="deleted_by", referencedColumnName="id", nullable=true)
+     * })
      */
     protected $deletedBy;
 
@@ -31,9 +36,12 @@ abstract class DefaultFieldsBaseEntity extends DefaultFieldsCreatedBaseEntity
     protected $deletedAt;
 
     /**
-     * @var integer
+     * @var \Cekurte\Custom\UserBundle\Entity\User
      *
-     * @ORM\Column(name="updated_by", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="\Cekurte\Custom\UserBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="updated_by", referencedColumnName="id", nullable=true)
+     * })
      */
     protected $updatedBy;
 
@@ -45,14 +53,14 @@ abstract class DefaultFieldsBaseEntity extends DefaultFieldsCreatedBaseEntity
     protected $updatedAt;
 
     /**
-     * Set isDeleted
+     * Set deleted
      *
      * @param boolean $isDeleted
      * @return mixed
      */
     public function setDeleted($isDeleted)
     {
-        $this->isDeleted = $isDeleted;
+        $this->deleted = $isDeleted;
 
         return $this;
     }
@@ -64,18 +72,19 @@ abstract class DefaultFieldsBaseEntity extends DefaultFieldsCreatedBaseEntity
      */
     public function isDeleted()
     {
-        return $this->isDeleted;
+        return $this->deleted;
     }
 
     /**
      * Set deletedBy
      *
-     * @param integer $deletedBy
+     * @param \Cekurte\Custom\UserBundle\Entity\User $user
+     *
      * @return mixed
      */
-    public function setDeletedBy($deletedBy)
+    public function setDeletedBy(\Cekurte\Custom\UserBundle\Entity\User $user = null)
     {
-        $this->deletedBy = $deletedBy;
+        $this->deletedBy = $user;
 
         return $this;
     }
@@ -83,7 +92,7 @@ abstract class DefaultFieldsBaseEntity extends DefaultFieldsCreatedBaseEntity
     /**
      * Get deletedBy
      *
-     * @return integer
+     * @return \Cekurte\Custom\UserBundle\Entity\User
      */
     public function getDeletedBy()
     {
@@ -116,12 +125,13 @@ abstract class DefaultFieldsBaseEntity extends DefaultFieldsCreatedBaseEntity
     /**
      * Set updatedBy
      *
-     * @param integer $updatedBy
+     * @param \Cekurte\Custom\UserBundle\Entity\User $user
+     *
      * @return mixed
      */
-    public function setUpdatedBy($updatedBy)
+    public function setUpdatedBy(\Cekurte\Custom\UserBundle\Entity\User $user = null)
     {
-        $this->updatedBy = $updatedBy;
+        $this->updatedBy = $user;
 
         return $this;
     }
@@ -129,7 +139,7 @@ abstract class DefaultFieldsBaseEntity extends DefaultFieldsCreatedBaseEntity
     /**
      * Get updatedBy
      *
-     * @return integer
+     * @return \Cekurte\Custom\UserBundle\Entity\User
      */
     public function getUpdatedBy()
     {
