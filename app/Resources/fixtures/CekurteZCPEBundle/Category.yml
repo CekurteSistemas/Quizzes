@@ -1,0 +1,61 @@
+Cekurte\ZCPEBundle\Entity\Category:
+    category1:
+        title: "Arrays"
+        description: ""
+        deleted: false
+        createdBy: @userAdmin
+        createdAt: <dateTime()>
+    category2:
+        title: "Data Formats & Types"
+        description: ""
+        deleted: false
+        createdBy: @userAdmin
+        createdAt: <dateTime()>
+    category3:
+        title: "Databases"
+        description: ""
+        deleted: false
+        createdBy: @userAdmin
+        createdAt: <dateTime()>
+    category4:
+        title: "Functions"
+        description: ""
+        deleted: false
+        createdBy: @userAdmin
+        createdAt: <dateTime()>
+    category5:
+        title: "Input/Output"
+        description: ""
+        deleted: false
+        createdBy: @userAdmin
+        createdAt: <dateTime()>
+    category6:
+        title: "Object-Oriented PHP"
+        description: ""
+        deleted: false
+        createdBy: @userAdmin
+        createdAt: <dateTime()>
+    category7:
+        title: "PHP Basic"
+        description: ""
+        deleted: false
+        createdBy: @userAdmin
+        createdAt: <dateTime()>
+    category8:
+        title: "Security"
+        description: ""
+        deleted: false
+        createdBy: @userAdmin
+        createdAt: <dateTime()>
+    category9:
+        title: "Strings and Patterns"
+        description: ""
+        deleted: false
+        createdBy: @userAdmin
+        createdAt: <dateTime()>
+    category10:
+        title: "Web Features"
+        description: ""
+        deleted: false
+        createdBy: @userAdmin
+        createdAt: <dateTime()>

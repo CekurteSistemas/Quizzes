@@ -42,3 +42,5 @@ cekurte_fixtures:
         - CekurteCustomUserBundle/City
         - CekurteCustomUserBundle/Group
         - CekurteCustomUserBundle/User
+        - CekurteZCPEBundle/Category
+        - CekurteZCPEBundle/Plataform

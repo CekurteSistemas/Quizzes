@@ -1,0 +1,11 @@
+Cekurte\ZCPEBundle\Entity\Plataform:
+    plataform1:
+        title: "Web"
+        deleted: false
+        createdBy: @userAdmin
+        createdAt: <dateTime()>
+    plataform2:
+        title: "App Mobile"
+        deleted: false
+        createdBy: @userAdmin
+        createdAt: <dateTime()>
