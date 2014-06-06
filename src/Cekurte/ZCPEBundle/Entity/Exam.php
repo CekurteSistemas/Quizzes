@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Exam
  *
- * @ORM\Table(name="exam", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="fk_exam_plataform1_idx", columns={"plataform_id"})})
+ * @ORM\Table(name="exam")
  * @ORM\Entity
  */
-class Exam
+class Exam extends DefaultFieldsCreatedBaseEntity
 {
     /**
      * @var integer
@@ -41,20 +41,6 @@ class Exam
      * @ORM\Column(name="duration", type="time", nullable=true)
      */
     private $duration;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="created_by", type="integer", nullable=false)
-     */
-    private $createdBy;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false)
-     */
-    private $createdAt;
 
     /**
      * @var \Plataform

@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Question
  *
- * @ORM\Table(name="question", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"}), @ORM\UniqueConstraint(name="titulo_UNIQUE", columns={"title"})}, indexes={@ORM\Index(name="fk_question_question_type2_idx", columns={"question_type_id"})})
+ * @ORM\Table(name="question")
  * @ORM\Entity
  */
-class Question
+class Question extends DefaultFieldsBaseEntity
 {
     /**
      * @var integer
@@ -48,55 +48,6 @@ class Question
      * @ORM\Column(name="comment", type="text", nullable=true)
      */
     private $comment;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="is_deleted", type="boolean", nullable=false)
-     */
-    private $isDeleted;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="deleted_by", type="integer", nullable=true)
-     */
-    private $deletedBy;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="deleted_at", type="datetime", nullable=true)
-     */
-    private $deletedAt;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="created_by", type="integer", nullable=false)
-     */
-    private $createdBy;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false)
-     */
-    private $createdAt;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="updated_by", type="integer", nullable=true)
-     */
-    private $updatedBy;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
-     */
-    private $updatedAt;
 
     /**
      * @var \QuestionType
@@ -152,15 +103,5 @@ class Question
      * )
      */
     private $tag;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->answer = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->category = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->tag = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 }
