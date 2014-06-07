@@ -12,7 +12,7 @@ parameters:
     mailer_password:   ~
 
     locale:            pt_BR
-    secret:            22be5ea1f4809e3eb8d57cc3b7602092
+    secret:            c9ed0cf128c10a547fe74c2f4c132c25
 
     # number of items per page
     paginator_number_results_per_page:  10
