@@ -17,7 +17,6 @@ class QuestionType extends DefaultFieldsBaseEntity
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -36,6 +35,19 @@ class QuestionType extends DefaultFieldsBaseEntity
     public function __toString()
     {
         return $this->getTitle();
+    }
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     * @return QuestionType
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     /**
