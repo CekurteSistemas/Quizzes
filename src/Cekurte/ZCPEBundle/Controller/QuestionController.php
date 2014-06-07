@@ -185,9 +185,6 @@ class QuestionController extends CekurteController implements RepositoryInterfac
      */
     public function createAction(Request $request)
     {
-        var_dump($request->request->all());
-        exit;
-
         $form = $this->createForm(new QuestionFormType(), new Question());
 
         $handler = new QuestionFormHandler(

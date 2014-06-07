@@ -26,12 +26,50 @@
     <form class="form-horizontal" role="form" action="{{ path('admin_question_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
         <input type="hidden" name="_method" value="PUT" />
         {{ form_widget(edit_form) }}
+
+        <div class="form-group">
+            <div class="col-lg-2">
+                <label for="answers">{{ 'Answers'|trans }}</label>:
+            </div>
+            <div class="col-lg-10">
+                <div class="form-group form-group-options col-lg-12 col-sm-8 col-md-4">
+                    <div class="input-group input-group-option col-lg-12">
+                        <span class="input-group-addon">
+                            <input tabindex="-1" type="checkbox" class="correct_answers" name="correct_answers[]" value="1">
+                        </span>
+                        <input type="text" name="option_answers[1]" class="form-control" placeholder="{{ 'New answer'|trans }}">
+                        <span class="input-group-addon input-group-addon-remove">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
         {% include 'CekurteGeneratorBundle:Action:form-actions.html.twig' %}
     </form>
-                                                                
 {% endblock %}
+
+{%- block stylesheets -%}
+    {{ parent() }}
+    <link href="{{ asset('bundles/cekurtezcpe/css/question-and-answer.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('vendor/select2/select2.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('vendor/select2/select2-bootstrap.css') }}" rel="stylesheet"/>
+{%- endblock -%}
 
 {%- block javascripts -%}
     {{ parent() }}
-                                                                
+    <script src="{{ asset('bundles/cekurtezcpe/js/question-and-answer.js') }}"></script>
+    <script src="{{ asset('vendor/select2/select2_locale_pt-BR.js') }}"></script>
+    <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            $('select#cekurte_zcpebundle_questionform_category').select2({
+                width: '100%'
+            });
+            $('select#cekurte_zcpebundle_questionform_questionType').select2({
+                width: '400px'
+            });
+        });
+    </script>
 {%- endblock -%}
+
