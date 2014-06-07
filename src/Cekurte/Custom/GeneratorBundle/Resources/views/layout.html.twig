@@ -8,11 +8,11 @@
     <a href="{{ path("admin") }}"><span class="glyphicon glyphicon-home"></span> {{ 'Home' | trans }}</a>
 </li>
 
-<li class="dropdown {% if menu_active == 'band' %} active{% endif %}">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-tasks"></span> <span>Provas</span> <b class="caret"></b></a>
+<li class="dropdown {% if menu_active == 'question' %} active{% endif %}">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-tasks"></span> <span>{{ 'Manage'|trans }}</span> <b class="caret"></b></a>
     <ul class="dropdown-menu">
         <li>
-            <a href="#"><span class="glyphicon glyphicon-th-list"></span> Questionarios</a>
+            <a href="{{ path('admin_question') }}"><span class="glyphicon glyphicon-th-list"></span> {{ 'Questions'|trans }}</a>
         </li>
     </ul>
 </li>
