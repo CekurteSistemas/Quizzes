@@ -39,9 +39,23 @@
 {%- block stylesheets -%}
     {{ parent() }}
     <link href="{{ asset('bundles/cekurtezcpe/css/question-and-answer.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('vendor/select2/select2.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('vendor/select2/select2-bootstrap.css') }}" rel="stylesheet"/>
 {%- endblock -%}
 
 {%- block javascripts -%}
     {{ parent() }}
     <script src="{{ asset('bundles/cekurtezcpe/js/question-and-answer.js') }}"></script>
+    <script src="{{ asset('vendor/select2/select2_locale_pt-BR.js') }}"></script>
+    <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            $('select#cekurte_zcpebundle_questionform_category').select2({
+                width: '100%'
+            });
+            $('select#cekurte_zcpebundle_questionform_questionType').select2({
+                width: '400px'
+            });
+        });
+    </script>
 {%- endblock -%}
