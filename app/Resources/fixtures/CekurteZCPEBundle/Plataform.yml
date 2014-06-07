@@ -3,9 +3,9 @@ Cekurte\ZCPEBundle\Entity\Plataform:
         title: "Web"
         deleted: false
         createdBy: @userAdmin
-        createdAt: <dateTime()>
+        createdAt: <dateTimeBetween("now", "now")>
     plataform2:
         title: "App Mobile"
         deleted: false
         createdBy: @userAdmin
-        createdAt: <dateTime()>
+        createdAt: <dateTimeBetween("now", "now")>

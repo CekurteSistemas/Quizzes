@@ -1,16 +1,19 @@
 Cekurte\ZCPEBundle\Entity\QuestionType:
     questionType1:
+        id: 1
         title: "Single Choice"
         deleted: false
         createdBy: @userAdmin
-        createdAt: <dateTime()>
+        createdAt: <dateTimeBetween("now", "now")>
     questionType2:
+        id: 2
         title: "Multiple Choice"
         deleted: false
         createdBy: @userAdmin
-        createdAt: <dateTime()>
+        createdAt: <dateTimeBetween("now", "now")>
     questionType3:
+        id: 3
         title: "Text"
         deleted: false
         createdBy: @userAdmin
-        createdAt: <dateTime()>
+        createdAt: <dateTimeBetween("now", "now")>

@@ -4,58 +4,58 @@ Cekurte\ZCPEBundle\Entity\Category:
         description: ""
         deleted: false
         createdBy: @userAdmin
-        createdAt: <dateTime()>
+        createdAt: <dateTimeBetween("now", "now")>
     category2:
         title: "Data Formats & Types"
         description: ""
         deleted: false
         createdBy: @userAdmin
-        createdAt: <dateTime()>
+        createdAt: <dateTimeBetween("now", "now")>
     category3:
         title: "Databases"
         description: ""
         deleted: false
         createdBy: @userAdmin
-        createdAt: <dateTime()>
+        createdAt: <dateTimeBetween("now", "now")>
     category4:
         title: "Functions"
         description: ""
         deleted: false
         createdBy: @userAdmin
-        createdAt: <dateTime()>
+        createdAt: <dateTimeBetween("now", "now")>
     category5:
         title: "Input/Output"
         description: ""
         deleted: false
         createdBy: @userAdmin
-        createdAt: <dateTime()>
+        createdAt: <dateTimeBetween("now", "now")>
     category6:
         title: "Object-Oriented PHP"
         description: ""
         deleted: false
         createdBy: @userAdmin
-        createdAt: <dateTime()>
+        createdAt: <dateTimeBetween("now", "now")>
     category7:
         title: "PHP Basic"
         description: ""
         deleted: false
         createdBy: @userAdmin
-        createdAt: <dateTime()>
+        createdAt: <dateTimeBetween("now", "now")>
     category8:
         title: "Security"
         description: ""
         deleted: false
         createdBy: @userAdmin
-        createdAt: <dateTime()>
+        createdAt: <dateTimeBetween("now", "now")>
     category9:
         title: "Strings and Patterns"
         description: ""
         deleted: false
         createdBy: @userAdmin
-        createdAt: <dateTime()>
+        createdAt: <dateTimeBetween("now", "now")>
     category10:
         title: "Web Features"
         description: ""
         deleted: false
         createdBy: @userAdmin
-        createdAt: <dateTime()>
+        createdAt: <dateTimeBetween("now", "now")>
