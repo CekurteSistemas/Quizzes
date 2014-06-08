@@ -40,7 +40,14 @@ class QuestionFormHandler extends CustomFormHandler
             $questionId = $data->getId();
 
             if (!empty($questionId)) {
-                // remover as respostas atuais
+
+                $results = $this->getManager()->getRepository('CekurteZCPEBundle:QuestionHasAnswer')->findBy(array(
+                    'question' => $data->getId(),
+                ));
+
+                foreach ($results as $key => $result) {
+                    $this->getManager()->remove($result);
+                }
             }
 
             $id = parent::save();

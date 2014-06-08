@@ -38,28 +38,34 @@
                     <td>{{ entity.questionType }}</td>
                 </tr>
                 <tr>
-                    <th>{{ 'Answer'|trans }}</th>
-                    <td>{{ entity.answer }}</td>
-                </tr>
-                <tr>
                     <th>{{ 'Category'|trans }}</th>
-                    <td>{{ entity.category }}</td>
+                    <td>
+                        {% for category in entity.category %}
+                            {{ category }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
                 </tr>
                 <tr>
-                    <th>{{ 'Tag'|trans }}</th>
-                    <td>{{ entity.tag }}</td>
+                    <th>{{ 'Difficulty'|trans }}</th>
+                    <td>{{ entity.difficulty }}</td>
                 </tr>
-                <tr>
-                    <th>{{ 'Deletedby'|trans }}</th>
-                    <td>{{ entity.deletedBy }}</td>
-                </tr>
-                <tr>
-                    <th>{{ 'Updatedby'|trans }}</th>
-                    <td>{{ entity.updatedBy }}</td>
-                </tr>
+                {% if entity.updatedBy %}
+                    <tr>
+                        <th>{{ 'Updatedby'|trans }}</th>
+                        <td>{{ entity.updatedBy }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ 'Updatedat'|trans }}</th>
+                        <td>{{ entity.updatedAt|date('d/m/Y H:i:s') }}</td>
+                    </tr>
+                {% endif %}
                 <tr>
                     <th>{{ 'Createdby'|trans }}</th>
                     <td>{{ entity.createdBy }}</td>
+                </tr>
+                <tr>
+                    <th>{{ 'Createdat'|trans }}</th>
+                    <td>{{ entity.createdAt|date('d/m/Y H:i:s') }}</td>
                 </tr>
                 <tr>
                     <th>{{ 'Googlegroupsid'|trans }}</th>
@@ -67,28 +73,20 @@
                 </tr>
                 <tr>
                     <th>{{ 'Title'|trans }}</th>
-                    <td>{{ entity.title }}</td>
+                    <td>{{ entity.title|raw }}</td>
                 </tr>
                 <tr>
-                    <th>{{ 'Difficulty'|trans }}</th>
-                    <td>{{ entity.difficulty }}</td>
-                </tr>
-                <tr>
-                    <th>{{ 'Comment'|trans }}</th>
-                    <td>{{ entity.comment|raw }}</td>
-                </tr>
-                <tr>
-                    <th>{{ 'Deleted'|trans }}</th>
-                    <td>{{ entity.deleted == true ? 'Yes'|trans : 'No'|trans }}</td>
-                </tr>
-                <tr>
-                    <th>{{ 'Deletedat'|trans }}</th><td>{{ entity.deletedAt|date('d/m/Y H:i:s') }}</td>
-                </tr>
-                <tr>
-                    <th>{{ 'Updatedat'|trans }}</th><td>{{ entity.updatedAt|date('d/m/Y H:i:s') }}</td>
-                </tr>
-                <tr>
-                    <th>{{ 'Createdat'|trans }}</th><td>{{ entity.createdAt|date('d/m/Y H:i:s') }}</td>
+                    <th>{{ 'Answers'|trans }}</th>
+                    <td>
+                        {% for item in entity.questionHasAnswer %}
+                            <div class="input-group form-group">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-{% if item.correct %}ok{% else %}remove{% endif %}"></span>
+                                </span>
+                                <input type="text" class="form-control" placeholder="{{ item.answer.title }}" disabled>
+                            </div>
+                        {% endfor %}
+                    </td>
                 </tr>
             </tbody>
         </table>

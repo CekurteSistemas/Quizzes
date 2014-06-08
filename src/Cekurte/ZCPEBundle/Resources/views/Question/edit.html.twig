@@ -33,15 +33,17 @@
             </div>
             <div class="col-lg-10">
                 <div class="form-group form-group-options col-lg-12 col-sm-8 col-md-4">
-                    <div class="input-group input-group-option col-lg-12">
-                        <span class="input-group-addon">
-                            <input tabindex="-1" type="checkbox" class="correct_answers" name="correct_answers[]" value="1">
-                        </span>
-                        <input type="text" name="option_answers[1]" class="form-control" placeholder="{{ 'New answer'|trans }}">
-                        <span class="input-group-addon input-group-addon-remove">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </span>
-                    </div>
+                    {% for item in entity.questionHasAnswer %}
+                        <div class="input-group input-group-option col-lg-12">
+                            <span class="input-group-addon">
+                                <input tabindex="-1" type="{% if entity.questionType.id == 1 %}radio{% else %}checkbox{% endif %}" class="correct_answers" name="correct_answers[]" value="{{ loop.index }}" {% if item.correct %}checked="checked"{% endif %}>
+                            </span>
+                            <input type="text" name="option_answers[{{ loop.index }}]" class="form-control" placeholder="{{ 'New answer'|trans }}" value="{{ item.answer.title }}">
+                            <span class="input-group-addon input-group-addon-remove">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </span>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

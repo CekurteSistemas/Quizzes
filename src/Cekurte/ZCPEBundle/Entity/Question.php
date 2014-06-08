@@ -90,12 +90,18 @@ class Question extends DefaultFieldsBaseEntity
     private $tag;
 
     /**
+     * @ORM\OneToMany(targetEntity="\Cekurte\ZCPEBundle\Entity\QuestionHasAnswer", mappedBy="question")
+     */
+    private $questionHasAnswer;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->category = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->tag = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->category             = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tag                  = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->questionHasAnswer    = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -287,5 +293,38 @@ class Question extends DefaultFieldsBaseEntity
     public function getTag()
     {
         return $this->tag;
+    }
+
+    /**
+     * Add questionHasAnswer
+     *
+     * @param \Cekurte\ZCPEBundle\Entity\QuestionHasAnswer $questionHasAnswer
+     * @return User
+     */
+    public function addQuestionHasAnswer(\Cekurte\ZCPEBundle\Entity\QuestionHasAnswer $questionHasAnswer)
+    {
+        $this->questionHasAnswer[] = $questionHasAnswer;
+
+        return $this;
+    }
+
+    /**
+     * Remove questionHasAnswer
+     *
+     * @param \Cekurte\ZCPEBundle\Entity\QuestionHasAnswer $questionHasAnswer
+     */
+    public function removeQuestionHasAnswer(\Cekurte\ZCPEBundle\Entity\QuestionHasAnswer $questionHasAnswer)
+    {
+        $this->questionHasAnswer->removeElement($questionHasAnswer);
+    }
+
+    /**
+     * Get questionHasAnswer
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getQuestionHasAnswer()
+    {
+        return $this->questionHasAnswer;
     }
 }
