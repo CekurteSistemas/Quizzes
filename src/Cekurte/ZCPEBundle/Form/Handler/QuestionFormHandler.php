@@ -35,9 +35,15 @@ class QuestionFormHandler extends CustomFormHandler
 
             $this->getManager()->getConnection()->beginTransaction();
 
-            $id = parent::save();
-
             $data = $this->getForm()->getData();
+
+            $questionId = $data->getId();
+
+            if (!empty($questionId)) {
+                // remover as respostas atuais
+            }
+
+            $id = parent::save();
 
             foreach ($answers as $index => $answer) {
 
@@ -53,8 +59,12 @@ class QuestionFormHandler extends CustomFormHandler
                 $this->getManager()->persist($answerEntity);
                 $this->getManager()->flush();
 
+                $correctAnswer = false;
+
                 foreach ($correct as $key => $indexCorrect) {
-                    $correctAnswer = ($indexCorrect == $index) ? true : false;
+                    if ($indexCorrect == $index) {
+                        $correctAnswer = true;
+                    }
                 }
 
                 $questionAnswerEntity = new QuestionHasAnswer();
