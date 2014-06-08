@@ -1,0 +1,46 @@
+<?php
+
+namespace Cekurte\ZCPEBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * QuestionHasAnswer
+ *
+ * @ORM\Table(name="question_has_answer")
+ * @ORM\Entity
+ */
+class QuestionHasAnswer
+{
+    /**
+     * @var \Question
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\ManyToOne(targetEntity="Question")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="question_id", referencedColumnName="id", nullable=false)
+     * })
+     */
+    private $question;
+
+    /**
+     * @var \Answer
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\ManyToOne(targetEntity="Answer")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="answer_id", referencedColumnName="id", nullable=false)
+     * })
+     */
+    private $answer;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_correct", type="boolean", nullable=false)
+     */
+    private $correct;
+
+}

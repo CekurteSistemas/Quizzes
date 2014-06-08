@@ -62,21 +62,6 @@ class Question extends DefaultFieldsBaseEntity
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Answer", inversedBy="question")
-     * @ORM\JoinTable(name="question_has_answer",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="question_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="answer_id", referencedColumnName="id")
-     *   }
-     * )
-     */
-    private $answer;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
      * @ORM\ManyToMany(targetEntity="Category", inversedBy="question")
      * @ORM\JoinTable(name="question_has_category",
      *   joinColumns={
@@ -109,7 +94,6 @@ class Question extends DefaultFieldsBaseEntity
      */
     public function __construct()
     {
-        $this->answer = new \Doctrine\Common\Collections\ArrayCollection();
         $this->category = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tag = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -237,39 +221,6 @@ class Question extends DefaultFieldsBaseEntity
     public function getQuestionType()
     {
         return $this->questionType;
-    }
-
-    /**
-     * Add answer
-     *
-     * @param \Cekurte\ZCPEBundle\Entity\Answer $answer
-     * @return Question
-     */
-    public function addAnswer(\Cekurte\ZCPEBundle\Entity\Answer $answer)
-    {
-        $this->answer[] = $answer;
-
-        return $this;
-    }
-
-    /**
-     * Remove answer
-     *
-     * @param \Cekurte\ZCPEBundle\Entity\Answer $answer
-     */
-    public function removeAnswer(\Cekurte\ZCPEBundle\Entity\Answer $answer)
-    {
-        $this->answer->removeElement($answer);
-    }
-
-    /**
-     * Get answer
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAnswer()
-    {
-        return $this->answer;
     }
 
     /**

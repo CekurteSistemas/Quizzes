@@ -29,21 +29,6 @@ class Answer extends DefaultFieldsBaseEntity
     private $title;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Question", mappedBy="answer")
-     */
-    private $question;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->question = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
      * Get id
      *
      * @return integer
@@ -74,38 +59,5 @@ class Answer extends DefaultFieldsBaseEntity
     public function getTitle()
     {
         return $this->title;
-    }
-
-    /**
-     * Add question
-     *
-     * @param \Cekurte\ZCPEBundle\Entity\Question $question
-     * @return Answer
-     */
-    public function addQuestion(\Cekurte\ZCPEBundle\Entity\Question $question)
-    {
-        $this->question[] = $question;
-
-        return $this;
-    }
-
-    /**
-     * Remove question
-     *
-     * @param \Cekurte\ZCPEBundle\Entity\Question $question
-     */
-    public function removeQuestion(\Cekurte\ZCPEBundle\Entity\Question $question)
-    {
-        $this->question->removeElement($question);
-    }
-
-    /**
-     * Get question
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getQuestion()
-    {
-        return $this->question;
     }
 }

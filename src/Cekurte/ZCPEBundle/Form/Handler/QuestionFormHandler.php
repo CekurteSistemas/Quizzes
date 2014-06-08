@@ -3,6 +3,7 @@
 namespace Cekurte\ZCPEBundle\Form\Handler;
 
 use Cekurte\ZCPEBundle\Entity\Answer;
+use Cekurte\ZCPEBundle\Entity\QuestionHasAnswer;
 
 /**
  * Question handler.
@@ -30,49 +31,60 @@ class QuestionFormHandler extends CustomFormHandler
             return false;
         }
 
-        if ($this->formIsValid()) {
+        try {
+
+            $this->getManager()->getConnection()->beginTransaction();
+
+            $id = parent::save();
 
             $data = $this->getForm()->getData();
 
-            $id = $data->getId();
+            foreach ($answers as $index => $answer) {
 
-            if (empty($id)) {
+                $answerEntity = new Answer();
 
-                var_dump($options, $correct, ($options));
-                exit;
-
-                foreach ($answers as $index => $answer) {
-
-                    $answerEntity = new Answer();
-
-                    $this->getForm()->getData()
-                        ->addAnswer(
-
-                        )
-                    ;
-                }
-
-                $this->getForm()->getData()
+                $answerEntity
+                    ->setTitle($answer)
                     ->setDeleted(false)
                     ->setCreatedBy($this->getUser())
                     ->setCreatedAt(new \DateTime('NOW'))
                 ;
-            } else {
-                $this->getForm()->getData()
-                    ->setUpdatedBy($this->getUser())
-                    ->setUpdatedAt(new \DateTime('NOW'))
+
+                $this->getManager()->persist($answerEntity);
+                $this->getManager()->flush();
+
+                foreach ($correct as $key => $indexCorrect) {
+                    $correctAnswer = ($indexCorrect == $index) ? true : false;
+                }
+
+                $questionAnswerEntity = new QuestionHasAnswer();
+
+                $questionAnswerEntity
+                    ->setAnswer($answerEntity)
+                    ->setQuestion($data)
+                    ->setCorrect($correctAnswer)
                 ;
+
+                $this->getManager()->persist($questionAnswerEntity);
+                $this->getManager()->flush();
             }
 
+            $this->getManager()->getConnection()->commit();
+
+            return $id;
+
+        } catch (\Exception $e) {
+
+            $this->getFlashBag()->clear();
+
             $this->getFlashBag()->add('message', array(
-                'type'      => 'success',
-                'message'   => sprintf('The record has been %s successfully.', $data->getId() ? 'updated ' : 'created'),
+                'type'      => 'error',
+                'message'   => $e->getMessage(),
             ));
 
-            $this->getManager()->persist($data);
-            $this->getManager()->flush();
+            $this->getManager()->getConnection()->rollback();
 
-            return $data->getId();
+            return false;
         }
 
         return false;
