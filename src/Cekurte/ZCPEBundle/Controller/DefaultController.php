@@ -20,7 +20,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/admin", name="admin")
+     * @Route("/admin/", name="admin")
      * @Method("GET")
      * @Template()
      */
