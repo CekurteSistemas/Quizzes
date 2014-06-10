@@ -4,20 +4,20 @@
 {% set subtitle = 'List'|trans %}
 
 {% block search -%}
-    {% include 'CekurteZCPEBundle:Question:search.html.twig' %}
+    {# {% include 'CekurteZCPEBundle:Question:search.html.twig' %} #}
 {% endblock %}
 
 {% block links -%}
-    {% embed 'CekurteGeneratorBundle:Action:search.html.twig' only %}
-    {% endembed %}
+    {# {% embed 'CekurteGeneratorBundle:Action:search.html.twig' only %}
+    {% endembed %} #}
     {% embed 'CekurteGeneratorBundle:Action:create.html.twig' with {
         'route': 'admin_question_new'
     } only %}
     {% endembed %}
-    {% embed 'CekurteGeneratorBundle:Action:export.html.twig' with {
+    {# {% embed 'CekurteGeneratorBundle:Action:export.html.twig' with {
         'route': 'admin_question_export'
     } only %}
-    {% endembed %}
+    {% endembed %} #}
 {% endblock %}
 
 {% block links_footer -%}

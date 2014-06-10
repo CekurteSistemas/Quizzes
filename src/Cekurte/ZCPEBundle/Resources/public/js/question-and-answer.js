@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 
-    $('button[type="submit"]').on('click', function() {
+    $('#question button[type="submit"]').on('click', function() {
 
         var hasAnswerCorrect = false;
 
@@ -15,7 +15,6 @@ jQuery(document).ready(function($) {
 
         if (hasAnswerCorrect === false) {
 
-            $('#answer-message .message').html('Select correct answer!');
             $('#answer-message').removeClass('out').addClass('in');
 
             return false;
@@ -24,7 +23,6 @@ jQuery(document).ready(function($) {
 
     $(document).on('change', 'div.form-group-options div.input-group-option .correct_answers', function() {
         $('#answer-message').removeClass('in').addClass('out');
-        $('#answer-message .message').html('');
     });
 
     $(document).on('blur', 'div.form-group-options div.input-group-option input[type="text"]', function() {

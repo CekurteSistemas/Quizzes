@@ -23,13 +23,13 @@
 {% endblock %}
 
 {% block content -%}
-    <form class="form-horizontal" role="form" action="{{ path('admin_question_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <form id="question" class="form-horizontal" role="form" action="{{ path('admin_question_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
         <input type="hidden" name="_method" value="PUT" />
         {{ form_widget(edit_form) }}
 
         <div id="answer-message" class="alert alert-danger alert-dismissable fade">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <span class="message"></span>
+            <strong>{{ 'Error'|trans }}!</strong> <span class="message">{{ 'Select correct answer.'|trans }}</span>
         </div>
 
         <div class="form-group">

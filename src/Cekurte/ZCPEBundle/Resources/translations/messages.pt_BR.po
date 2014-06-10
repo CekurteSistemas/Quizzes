@@ -1,0 +1,186 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ZCPE\n"
+"POT-Creation-Date: 2014-06-10 13:06-0300\n"
+"PO-Revision-Date: 2014-06-10 13:12-0300\n"
+"Last-Translator: \n"
+"Language-Team: CekurteSistemas <sistemas@cekurte.com>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: trans;translate;add\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: /var/www/zcpe/src/Cekurte/ZCPEBundle\n"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/EventListener/QuestionAnswerListener.php:101
+msgid "The email has been sent successfully."
+msgstr "O e-mail foi enviado com sucesso."
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/EventListener/QuestionAnswerListener.php:99
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Handler/QuestionFormHandler.php:26
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Handler/QuestionFormHandler.php:97
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Handler/CustomFormHandler.php:89
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Handler/CustomFormHandler.php:121
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Handler/CustomFormHandler.php:138
+msgid "message"
+msgstr "mensagem"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Type/TagFormType.php:27
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Type/TagFormType.php:32
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Type/CategoryFormType.php:27
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Type/CategoryFormType.php:33
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Type/QuestionFormType.php:32
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Type/QuestionFormType.php:39
+msgid "title"
+msgstr "título"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Type/CategoryFormType.php:28
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Type/CategoryFormType.php:34
+msgid "description"
+msgstr "descrição"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Type/QuestionFormType.php:27
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Type/QuestionFormType.php:44
+msgid "questionType"
+msgstr "Tipo de Questão"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Type/QuestionFormType.php:28
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Type/QuestionFormType.php:37
+msgid "category"
+msgstr "categoria"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Type/QuestionFormType.php:29
+msgid "updatedBy"
+msgstr "atualizado por"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Type/QuestionFormType.php:30
+msgid "createdBy"
+msgstr "criado por"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Type/QuestionFormType.php:31
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Form/Type/QuestionFormType.php:38
+msgid "googleGroupsId"
+msgstr "Google Groups ID"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/TagController.php:143
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/CategoryController.php:143
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:198
+msgid "Report of"
+msgstr "Relatório de"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/TagController.php:144
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:207
+msgid "Tag"
+msgstr "Tag"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/TagController.php:149
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/CategoryController.php:149
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:199
+msgid "Question"
+msgstr "Questão"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/TagController.php:150
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/CategoryController.php:153
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:212
+msgid "Title"
+msgstr "Título"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/TagController.php:151
+msgid "Isdeleted"
+msgstr "Removido?"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/TagController.php:152
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/CategoryController.php:150
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:208
+msgid "Deletedby"
+msgstr "Removido por"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/TagController.php:153
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/CategoryController.php:156
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:216
+msgid "Deletedat"
+msgstr "Removido em"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/TagController.php:154
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/CategoryController.php:151
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:209
+msgid "Updatedby"
+msgstr "Atualizado por"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/TagController.php:155
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/CategoryController.php:157
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:217
+msgid "Updatedat"
+msgstr "Atualizado em"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/TagController.php:156
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/CategoryController.php:152
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:210
+msgid "Createdby"
+msgstr "Criado por"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/TagController.php:157
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/CategoryController.php:158
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:218
+msgid "Createdat"
+msgstr "Criado em"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/CategoryController.php:144
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:206
+msgid "Category"
+msgstr "Categoria"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/CategoryController.php:154
+msgid "Description"
+msgstr "Descrição"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/CategoryController.php:155
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:215
+msgid "Deleted"
+msgstr "Removido"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:204
+msgid "Questiontype"
+msgstr "Tipo de Questão"
+
+msgid "Answers"
+msgstr "Respostas"
+
+msgid "Select correct answer."
+msgstr "Selecione a resposta correta."
+
+msgid "Question type"
+msgstr "Tipo de Questão"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:205
+msgid "Answer"
+msgstr "Resposta"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:211
+msgid "Googlegroupsid"
+msgstr "Google Groups ID"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:213
+msgid "Difficulty"
+msgstr "Dificuldade"
+
+#: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:214
+msgid "Comment"
+msgstr "Comentário"
+
+msgid "Manage"
+msgstr "Gerenciar"
+
+msgid "Questions"
+msgstr "Questões"
+
+msgid "Profile"
+msgstr "Perfil"
+
+msgid "Logout"
+msgstr "Sair"
+
+msgid "Welcome"
+msgstr "Bem vindo"
