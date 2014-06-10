@@ -54,7 +54,7 @@ class Question extends DefaultFieldsBaseEntity
      *
      * @ORM\ManyToOne(targetEntity="QuestionType")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="question_type_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="question_type_id", referencedColumnName="id", nullable=false)
      * })
      */
     private $questionType;
