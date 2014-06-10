@@ -20,3 +20,8 @@ parameters:
     # OAuth config
     facebook_client_id: 179747528899771
     facebook_client_secret: ab01ea80d078a54770f1247ad0178b33
+
+    # Mail of Google Group
+    cekurte_zcpe_google_group_mail: rumo-a-certificacao-php@googlegroups.com
+    cekurte_zcpe_google_group_name: Rumo a ZCE
+    cekurte_zcpe_google_group_subject: Pergunta do dia

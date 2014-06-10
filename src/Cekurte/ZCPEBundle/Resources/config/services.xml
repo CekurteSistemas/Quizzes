@@ -4,17 +4,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
-    <parameters>
-        <parameter key="cekurte_zcpe.example.class">Cekurte\ZCPEBundle\Example</parameter>
-    </parameters>
-
     <services>
-        <service id="cekurte_zcpe.example" class="%cekurte_zcpe.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="kernel.subscriber.cekurte_zcpe.question_answer" class="Cekurte\ZCPEBundle\EventListener\QuestionAnswerListener">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="service_container" />
         </service>
     </services>
-    -->
 </container>

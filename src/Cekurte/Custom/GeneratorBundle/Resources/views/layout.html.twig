@@ -24,17 +24,20 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <span>{{ app.user.username }}</span> <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>
-                    <a href="{{ path("_admin_fos_user_profile_show") }}"><span class="glyphicon glyphicon-cog"></span> {{ 'Perfil' | trans }}</a>
+                    <a href="{{ path("_admin_fos_user_profile_show") }}"><span class="glyphicon glyphicon-cog"></span> {{ 'Profile' | trans }}</a>
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="{{ path("_admin_fos_user_security_logout") }}"><span class="glyphicon glyphicon-log-out"></span> {{ 'Sair' | trans }}</a>
+                    <a href="{{ path("_admin_fos_user_security_logout") }}"><span class="glyphicon glyphicon-log-out"></span> {{ 'Logout' | trans }}</a>
                 </li>
             </ul>
         </li>
     {%- endif -%}
 {%- endblock -%}
 
+{%- block footer_content -%}
+    <a href="http://sistemas.cekurte.com/" target="_blank">@2014 - João Paulo Cercal</a>
+{%- endblock -%}
 
 {%- block stylesheets -%}
     {{ parent() }}

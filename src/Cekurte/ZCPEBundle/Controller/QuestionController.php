@@ -19,6 +19,9 @@ use Cekurte\ZCPEBundle\Entity\Repository\QuestionRepository;
 use Cekurte\ZCPEBundle\Form\Type\QuestionFormType;
 use Cekurte\ZCPEBundle\Form\Handler\QuestionFormHandler;
 
+use Cekurte\ZCPEBundle\Events;
+use Cekurte\ZCPEBundle\Event\QuestionAnswerEvent;
+
 /**
  * Question controller.
  *
@@ -81,6 +84,32 @@ class QuestionController extends CekurteController implements RepositoryInterfac
             'delete_form'   => $this->createDeleteForm()->createView(),
             'search_form'   => $form->createView(),
         );
+    }
+
+    /**
+     * Send mail.
+     *
+     * @Route("/{question}/send-mail", name="admin_question_send_mail")
+     * @Method("GET")
+     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION_SEND_MAIL, ROLE_ADMIN")
+     *
+     * @author João Paulo Cercal <sistemas@cekurte.com>
+     * @version 0.1
+     */
+    public function sendMailAction($question)
+    {
+        $event = new QuestionAnswerEvent(
+            $this->getEntityRepository()->find($question)
+        );
+
+        $this->get('event_dispatcher')->dispatch(
+            Events::NEW_QUESTION,
+            $event
+        );
+
+        return $this->redirect($this->generateUrl('admin_question_show', array(
+            'id' => $question
+        )));
     }
 
     /**

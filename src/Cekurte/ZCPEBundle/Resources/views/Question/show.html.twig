@@ -8,6 +8,13 @@
         'route'      : 'admin_question'
     } only %}
     {% endembed %}
+    {% embed 'CekurteGeneratorBundle:Action:retrieve.html.twig' %}
+        {% block action %}
+            <a href="{{ path('admin_question_send_mail', {'question': entity.id}) }}" class="btn btn-warning">
+                <span class="glyphicon glyphicon-envelope"></span> {{ 'Send Mail' | trans }}
+            </a>
+        {% endblock %}
+    {% endembed %}
     {% embed 'CekurteGeneratorBundle:Action:update.html.twig' with {
         'route'             : 'admin_question_edit',
         'identifierKey'     : 'id',

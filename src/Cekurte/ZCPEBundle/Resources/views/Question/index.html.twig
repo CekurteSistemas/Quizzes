@@ -33,7 +33,7 @@
                     <th{% if pagination.isSorted('ck.category') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Category'|trans, 'ck.category', {'title' : 'Order by'|trans ~ ' ' ~ 'Category'|trans}) }}</th>
                     <th{% if pagination.isSorted('ck.title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'ck.title', {'title' : 'Order by'|trans ~ ' ' ~ 'Title'|trans}) }}</th>
                     {% if cekurte_is_granted('RETRIEVE') or cekurte_is_granted('UPDATE') or cekurte_is_granted('DELETE') %}
-                        <th class="action">{{ 'Actions'|trans }}</th>
+                        <th class="action" style="width: 190px;">{{ 'Actions'|trans }}</th>
                     {% endif %}
                 </tr>
             </thead>
@@ -49,6 +49,13 @@
                     <td>{{ entity.title|truncate(50)|raw }}</td>
                     {% if cekurte_is_granted('RETRIEVE') or cekurte_is_granted('UPDATE') or cekurte_is_granted('DELETE') %}
                         <td>
+                            {% embed 'CekurteGeneratorBundle:Action:retrieve.html.twig' %}
+                                {% block action %}
+                                    <a href="{{ path('admin_question_send_mail', {'question': entity.id}) }}" class="btn btn-warning" title="{{ 'Send Mail' | trans }}">
+                                        <span class="glyphicon glyphicon-envelope"></span>
+                                    </a>
+                                {% endblock %}
+                            {% endembed %}
                             {% embed 'CekurteGeneratorBundle:Action:retrieve.html.twig' with {
                                 'route'             : 'admin_question_show',
                                 'identifierKey'     : 'id',
