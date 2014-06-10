@@ -7,8 +7,9 @@ jQuery(document).ready(function($) {
         $(document).find('div.form-group-options div.input-group-option .correct_answers').each(function(index, element) {
 
             var isChecked = $(element).is(':checked');
+            var inputText = $(element).parent().find('input[type="text"]').val();
 
-            if (isChecked) {
+            if (isChecked && inputText.length > 0) {
                 hasAnswerCorrect = true;
             }
         });
