@@ -55,7 +55,6 @@ class QuestionAnswerListener extends ContainerAware implements EventSubscriberIn
             'question' => $event->getQuestion()
         ));
 
-        die($body);
 
         $message = \Swift_Message::newInstance()
             ->setSubject(sprintf(
@@ -70,6 +69,7 @@ class QuestionAnswerListener extends ContainerAware implements EventSubscriberIn
             ->setTo(array(
                 $container->getParameter('cekurte_zcpe_google_group_mail') => $container->getParameter('cekurte_zcpe_google_group_name')
             ))
+            ->setContentType('text/html')
             ->setBody($body)
         ;
 
