@@ -55,6 +55,8 @@ class QuestionAnswerListener extends ContainerAware implements EventSubscriberIn
             'question' => $event->getQuestion()
         ));
 
+        die($body);
+
         $message = \Swift_Message::newInstance()
             ->setSubject(sprintf(
                 '[%s] %s: %s',
@@ -63,7 +65,7 @@ class QuestionAnswerListener extends ContainerAware implements EventSubscriberIn
                 $event->getQuestion()->getGoogleGroupsId()
             ))
             ->setFrom(array(
-                'sistemas@cekurte.com' => 'Cekurte Sistemas'
+                $this->getUser()->getEmail() => $this->getUser()->getName()
             ))
             ->setTo(array(
                 $container->getParameter('cekurte_zcpe_google_group_mail') => $container->getParameter('cekurte_zcpe_google_group_name')
