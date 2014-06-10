@@ -26,7 +26,6 @@ class ApiController extends CekurteController
      *
      * @Route("/categories")
      * @Method("GET")
-     * @Secure(roles="ROLE_API")
      *
      * @return JsonResponse
      *
@@ -40,12 +39,20 @@ class ApiController extends CekurteController
         $categoryFilter = new Category();
         $categoryFilter->setDeleted(false);
 
-        $result = $this
-            ->getEntityRepository()
-            ->getQuery($categoryFilter)
+        $result = $categoryRepository
+            ->getQuery($categoryFilter, 'ck.title', 'asc')
             ->getResult()
         ;
 
-        var_dump($result);
+        $data = array();
+
+        foreach ($result as $item) {
+            $data[] = array(
+                'id'        => $item->getId(),
+                'category'  => $item->getTitle(),
+            );
+        }
+
+        return new JsonResponse($data);
     }
 }
