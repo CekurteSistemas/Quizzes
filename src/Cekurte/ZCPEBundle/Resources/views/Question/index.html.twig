@@ -29,8 +29,8 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th{% if pagination.isSorted('ck.questionType') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Questiontype'|trans, 'ck.questionType', {'title' : 'Order by'|trans ~ ' ' ~ 'Questiontype'|trans}) }}</th>
-                    <th{% if pagination.isSorted('ck.category') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Category'|trans, 'ck.category', {'title' : 'Order by'|trans ~ ' ' ~ 'Category'|trans}) }}</th>
+                    <th>{{ 'Questiontype'|trans }}</th>
+                    <th>{{ 'Category'|trans }}</th>
                     <th{% if pagination.isSorted('ck.title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'ck.title', {'title' : 'Order by'|trans ~ ' ' ~ 'Title'|trans}) }}</th>
                     {% if cekurte_is_granted('RETRIEVE') or cekurte_is_granted('UPDATE') or cekurte_is_granted('DELETE') %}
                         <th class="action">{{ 'Actions'|trans }}</th>
