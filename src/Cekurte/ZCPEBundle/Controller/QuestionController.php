@@ -21,6 +21,7 @@ use Cekurte\ZCPEBundle\Form\Handler\QuestionFormHandler;
 
 use Cekurte\ZCPEBundle\Events;
 use Cekurte\ZCPEBundle\Event\QuestionAnswerEvent;
+use Cekurte\ZCPEBundle\EventListener\QuestionAnswerListener;
 
 /**
  * Question controller.
@@ -83,6 +84,31 @@ class QuestionController extends CekurteController implements RepositoryInterfac
             'pagination'    => $pagination,
             'delete_form'   => $this->createDeleteForm()->createView(),
             'search_form'   => $form->createView(),
+        );
+    }
+
+    /**
+     * Preview mail.
+     *
+     * @Route("/{question}/preview-mail", name="admin_question_preview_mail")
+     * @Method("GET")
+     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION_SEND_MAIL, ROLE_ADMIN")
+     *
+     * @author João Paulo Cercal <sistemas@cekurte.com>
+     * @version 0.1
+     */
+    public function previewMailAction($question)
+    {
+        $entity = $this->getEntityRepository()->find($question);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Question entity.');
+        }
+
+        $listener = new QuestionAnswerListener($this->container);
+
+        return new Response(
+            $listener->getTemplateBody($entity)
         );
     }
 

@@ -1,5 +1,32 @@
 jQuery(document).ready(function($) {
 
+    $('button[type="submit"]').on('click', function() {
+
+        var hasAnswerCorrect = false;
+
+        $(document).find('div.form-group-options div.input-group-option .correct_answers').each(function(index, element) {
+
+            var isChecked = $(element).is(':checked');
+
+            if (isChecked) {
+                hasAnswerCorrect = true;
+            }
+        });
+
+        if (hasAnswerCorrect === false) {
+
+            $('#answer-message .message').html('Select correct answer!');
+            $('#answer-message').removeClass('out').addClass('in');
+
+            return false;
+        }
+    });
+
+    $(document).on('change', 'div.form-group-options div.input-group-option .correct_answers', function() {
+        $('#answer-message').removeClass('in').addClass('out');
+        $('#answer-message .message').html('');
+    });
+
     $(document).on('blur', 'div.form-group-options div.input-group-option input[type="text"]', function() {
 
         var value = $(this).val();

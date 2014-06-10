@@ -1,0 +1,17 @@
+{% extends 'CekurteGeneratorBundle::modal.html.twig' %}
+
+{% block title -%}{{ 'Preview' | trans }}{% endblock %}
+
+{% block form_open -%}
+    <form class="form-horizontal" role="form" action="{{ path('admin_question_send_mail', {'question': entity.id}) }}" method="get">
+{% endblock %}
+
+{% block dialog_open %}<div class="modal-dialog modal-lg">{% endblock %}
+
+{% block content -%}
+    <iframe id="iframePreview" frameborder="0" scrolling="yes"></iframe>
+{% endblock %}
+
+{% block action_close -%}
+    <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-default">{{ 'Close' | trans }}</a>
+{% endblock %}

@@ -7,6 +7,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Cekurte\ComponentBundle\Util\ContainerAware;
 use Cekurte\ZCPEBundle\Event\QuestionAnswerEvent;
 use Cekurte\ZCPEBundle\Events;
+use Cekurte\ZCPEBundle\Entity\Question;
 
 /**
  * QuestionAnswerListener
@@ -38,6 +39,35 @@ class QuestionAnswerListener extends ContainerAware implements EventSubscriberIn
         );
     }
 
+    public function getTemplateBody(Question $question)
+    {
+        $filename = 'CekurteZCPEBundle::email.html.twig';
+
+        return $this->getContainer()->get('templating')->render($filename, array(
+            'title'     => 'Cekurte ZCPE',
+            'footer'    => '@CekurteZCPE 2014',
+            'subject'   => $this->getSubject($question),
+            'question'  => $question,
+        ));
+    }
+
+    /**
+     * Get subject
+     *
+     * @return string
+     */
+    protected function getSubject(Question $question)
+    {
+        $container = $this->getContainer();
+
+        return sprintf(
+            '[%s] %s: %s',
+            $container->getParameter('cekurte_zcpe_google_group_name'),
+            $container->getParameter('cekurte_zcpe_google_group_subject'),
+            $question->getGoogleGroupsId()
+        );
+    }
+
     /**
      * onCreateNewQuestion
      *
@@ -49,20 +79,10 @@ class QuestionAnswerListener extends ContainerAware implements EventSubscriberIn
     {
         $container = $this->getContainer();
 
-        $filename = 'CekurteZCPEBundle::email.html.twig';
-
-        $body = $container->get('templating')->render($filename, array(
-            'question' => $event->getQuestion()
-        ));
-
+        $question = $event->getQuestion();
 
         $message = \Swift_Message::newInstance()
-            ->setSubject(sprintf(
-                '[%s] %s: %s',
-                $container->getParameter('cekurte_zcpe_google_group_name'),
-                $container->getParameter('cekurte_zcpe_google_group_subject'),
-                $event->getQuestion()->getGoogleGroupsId()
-            ))
+            ->setSubject($this->getSubject($question))
             ->setFrom(array(
                 $this->getUser()->getEmail() => $this->getUser()->getName()
             ))
@@ -70,7 +90,7 @@ class QuestionAnswerListener extends ContainerAware implements EventSubscriberIn
                 $container->getParameter('cekurte_zcpe_google_group_mail') => $container->getParameter('cekurte_zcpe_google_group_name')
             ))
             ->setContentType('text/html')
-            ->setBody($body)
+            ->setBody($this->getTemplateBody($question))
         ;
 
         $success = $container->get('mailer')->send($message, $failures);
