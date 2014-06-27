@@ -27,10 +27,6 @@ fos_js_routing:
 # ------------------------------------------------------------------------------
 # FOSUserBundle
 
-cekurte_custom_user:
-    resource:   "@CekurteCustomUserBundle/Resources/config/routing/fosuser.yml"
-    prefix:     /admin/
-
 fos_user_security:
     resource:   "@FOSUserBundle/Resources/config/routing/security.xml"
 
@@ -55,3 +51,6 @@ hwi_oauth_redirect:
 
 facebook_login:
     pattern:    /connect/check-facebook
+
+google_login:
+    pattern:    /admin/connect/check-google

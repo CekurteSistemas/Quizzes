@@ -52,6 +52,7 @@ class AppKernel extends Kernel
             new Cekurte\Custom\UserBundle\CekurteCustomUserBundle(),
             new Cekurte\Custom\GeneratorBundle\CekurteCustomGeneratorBundle(),
             new Cekurte\ZCPEBundle\CekurteZCPEBundle(),
+            new Cekurte\GoogleApiBundle\CekurteGoogleApiBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

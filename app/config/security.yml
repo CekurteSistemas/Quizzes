@@ -13,20 +13,23 @@ security:
     firewalls:
         admin:
             pattern:                    ^/admin(.*)
-            form_login:
-                provider:               fos_userbundle
-                csrf_provider:          form.csrf_provider
+            oauth:
+                resource_owners:
+                    google:             /admin/connect/check-google
                 default_target_path:    /admin
-
-                target_path_parameter:  _target_path
-                login_path:             _admin_fos_user_security_login
-                failure_path:           _admin_fos_user_security_login
-                check_path:             _admin_fos_user_security_check
-                use_forward:            false
+                login_path:             /admin/login
+                failure_path:           /admin/login
+                check_path:             /admin/login/login_check
+                oauth_user_provider:
+                    service:            oauth_custom_user_provider
             logout:
-                path:                   _admin_fos_user_security_logout
-                target:                 _admin_fos_user_security_login
+                path:                   /admin/logout
+                target:                 /admin/login
             anonymous:                  true
+
+
+
+
 
         main:
             pattern:                    ^/
@@ -58,6 +61,7 @@ security:
         - { path: ^/admin/login$,       role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/logout$,      role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/login-check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/connect/check-google$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         # -> end
 
         # -> User Profile URL's

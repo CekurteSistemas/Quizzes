@@ -25,3 +25,11 @@ parameters:
     cekurte_zcpe_google_group_mail: rumo-a-certificacao-php@googlegroups.com
     cekurte_zcpe_google_group_name: Rumo a ZCE
     cekurte_zcpe_google_group_subject: Pergunta do dia
+
+    # Cekurte Google API Bundle
+    cekurte_google_api_application_name: cekurte-zcpe
+    cekurte_google_api_client_id: 203716685927-4p4np9viqbmf6f39haletqqrcu4qmjbl.apps.googleusercontent.com
+    cekurte_google_api_client_secret: gg3G4XqGRFPXZFC8V2-ORdrm
+    cekurte_google_api_redirect_uri: http://127.0.0.1/admin/connect/check-google
+    cekurte_google_api_developer_key:
+    cekurte_google_api_use_objects: true

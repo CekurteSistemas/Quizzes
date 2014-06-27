@@ -116,13 +116,13 @@ knp_paginator:
 
 hwi_oauth:
     # name of the firewall in which this bundle is active, this setting MUST be set
-    firewall_name:          main
+    firewall_name:          admin
     target_path_parameter:  _target_path
     fosub:
         username_iterations: 30
         properties:
             facebook:       facebook_id
-            linkedin:       linkedin_id
+            google:         google_id
     connect:
         account_connector:  oauth_custom_user_provider
     resource_owners:
@@ -134,6 +134,13 @@ hwi_oauth:
             infos_url:          "https://graph.facebook.com/me?fields=name,email,picture.height(128).width(128)"
             paths:
                 profilepicture: picture.data.url
+        google:
+            type:               google
+            client_id:          %cekurte_google_api_client_id%
+            client_secret:      %cekurte_google_api_client_secret%
+            scope:              "email profile https://www.googleapis.com/auth/gmail.compose"
+            options:
+                access_type:    offline
 
 liip_imagine:
     resolvers:
