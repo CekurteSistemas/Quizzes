@@ -28,25 +28,9 @@ class DefaultController extends Controller
      */
     public function indexAdminAction()
     {
-
-
-
-        // hwi_oauth.resource_owner.google
-        // hwi_oauth.security.oauth_utils
-        // hwi_oauth.storage.session
-        // hwi_oauth.user_checker
-        // hwi_oauth.http_client
-
         $token = $this->get('security.context')->getToken();
 
-
-        $service = $this->get('cekurte_google_api.analytics');
-
-        // $service->getClient()->setAccessToken(
-        //     $this->getUser()->getGoogleAccessToken()
-        // );
-
-
+        $service = $this->get('cekurte_google_api.gmail');
 
         // var_dump($token, $service->getClient()->getAccessToken());exit;
 
@@ -58,23 +42,16 @@ class DefaultController extends Controller
             );
         }
 
-        $accounts = $service->management_accountSummaries->listManagementAccountSummaries();
+        $messages = $service->users_messages->listUsersMessages('me');
 
-       foreach ($accounts->getItems() as $item) {
-        echo "Account: ",$item['name'], "  " , $item['id'], "<br /> \n";
-        foreach($item->getWebProperties() as $wp) {
-            echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WebProperty: ' ,$wp['name'], "  " , $wp['id'], "<br /> \n";
+        foreach ($messages->getMessages() as $message) {
 
-            $views = $wp->getProfiles();
-            if (!is_null($views)) {
-                foreach($wp->getProfiles() as $view) {
-                //  echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View: ' ,$view['name'], "  " , $view['id'], "<br /> \n";
-                }
-            }
+            $gmailMessage = $service->users_messages->get('me', $message->id);
+
+            var_dump($gmailMessage->snippet);
         }
-    } // closes account summaries
 
-exit;
+        exit;
 
         // var_dump($service->getClient()->getAccessToken(), $service->getClient());exit;
 
