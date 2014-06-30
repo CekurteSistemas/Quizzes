@@ -138,7 +138,7 @@ hwi_oauth:
             type:               google
             client_id:          %cekurte_google_api_client_id%
             client_secret:      %cekurte_google_api_client_secret%
-            scope:              "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/gmail.compose"
+            scope:              "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/gmail.compose https://www.googleapis.com/auth/analytics.readonly"
             options:
                 access_type:    offline
                 approval_prompt: force
