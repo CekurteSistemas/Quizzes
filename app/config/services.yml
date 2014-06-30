@@ -1,9 +1,7 @@
 services:
     oauth_custom_user_provider:
-        class: Cekurte\Custom\UserBundle\Security\Core\User\FOSUBUserProvider
+        class: Cekurte\UserBundle\Security\Core\User\FOSUBUserProvider
         arguments: [@fos_user.user_manager,{facebook: facebook_id, google: google_id}, @service_container]
-        calls:
-            - [ setSession, [ @session ] ]
     twig.extension.text:
         class: Twig_Extensions_Extension_Text
         tags:

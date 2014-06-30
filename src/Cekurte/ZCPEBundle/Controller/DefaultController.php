@@ -32,10 +32,6 @@ class DefaultController extends Controller
 
         $service = $this->get('cekurte_google_api.gmail');
 
-        // var_dump($token, $service->getClient()->getAccessToken());exit;
-
-        $service->getClient()->setup();
-
         if ($service->getClient()->isAccessTokenExpired()) {
             $service->getClient()->refreshToken(
                 $token->getRefreshToken()
@@ -49,13 +45,10 @@ class DefaultController extends Controller
             $gmailMessage = $service->users_messages->get('me', $message->id);
 
             var_dump($gmailMessage->snippet);
+            exit;
         }
 
         exit;
-
-        // var_dump($service->getClient()->getAccessToken(), $service->getClient());exit;
-
-
 
         return array();
     }
