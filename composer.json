@@ -43,7 +43,8 @@
         "cekurte/uploaderbundle": "1.0.*@dev",
         "cekurte/userbundle": "1.1.*@dev",
 
-        "google/apiclient": "1.0.*@dev"
+        "google/apiclient": "1.0.*@dev",
+        "cekurte/google-api-bundle": "1.0.*@dev"
     },
     "scripts": {
         "post-install-cmd": [

@@ -92,7 +92,7 @@ class QuestionController extends CekurteController implements RepositoryInterfac
      *
      * @Route("/{question}/preview-mail", name="admin_question_preview_mail")
      * @Method("GET")
-     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION_SEND_MAIL, ROLE_ADMIN")
+     * @Secure(roles="ROLE_GMAIL")
      *
      * @author João Paulo Cercal <sistemas@cekurte.com>
      * @version 0.1
@@ -117,7 +117,7 @@ class QuestionController extends CekurteController implements RepositoryInterfac
      *
      * @Route("/{question}/send-mail", name="admin_question_send_mail")
      * @Method("GET")
-     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION_SEND_MAIL, ROLE_ADMIN")
+     * @Secure(roles="ROLE_GMAIL")
      *
      * @author João Paulo Cercal <sistemas@cekurte.com>
      * @version 0.1

@@ -81,6 +81,61 @@ class QuestionAnswerListener extends ContainerAware implements EventSubscriberIn
 
         $question = $event->getQuestion();
 
+        $token = $container->get('security.context')->getToken();
+
+        $service = $container->get('cekurte_google_api.gmail');
+
+        if ($service->getClient()->isAccessTokenExpired()) {
+            $service->getClient()->refreshToken(
+                $token->getRefreshToken()
+            );
+        }
+
+        // try {
+
+            $headers = array(
+                'To'                        => $container->getParameter('cekurte_zcpe_google_group_mail'),
+                'From'                      => $this->getUser()->getEmail(),
+                'Subject'                   => $this->getSubject($question),
+                'Content-Type'              => 'text/html; charset=utf-8',
+                'Content-Transfer-Encoding' => 'quoted-printable',
+            );
+
+            $rawMessage = '';
+
+            foreach ($headers as $key => $value) {
+                $rawMessage .= sprintf("%s: %s\r\n", $key, $value);
+            }
+
+            $rawMessage .= "\n" . 'Mensagem em <u><b>H</b>TML</u>';
+
+            // var_dump($rawMessage);exit;
+
+            $message = new \Google_Service_Gmail_Message();
+
+            $message->setRaw(base64_encode($rawMessage));
+
+            $service->users_messages->send('me', $message);
+
+            $container->get('session')->getFlashBag()->add('message', array(
+                'type'      => 'success',
+                'message'   => $container->get('translator')->trans('The email has been sent successfully.'),
+            ));
+
+        // } catch (\Google_Service_Exception $e) {
+
+        //     var_dump($e);exit;
+        //     // $container->get('session')->getFlashBag()->add('message', array(
+        //     //     'type'      => 'error',
+        //     //     'message'   => $container->get('translator')->trans('The email has been sent successfully.'),
+        //     // ));
+        // }
+
+
+
+
+        /*
+
         $message = \Swift_Message::newInstance()
             ->setSubject($this->getSubject($question))
             ->setFrom(array(
@@ -101,6 +156,7 @@ class QuestionAnswerListener extends ContainerAware implements EventSubscriberIn
                 'message'   => $container->get('translator')->trans('The email has been sent successfully.'),
             ));
         }
+        */
 
         return;
     }
