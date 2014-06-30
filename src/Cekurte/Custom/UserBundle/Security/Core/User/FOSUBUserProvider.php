@@ -23,6 +23,8 @@ class FOSUBUserProvider extends BaseClass
      */
     public function connect(UserInterface $user, UserResponseInterface $response)
     {
+        // var_dump($response->getAccessToken());exit;
+
         return parent::connect($user, $response);
     }
 
@@ -32,6 +34,10 @@ class FOSUBUserProvider extends BaseClass
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
         $this->getSession()->set('google_code', $_GET['code']);
+
+        $this->getSession()->set('google_access_token', $response->getAccessToken());
+
+
 
         return parent::loadUserByOAuthUserResponse($response);
     }
