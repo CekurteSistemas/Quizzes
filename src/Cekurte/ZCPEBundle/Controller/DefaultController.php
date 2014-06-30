@@ -38,17 +38,28 @@ class DefaultController extends Controller
             );
         }
 
-        $messages = $service->users_messages->listUsersMessages('me');
+        try {
 
-        foreach ($messages->getMessages() as $message) {
+            $raw =
+                "To: jpcercal@gmail.com\r\n" .
+                "From: sistemas@cekurte.com\r\n" .
+                "Subject: Assunto novo\r\n" .
+                "Content-Type: text/html; charset=utf-8\r\n" .
+                "Content-Transfer-Encoding: quoted-printable\r\n\n" .
 
-            $gmailMessage = $service->users_messages->get('me', $message->id);
+                "Olá <b>Gmail</b>!"
+            ;
 
-            var_dump($gmailMessage->snippet);
+            $message = new \Google_Service_Gmail_Message();
+
+            $message->setRaw(base64_encode($raw));
+
+            $service->users_messages->send('me', $message);
+
+        } catch (\Google_Service_Exception $e) {
+            var_dump($e);
             exit;
         }
-
-        exit;
 
         return array();
     }
