@@ -8,6 +8,7 @@ use Cekurte\ComponentBundle\Util\ContainerAware;
 use Cekurte\ZCPEBundle\Event\QuestionAnswerEvent;
 use Cekurte\ZCPEBundle\Events;
 use Cekurte\ZCPEBundle\Entity\Question;
+use Cekurte\ZCPEBundle\Mailer\MessageRFC822;
 
 /**
  * QuestionAnswerListener
@@ -17,6 +18,8 @@ use Cekurte\ZCPEBundle\Entity\Question;
  */
 class QuestionAnswerListener extends ContainerAware implements EventSubscriberInterface
 {
+    const CLRF = "\r\n";
+
     /**
      * Constructor
      *
@@ -69,6 +72,40 @@ class QuestionAnswerListener extends ContainerAware implements EventSubscriberIn
     }
 
     /**
+     * Takes an unencoded string and produces a Base64 encoded string from it.
+     *
+     * Base64 encoded strings have a maximum line length of 76 characters.
+     * If the first line needs to be shorter, indicate the difference with
+     * $firstLineOffset.
+     *
+     * @param string  $string          to encode
+     * @param int     $firstLineOffset
+     * @param int     $maxLineLength   optional, 0 indicates the default of 76 bytes
+     *
+     * @return string
+     */
+    public function encodeString($string, $firstLineOffset = 0, $maxLineLength = 0)
+    {
+        if (0 >= $maxLineLength || 76 < $maxLineLength) {
+            $maxLineLength = 76;
+        }
+
+        $encodedString = base64_encode($string);
+        $firstLine = '';
+
+        if (0 != $firstLineOffset) {
+            $firstLine = substr(
+                $encodedString, 0, $maxLineLength - $firstLineOffset
+                ) . "\r\n";
+            $encodedString = substr(
+                $encodedString, $maxLineLength - $firstLineOffset
+                );
+        }
+
+        return $firstLine . trim(chunk_split($encodedString, $maxLineLength, "\r\n"));
+    }
+
+    /**
      * onCreateNewQuestion
      *
      * @param QuestionAnswerEvent $event
@@ -93,27 +130,42 @@ class QuestionAnswerListener extends ContainerAware implements EventSubscriberIn
 
         // try {
 
-            $headers = array(
-                'To'                        => $container->getParameter('cekurte_zcpe_google_group_mail'),
-                'From'                      => $this->getUser()->getEmail(),
-                'Subject'                   => $this->getSubject($question),
-                'Content-Type'              => 'text/html; charset=utf-8',
-                'Content-Transfer-Encoding' => 'quoted-printable',
-            );
+            $messageRFC822 = new MessageRFC822();
 
-            $rawMessage = '';
+            $messageRFC822
+                ->addHeader(sprintf(
+                    'To: %s',
+                    $container->getParameter('cekurte_zcpe_google_group_mail')
+                ))
+                ->addHeader(sprintf(
+                    'From: %s',
+                    $this->getUser()->getEmail()
+                ))
+                ->addHeader(sprintf(
+                    'Subject: %s',
+                    $this->getSubject($question)
+                ))
+                ->addHeader('MIME-Version: 1.0')
 
-            foreach ($headers as $key => $value) {
-                $rawMessage .= sprintf("%s: %s\r\n", $key, $value);
-            }
 
-            $rawMessage .= "\n" . 'Mensagem em <u><b>H</b>TML</u>';
+                ->addHeader('MIME-Version: 1.0')
 
-            // var_dump($rawMessage);exit;
+                ->setMessageHtml(
+                    'My message <b>html</b> this.. My message <b>html</b> this.. My message <b>html</b> this.. My message <b>html</b> this.. My message <b>html</b> this..'
+                )
+            ;
+
+            $messageRawData = $messageRFC822->getRawData();
+
+
 
             $message = new \Google_Service_Gmail_Message();
 
-            $message->setRaw(base64_encode($rawMessage));
+
+
+
+
+            $message->setRaw(base64_encode($messageRawData));
 
             $service->users_messages->send('me', $message);
 
