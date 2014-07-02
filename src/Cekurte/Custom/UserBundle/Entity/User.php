@@ -56,6 +56,13 @@ class User extends BaseUser
     protected $birthday;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="gender", type="string", length=1, nullable=true)
+     */
+    protected $gender;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created", type="datetime", nullable=false)
@@ -210,6 +217,33 @@ class User extends BaseUser
     public function getBirthday()
     {
         return $this->birthday;
+    }
+
+    /**
+     * Set gender
+     *
+     * @param string $gender
+     * @return User
+     */
+    public function setGender($gender)
+    {
+        $gender = strtoupper(substr($gender, 0, 1));
+
+        if (in_array($gender, array('M', 'F'))) {
+            $this->gender = $gender;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
     }
 
     /**
