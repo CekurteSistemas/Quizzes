@@ -72,40 +72,6 @@ class QuestionAnswerListener extends ContainerAware implements EventSubscriberIn
     }
 
     /**
-     * Takes an unencoded string and produces a Base64 encoded string from it.
-     *
-     * Base64 encoded strings have a maximum line length of 76 characters.
-     * If the first line needs to be shorter, indicate the difference with
-     * $firstLineOffset.
-     *
-     * @param string  $string          to encode
-     * @param int     $firstLineOffset
-     * @param int     $maxLineLength   optional, 0 indicates the default of 76 bytes
-     *
-     * @return string
-     */
-    public function encodeString($string, $firstLineOffset = 0, $maxLineLength = 0)
-    {
-        if (0 >= $maxLineLength || 76 < $maxLineLength) {
-            $maxLineLength = 76;
-        }
-
-        $encodedString = base64_encode($string);
-        $firstLine = '';
-
-        if (0 != $firstLineOffset) {
-            $firstLine = substr(
-                $encodedString, 0, $maxLineLength - $firstLineOffset
-                ) . "\r\n";
-            $encodedString = substr(
-                $encodedString, $maxLineLength - $firstLineOffset
-                );
-        }
-
-        return $firstLine . trim(chunk_split($encodedString, $maxLineLength, "\r\n"));
-    }
-
-    /**
      * onCreateNewQuestion
      *
      * @param QuestionAnswerEvent $event
@@ -145,19 +111,11 @@ class QuestionAnswerListener extends ContainerAware implements EventSubscriberIn
                     'Subject: %s',
                     $this->getSubject($question)
                 ))
-                ->addHeader('MIME-Version: 1.0')
-
-
-                ->addHeader('MIME-Version: 1.0')
-
-                ->setMessageHtml(
-                    'My message <b>html</b> this.. My message <b>html</b> this.. My message <b>html</b> this.. My message <b>html</b> this.. My message <b>html</b> this..'
-                )
             ;
 
             $messageRawData = $messageRFC822->getRawData();
 
-
+            // var_dump(base64_decode($messageRawData));exit;
 
             $message = new \Google_Service_Gmail_Message();
 
@@ -165,7 +123,7 @@ class QuestionAnswerListener extends ContainerAware implements EventSubscriberIn
 
 
 
-            $message->setRaw(base64_encode($messageRawData));
+            $message->setRaw($messageRawData);
 
             $service->users_messages->send('me', $message);
 
