@@ -28,8 +28,11 @@ security:
             anonymous:                  true
 
 
-
-
+        api:
+            pattern:                    ^/api
+            http_basic:
+                realm:                  "API Secured Area"
+                provider:               fos_userbundle
 
         main:
             pattern:                    ^/
@@ -71,5 +74,6 @@ security:
 
         # -> Secured Area
         - { path: ^/area-do-usuario,    role: [ROLE_USER] }
+        - { path: ^/api,                role: [ROLE_API] }
         - { path: ^/admin,              role: [ROLE_ADMIN] }
         # -> end

@@ -10,6 +10,16 @@ Cekurte\Custom\UserBundle\Entity\User:
         deleted: false
         groups:
             - @groupAdmin
+    userApiPHPQuiz:
+        username: apiphpquiz
+        name: APP PHP Quiz
+        email: fabricio.bedeschi@gmail.com
+        enabled: true
+        plainPassword: 123
+        created: <dateTime()>
+        deleted: false
+        groups:
+            - @groupApi
     userDefault:
         username: default
         name: Default
