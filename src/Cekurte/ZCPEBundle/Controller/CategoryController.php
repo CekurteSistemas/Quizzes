@@ -49,7 +49,7 @@ class CategoryController extends CekurteController implements RepositoryInterfac
      * @Route("/page/{page}/sort/{sort}/direction/{direction}/", defaults={"page"=1, "sort"="ck.id", "direction"="asc"}, name="admin_category_paginator")
      * @Method("GET")
      * @Template()
-     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_CATEGORY, ROLE_ADMIN")
+     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_CATEGORY, ROLE_CONTRIBUTOR")
      *
      * @param int $page
      * @param string $sort
@@ -89,7 +89,7 @@ class CategoryController extends CekurteController implements RepositoryInterfac
      * @Route("/search", name="admin_category_search")
      * @Method({"GET", "POST"})
      * @Template()
-     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_CATEGORY, ROLE_ADMIN")
+     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_CATEGORY, ROLE_CONTRIBUTOR")
      *
      * @param Request $request
      * @return RedirectResponse
@@ -114,7 +114,7 @@ class CategoryController extends CekurteController implements RepositoryInterfac
      * @Route("/export/sort/{sort}/direction/{direction}/", defaults={"sort"="ck.id", "direction"="asc"}, name="admin_category_export")
      * @Method("GET")
      * @Template()
-     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_CATEGORY, ROLE_ADMIN")
+     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_CATEGORY, ROLE_CONTRIBUTOR")
      *
      * @param string $sort
      * @param string $direction
@@ -227,7 +227,7 @@ class CategoryController extends CekurteController implements RepositoryInterfac
      * @Route("/{id}", name="admin_category_show")
      * @Method("GET")
      * @Template()
-     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_CATEGORY_RETRIEVE, ROLE_ADMIN")
+     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_CATEGORY_RETRIEVE, ROLE_CONTRIBUTOR")
      *
      * @param int $id
      * @return array|Response

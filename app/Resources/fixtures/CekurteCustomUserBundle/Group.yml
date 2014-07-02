@@ -2,11 +2,15 @@ Cekurte\Custom\UserBundle\Entity\Group:
     groupAdmin:
         __construct:
             - "Admin"
-            - ['ROLE_SUPER_ADMIN', 'ROLE_ADMIN', 'ROLE_GMAIL']
+            - ['ROLE_SUPER_ADMIN', 'ROLE_ADMIN']
     groupApi:
         __construct:
             - "API Access"
             - ['ROLE_API']
+    groupContributor:
+        __construct:
+            - "Contributor"
+            - ['ROLE_CONTRIBUTOR', 'ROLE_GMAIL']
     groupDefault:
         __construct:
             - "Default"
