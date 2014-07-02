@@ -44,7 +44,8 @@
         "cekurte/userbundle": "1.1.*@dev",
 
         "google/apiclient": "1.0.*@dev",
-        "cekurte/google-api-bundle": "1.0.*@dev"
+        "cekurte/google-api-bundle": "1.0.*@dev",
+        "jms/translation-bundle": "1.1.0"
     },
     "scripts": {
         "post-install-cmd": [
