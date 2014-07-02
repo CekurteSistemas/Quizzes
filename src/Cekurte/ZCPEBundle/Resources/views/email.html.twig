@@ -55,46 +55,54 @@
                         <p align="left" class="article-title" style="font-size: 15px;line-height: 24px;color: #b0b0b0;font-weight: bold;margin-top: 0;margin-bottom: 18px;font-family: HelveticaNeue, sans-serif"><singleline label="Title">{{ 'Question Type'|trans }}: {{ question.questionType }}</singleline></p>
                     </td>
                 </tr><tr style="border-collapse: collapse"><td width="580" height="10" class="w580" style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif"/></tr></tbody></table></layout>
+                {% if question.questionType|lower == 'text' %}
+                    <layout label="Text with right-aligned image"><table width="580" cellspacing="0" cellpadding="0" border="0" class="w580"><tbody><tr style="border-collapse: collapse"><td width="580" class="w580" style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif">
+                            <table cellspacing="0" cellpadding="0" border="0" align="right"><tbody><tr style="border-collapse: collapse"><td width="15" class="w30" style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif"/>
+                                <td style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif"><img width="300" border="0" class="w300" label="Image" editable="true" style="outline: none;text-decoration: none;display: block"/></td>
+                            </tr><tr style="border-collapse: collapse"><td width="15" height="5" class="w30" style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif"/><td style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif"/></tr></tbody></table><div align="left" class="article-content" style="font-size: 13px;line-height: 18px;color: #444;margin-top: 0;margin-bottom: 18px;font-family: HelveticaNeue, sans-serif">
+                            <multiline label="Description"><strong>__________</strong></multiline></div>
+                        </td>
+                    </tr><tr style="border-collapse: collapse"><td width="580" height="10" class="w580" style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif"/></tr></tbody></table></layout>
+                {% else %}
+                    {% set letters = [
+                    'A',
+                    'B',
+                    'C',
+                    'D',
+                    'E',
+                    'F',
+                    'G',
+                    'H',
+                    'I',
+                    'J',
+                    'K',
+                    'L',
+                    'M',
+                    'N',
+                    'O',
+                    'P',
+                    'Q',
+                    'R',
+                    'S',
+                    'T',
+                    'U',
+                    'V',
+                    'W',
+                    'X',
+                    'Y',
+                    'Z'
+                    ] %}
 
-                {% set letters = [
-                'A',
-                'B',
-                'C',
-                'D',
-                'E',
-                'F',
-                'G',
-                'H',
-                'I',
-                'J',
-                'K',
-                'L',
-                'M',
-                'N',
-                'O',
-                'P',
-                'Q',
-                'R',
-                'S',
-                'T',
-                'U',
-                'V',
-                'W',
-                'X',
-                'Y',
-                'Z'
-                ] %}
-
-                {% for item in question.questionHasAnswer %}
-                <layout label="Text with right-aligned image"><table width="580" cellspacing="0" cellpadding="0" border="0" class="w580"><tbody><tr style="border-collapse: collapse"><td width="580" class="w580" style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif">
-                    <table cellspacing="0" cellpadding="0" border="0" align="right"><tbody><tr style="border-collapse: collapse"><td width="15" class="w30" style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif"/>
-                        <td style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif"><img width="300" border="0" class="w300" label="Image" editable="true" style="outline: none;text-decoration: none;display: block"/></td>
-                    </tr><tr style="border-collapse: collapse"><td width="15" height="5" class="w30" style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif"/><td style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif"/></tr></tbody></table><div align="left" class="article-content" style="font-size: 13px;line-height: 18px;color: #444;margin-top: 0;margin-bottom: 18px;font-family: HelveticaNeue, sans-serif">
-                    <multiline label="Description"><strong>{{ letters[loop.index0] }})</strong> {{ item.answer.title }}</multiline></div>
-                </td>
-            </tr><tr style="border-collapse: collapse"><td width="580" height="10" class="w580" style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif"/></tr></tbody></table></layout>
-            {% endfor %}
-
+                    {% for item in question.questionHasAnswer %}
+                    <layout label="Text with right-aligned image"><table width="580" cellspacing="0" cellpadding="0" border="0" class="w580"><tbody><tr style="border-collapse: collapse"><td width="580" class="w580" style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif">
+                        <table cellspacing="0" cellpadding="0" border="0" align="right"><tbody><tr style="border-collapse: collapse"><td width="15" class="w30" style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif"/>
+                            <td style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif"><img width="300" border="0" class="w300" label="Image" editable="true" style="outline: none;text-decoration: none;display: block"/></td>
+                        </tr><tr style="border-collapse: collapse"><td width="15" height="5" class="w30" style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif"/><td style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif"/></tr></tbody></table><div align="left" class="article-content" style="font-size: 13px;line-height: 18px;color: #444;margin-top: 0;margin-bottom: 18px;font-family: HelveticaNeue, sans-serif">
+                        <multiline label="Description"><strong>{{ letters[loop.index0] }})</strong> {{ item.answer.title }}</multiline></div>
+                    </td>
+                </tr><tr style="border-collapse: collapse"><td width="580" height="10" class="w580" style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif"/></tr></tbody></table></layout>
+                {% endfor %}
+            {% endif %}
         </repeater></td>
         <td width="30" class="w30" style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif"/>
     </tr></tbody></table></td></tr><tr style="border-collapse: collapse"><td width="640" height="15" bgcolor="#ffffff" class="w640" style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif"/></tr><tr style="border-collapse: collapse"><td width="640" class="w640" style="border-collapse: collapse;font-family: HelveticaNeue, sans-serif">
