@@ -8,7 +8,6 @@ use Cekurte\ComponentBundle\Util\ContainerAware;
 use Cekurte\ZCPEBundle\Event\QuestionAnswerEvent;
 use Cekurte\ZCPEBundle\Events;
 use Cekurte\ZCPEBundle\Entity\Question;
-use Cekurte\ZCPEBundle\Mailer\MessageRFC822;
 
 /**
  * QuestionAnswerListener
@@ -18,8 +17,6 @@ use Cekurte\ZCPEBundle\Mailer\MessageRFC822;
  */
 class QuestionAnswerListener extends ContainerAware implements EventSubscriberInterface
 {
-    const CLRF = "\r\n";
-
     /**
      * Constructor
      *
@@ -94,80 +91,49 @@ class QuestionAnswerListener extends ContainerAware implements EventSubscriberIn
             );
         }
 
-        // try {
+        try {
 
-            $messageRFC822 = new MessageRFC822();
+            $message = \Swift_Message::newInstance();
 
-            $messageRFC822
-                ->addHeader(sprintf(
-                    'To: %s',
-                    $container->getParameter('cekurte_zcpe_google_group_mail')
-                ))
-                ->addHeader(sprintf(
-                    'From: %s',
-                    $this->getUser()->getEmail()
-                ))
-                ->addHeader(sprintf(
-                    'Subject: %s',
+            $message
+                ->addTo(
+                    $container->getParameter('cekurte_zcpe_google_group_mail'),
+                    $container->getParameter('cekurte_zcpe_google_group_name')
+                )
+                ->addFrom(
+                    $this->getUser()->getEmail(),
+                    $this->getUser()->getName()
+                )
+                ->setSubject(
                     $this->getSubject($question)
-                ))
+                )
+
+                ->setContentType('text/html')
+                ->setBody(
+                    $this->getTemplateBody($question)
+                )
+
+                ->setEncoder(\Swift_Encoding::getBase64Encoding())
+                ->setCharset('utf-8')
             ;
 
-            $messageRawData = $messageRFC822->getRawData();
+            $gmailMessage = new \Google_Service_Gmail_Message();
 
-            // var_dump(base64_decode($messageRawData));exit;
+            $gmailMessage->setRaw(base64_encode($message->toString()));
 
-            $message = new \Google_Service_Gmail_Message();
-
-
-
-
-
-            $message->setRaw($messageRawData);
-
-            $service->users_messages->send('me', $message);
+            $service->users_messages->send('me', $gmailMessage);
 
             $container->get('session')->getFlashBag()->add('message', array(
                 'type'      => 'success',
                 'message'   => $container->get('translator')->trans('The email has been sent successfully.'),
             ));
 
-        // } catch (\Google_Service_Exception $e) {
+        } catch (\Google_Service_Exception $e) {
 
-        //     var_dump($e);exit;
-        //     // $container->get('session')->getFlashBag()->add('message', array(
-        //     //     'type'      => 'error',
-        //     //     'message'   => $container->get('translator')->trans('The email has been sent successfully.'),
-        //     // ));
-        // }
-
-
-
-
-        /*
-
-        $message = \Swift_Message::newInstance()
-            ->setSubject($this->getSubject($question))
-            ->setFrom(array(
-                $this->getUser()->getEmail() => $this->getUser()->getName()
-            ))
-            ->setTo(array(
-                $container->getParameter('cekurte_zcpe_google_group_mail') => $container->getParameter('cekurte_zcpe_google_group_name')
-            ))
-            ->setContentType('text/html')
-            ->setBody($this->getTemplateBody($question))
-        ;
-
-        $success = $container->get('mailer')->send($message, $failures);
-
-        if ($success == 1) {
             $container->get('session')->getFlashBag()->add('message', array(
-                'type'      => 'success',
-                'message'   => $container->get('translator')->trans('The email has been sent successfully.'),
+                'type'      => 'error',
+                'message'   => $e->getMessage(),
             ));
         }
-        */
-
-        return;
     }
 }
