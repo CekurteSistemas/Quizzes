@@ -2,16 +2,27 @@ Cekurte\Custom\UserBundle\Entity\Group:
     groupAdmin:
         __construct:
             - "Admin"
-            - ['ROLE_SUPER_ADMIN', 'ROLE_ADMIN']
+            -
+                - ROLE_SUPER_ADMIN
+                - ROLE_ADMIN
     groupApi:
         __construct:
             - "API Access"
-            - ['ROLE_API']
+            -
+                - ROLE_API
     groupContributor:
         __construct:
             - "Contributor"
-            - ['ROLE_CONTRIBUTOR', 'ROLE_GMAIL']
+            -
+                - ROLE_CONTRIBUTOR
+                - ROLE_GMAIL
+                - ROLE_CEKURTEZCPEBUNDLE_QUESTION
+                - ROLE_CEKURTEZCPEBUNDLE_QUESTION_CREATE
+                - ROLE_CEKURTEZCPEBUNDLE_QUESTION_RETRIEVE
+                - ROLE_CEKURTEZCPEBUNDLE_QUESTION_UPDATE
+                - ROLE_CEKURTEZCPEBUNDLE_QUESTION_DELETE
     groupDefault:
         __construct:
             - "Default"
-            - ['ROLE_USER']
+            -
+                - ROLE_USER
