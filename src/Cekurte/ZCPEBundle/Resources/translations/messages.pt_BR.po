@@ -184,3 +184,9 @@ msgstr "Sair"
 
 msgid "Welcome"
 msgstr "Bem vindo"
+
+msgid "Tags"
+msgstr "Marcadores"
+
+msgid "Categories"
+msgstr "Categorias"
