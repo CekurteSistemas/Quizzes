@@ -7,15 +7,22 @@
 <li class="{% if menu_active == 'home' %}active{% endif %}">
     <a href="{{ path("admin") }}"><span class="glyphicon glyphicon-home"></span> {{ 'Home' | trans }}</a>
 </li>
-
-<li class="dropdown {% if menu_active == 'question' %} active{% endif %}">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-tasks"></span> <span>{{ 'Manage'|trans }}</span> <b class="caret"></b></a>
-    <ul class="dropdown-menu">
-        <li>
-            <a href="{{ path('admin_question') }}"><span class="glyphicon glyphicon-th-list"></span> {{ 'Questions'|trans }}</a>
-        </li>
-    </ul>
-</li>
+{% if is_granted('ROLE_CONTRIBUTOR') %}
+    <li class="dropdown {% if menu_active == 'question' %} active{% endif %}">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-tasks"></span> <span>{{ 'Manage'|trans }}</span> <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="{{ path('admin_question') }}"><span class="glyphicon glyphicon-th-list"></span> {{ 'Questions'|trans }}</a>
+            </li>
+            <li>
+                <a href="{{ path('admin_category') }}"><span class="glyphicon glyphicon-list-alt"></span> {{ 'Categories'|trans }}</a>
+            </li>
+            <li>
+                <a href="{{ path('admin_tag') }}"><span class="glyphicon glyphicon-tags"></span> {{ 'Tags'|trans }}</a>
+            </li>
+        </ul>
+    </li>
+{% endif %}
 {%- endblock %}
 
 {%- block menu_right -%}
