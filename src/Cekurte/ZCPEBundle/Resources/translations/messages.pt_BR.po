@@ -190,3 +190,6 @@ msgstr "Marcadores"
 
 msgid "Categories"
 msgstr "Categorias"
+
+msgid "Send Mail"
+msgstr "Enviar Email"
