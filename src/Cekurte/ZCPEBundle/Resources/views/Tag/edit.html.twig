@@ -1,4 +1,4 @@
-{% extends 'CekurteGeneratorBundle::layout.html.twig' %}
+{% extends 'CekurteZCPEBundle::layout-menu-question.html.twig' %}
 
 {% set title    = 'Tag'|trans %}
 {% set subtitle = 'Edit'|trans %}
@@ -28,10 +28,10 @@
         {{ form_widget(edit_form) }}
         {% include 'CekurteGeneratorBundle:Action:form-actions.html.twig' %}
     </form>
-                                        
+
 {% endblock %}
 
 {%- block javascripts -%}
     {{ parent() }}
-                                        
+
 {%- endblock -%}
