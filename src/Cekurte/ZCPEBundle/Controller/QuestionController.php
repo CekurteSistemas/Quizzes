@@ -74,7 +74,13 @@ class QuestionController extends CekurteController implements RepositoryInterfac
             $form->bind($this->get('session')->get('search_question'));
         }
 
-        $query = $this->getEntityRepository()->getQuery($form->getData(), $sort, $direction);
+        $entity = $form->getData();
+
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            $entity->setCreatedBy($this->getUser());
+        }
+
+        $query = $this->getEntityRepository()->getQuery($entity, $sort, $direction);
 
         $pagination = $this->getPagination($query, $page);
 
@@ -99,7 +105,12 @@ class QuestionController extends CekurteController implements RepositoryInterfac
      */
     public function previewMailAction($question)
     {
-        $entity = $this->getEntityRepository()->find($question);
+        $dataFilter = $this->get('security.context')->isGranted('ROLE_ADMIN')
+            ? array('id' => $question)
+            : array('id' => $question, 'createdBy' => $this->getUser())
+        ;
+
+        $entity = $this->getEntityRepository()->findOneBy($dataFilter);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Question entity.');
@@ -124,9 +135,14 @@ class QuestionController extends CekurteController implements RepositoryInterfac
      */
     public function sendMailAction($question)
     {
-        $event = new QuestionAnswerEvent(
-            $this->getEntityRepository()->find($question)
-        );
+        $dataFilter = $this->get('security.context')->isGranted('ROLE_ADMIN')
+            ? array('id' => $question)
+            : array('id' => $question, 'createdBy' => $this->getUser())
+        ;
+
+        $entity = $this->getEntityRepository()->findOneBy($dataFilter);
+
+        $event = new QuestionAnswerEvent($entity);
 
         $this->get('event_dispatcher')->dispatch(
             Events::NEW_QUESTION,
@@ -298,7 +314,12 @@ class QuestionController extends CekurteController implements RepositoryInterfac
      */
     public function showAction($id)
     {
-        $entity = $this->getEntityRepository()->find($id);
+        $dataFilter = $this->get('security.context')->isGranted('ROLE_ADMIN')
+            ? array('id' => $id)
+            : array('id' => $id, 'createdBy' => $this->getUser())
+        ;
+
+        $entity = $this->getEntityRepository()->findOneBy($dataFilter);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Question entity.');
@@ -328,7 +349,12 @@ class QuestionController extends CekurteController implements RepositoryInterfac
      */
     public function editAction($id)
     {
-        $entity = $this->getEntityRepository()->find($id);
+        $dataFilter = $this->get('security.context')->isGranted('ROLE_ADMIN')
+            ? array('id' => $id)
+            : array('id' => $id, 'createdBy' => $this->getUser())
+        ;
+
+        $entity = $this->getEntityRepository()->findOneBy($dataFilter);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Question entity.');
@@ -359,7 +385,12 @@ class QuestionController extends CekurteController implements RepositoryInterfac
      */
     public function updateAction(Request $request, $id)
     {
-        $entity = $this->getEntityRepository()->find($id);
+        $dataFilter = $this->get('security.context')->isGranted('ROLE_ADMIN')
+            ? array('id' => $id)
+            : array('id' => $id, 'createdBy' => $this->getUser())
+        ;
+
+        $entity = $this->getEntityRepository()->findOneBy($dataFilter);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Question entity.');
@@ -404,6 +435,17 @@ class QuestionController extends CekurteController implements RepositoryInterfac
      */
     public function deleteAction(Request $request, $id)
     {
+        $dataFilter = $this->get('security.context')->isGranted('ROLE_ADMIN')
+            ? array('id' => $id)
+            : array('id' => $id, 'createdBy' => $this->getUser())
+        ;
+
+        $entity = $this->getEntityRepository()->findOneBy($dataFilter);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Question entity.');
+        }
+
         $handler = new QuestionFormHandler(
             $this->createDeleteForm(),
             $request,
