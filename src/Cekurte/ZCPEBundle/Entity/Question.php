@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="question")
  * @ORM\Entity(repositoryClass="\Cekurte\ZCPEBundle\Entity\Repository\QuestionRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Question extends DefaultFieldsBaseEntity
 {
@@ -34,6 +35,20 @@ class Question extends DefaultFieldsBaseEntity
      * @ORM\Column(name="title", type="text", nullable=false)
      */
     private $title;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_approved", type="boolean", nullable=false)
+     */
+    private $approved;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="email_has_sent", type="boolean", nullable=false)
+     */
+    private $emailHasSent;
 
     /**
      * @var integer
@@ -105,6 +120,16 @@ class Question extends DefaultFieldsBaseEntity
     }
 
     /**
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->setApproved(false);
+        $this->setEmailHasSent(false);
+        $this->setDifficulty(0);
+    }
+
+    /**
      * Get id
      *
      * @return integer
@@ -158,6 +183,52 @@ class Question extends DefaultFieldsBaseEntity
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Set approved
+     *
+     * @param boolean $approved
+     * @return Question
+     */
+    public function setApproved($approved)
+    {
+        $this->approved = $approved;
+
+        return $this;
+    }
+
+    /**
+     * Get is approved
+     *
+     * @return boolean
+     */
+    public function isApproved()
+    {
+        return $this->approved;
+    }
+
+    /**
+     * Set emailHasSent
+     *
+     * @param boolean $emailHasSent
+     * @return Question
+     */
+    public function setEmailHasSent($emailHasSent)
+    {
+        $this->emailHasSent = $emailHasSent;
+
+        return $this;
+    }
+
+    /**
+     * Get is email has sent
+     *
+     * @return boolean
+     */
+    public function isEmailHasSent()
+    {
+        return $this->emailHasSent;
     }
 
     /**

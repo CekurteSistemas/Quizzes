@@ -74,6 +74,7 @@ class ApiController extends CekurteController
 
         $entityFilter = new Question();
         $entityFilter->setDeleted(false);
+        $entityFilter->setApproved(true);
 
         $result = $repository
             ->getQuery($entityFilter, 'ck.id', 'asc')

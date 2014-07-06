@@ -67,6 +67,32 @@
 
 {% block content -%}
     <div class="table-responsive">
+        <table class="table table-bordered table-show">
+            <tbody>
+                <tr>
+                    <th>{{ 'Email has sent'|trans ~ '?'}}</th>
+                    <td>
+                        {% if entity.emailHasSent == true %}
+                            <button type="button" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-ok"></span> {{ 'Yes'|trans }}</button>
+                        {% else %}
+                            <button type="button" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ 'No'|trans }}</button>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <tr>
+                        <th>{{ 'Approved'|trans ~ '?'}}</th>
+                        <td>
+                            {% if entity.approved == true %}
+                                <button type="button" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-ok"></span> {{ 'Yes'|trans }}</button>
+                            {% else %}
+                                <button type="button" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ 'No'|trans }}</button>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
         <table class="table table-hover table-show">
             <tbody>
                 <tr>

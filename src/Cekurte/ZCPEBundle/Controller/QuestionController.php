@@ -247,7 +247,8 @@ class QuestionController extends CekurteController implements RepositoryInterfac
             $this->getRequest(),
             $this->get('doctrine')->getManager(),
             $this->get('session')->getFlashBag(),
-            $this->getUser()
+            $this->getUser(),
+            $this->get('security.context')
         );
 
         if ($id = $handler->save()) {
@@ -371,7 +372,8 @@ class QuestionController extends CekurteController implements RepositoryInterfac
             $request,
             $this->get('doctrine')->getManager(),
             $this->get('session')->getFlashBag(),
-            $this->getUser()
+            $this->getUser(),
+            $this->get('security.context')
         );
 
         if ($id = $handler->save()) {
@@ -407,7 +409,8 @@ class QuestionController extends CekurteController implements RepositoryInterfac
             $request,
             $this->get('doctrine')->getManager(),
             $this->get('session')->getFlashBag(),
-            $this->getUser()
+            $this->getUser(),
+            $this->get('security.context')
         );
 
         if ($handler->delete('CekurteZCPEBundle:Question')) {

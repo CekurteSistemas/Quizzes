@@ -32,6 +32,10 @@
                     <th>{{ 'Questiontype'|trans }}</th>
                     <th>{{ 'Category'|trans }}</th>
                     <th{% if pagination.isSorted('ck.title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'ck.title', {'title' : 'Order by'|trans ~ ' ' ~ 'Title'|trans}) }}</th>
+                    <th{% if pagination.isSorted('ck.emailHasSent') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Email has sent'|trans ~ '?', 'ck.emailHasSent', {'title' : 'Order by'|trans ~ ' ' ~ 'Email has sent'|trans ~ '?'}) }}</th>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <th{% if pagination.isSorted('ck.approved') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Approved'|trans ~ '?', 'ck.approved', {'title' : 'Order by'|trans ~ ' ' ~ 'Approved'|trans ~ '?'}) }}</th>
+                    {% endif %}
                     {% if cekurte_is_granted('RETRIEVE') or cekurte_is_granted('UPDATE') or cekurte_is_granted('DELETE') %}
                         <th class="action">{{ 'Actions'|trans }}</th>
                     {% endif %}
@@ -47,6 +51,22 @@
                         {% endfor %}
                     </td>
                     <td>{{ entity.title|truncate(50)|raw }}</td>
+                    <td>
+                        {% if entity.emailHasSent == true %}
+                            <button type="button" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-ok"></span> {{ 'Yes'|trans }}</button>
+                        {% else %}
+                            <button type="button" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ 'No'|trans }}</button>
+                        {% endif %}
+                    </td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <td>
+                            {% if entity.approved == true %}
+                                <button type="button" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-ok"></span> {{ 'Yes'|trans }}</button>
+                            {% else %}
+                                <button type="button" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ 'No'|trans }}</button>
+                            {% endif %}
+                        </td>
+                    {% endif %}
                     {% if cekurte_is_granted('RETRIEVE') or cekurte_is_granted('UPDATE') or cekurte_is_granted('DELETE') %}
                         <td>
                             {% embed 'CekurteGeneratorBundle:Action:retrieve.html.twig' with {

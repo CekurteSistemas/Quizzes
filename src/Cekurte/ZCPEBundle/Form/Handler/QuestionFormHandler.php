@@ -5,6 +5,13 @@ namespace Cekurte\ZCPEBundle\Form\Handler;
 use Cekurte\ZCPEBundle\Entity\Answer;
 use Cekurte\ZCPEBundle\Entity\QuestionHasAnswer;
 
+use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\FormInterface;
+use Doctrine\ORM\EntityManager;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
+use FOS\UserBundle\Model\UserInterface;
+
 /**
  * Question handler.
  *
@@ -13,6 +20,52 @@ use Cekurte\ZCPEBundle\Entity\QuestionHasAnswer;
  */
 class QuestionFormHandler extends CustomFormHandler
 {
+    /**
+     * @var SecurityContextInterface
+     */
+    protected $securityContext;
+
+    /**
+     * QuestionFormHandler
+     *
+     * @param FormInterface             $form
+     * @param Request                   $request
+     * @param EntityManager             $em
+     * @param FlashBag                  $flashBag
+     * @param UserInterface             $user
+     * @param SecurityContextInterface  $securityContext
+     */
+    public function __construct(FormInterface $form, Request $request, EntityManager $em, FlashBag $flashBag, UserInterface $user, SecurityContextInterface $securityContext)
+    {
+        parent::__construct($form, $request, $em, $flashBag, $user);
+
+        $this->setSecurityContext($securityContext);
+    }
+
+    /**
+     * Gets the security.context di.
+     *
+     * @return SecurityContextInterface
+     */
+    public function getSecurityContext()
+    {
+        return $this->securityContext;
+    }
+
+    /**
+     * Sets the securityContext.
+     *
+     * @param SecurityContextInterface $securityContext the security context
+     *
+     * @return QuestionFormHandler
+     */
+    public function setSecurityContext(SecurityContextInterface $securityContext)
+    {
+        $this->securityContext = $securityContext;
+
+        return $this;
+    }
+
     /**
      * {@inherited}
      */
@@ -85,6 +138,16 @@ class QuestionFormHandler extends CustomFormHandler
                 $this->getManager()->persist($questionAnswerEntity);
                 $this->getManager()->flush();
             }
+
+            $question = $this->getManager()->getRepository('CekurteZCPEBundle:Question')->find($id);
+
+            $question->setApproved(
+                $this->getSecurityContext()->isGranted('ROLE_ADMIN')
+            );
+
+            $this->getManager()->persist($question);
+
+            $this->getManager()->flush();
 
             $this->getManager()->getConnection()->commit();
 

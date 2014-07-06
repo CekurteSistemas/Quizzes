@@ -193,3 +193,9 @@ msgstr "Categorias"
 
 msgid "Send Mail"
 msgstr "Enviar Email"
+
+msgid "Email has sent"
+msgstr "Email foi enviado"
+
+msgid "Approved"
+msgstr "Aprovado"

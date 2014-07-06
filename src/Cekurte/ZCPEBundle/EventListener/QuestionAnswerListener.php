@@ -128,6 +128,13 @@ class QuestionAnswerListener extends ContainerAware implements EventSubscriberIn
                 'message'   => $container->get('translator')->trans('The email has been sent successfully.'),
             ));
 
+            $question->setEmailHasSent(true);
+
+            $em = $this->getContainer()->get('doctrine')->getManager();
+
+            $em->persist($question);
+            $em->flush();
+
         } catch (\Google_Service_Exception $e) {
 
             $container->get('session')->getFlashBag()->add('message', array(
