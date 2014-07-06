@@ -3,7 +3,7 @@ Cekurte\Custom\UserBundle\Entity\User:
         username: admin
         name: Admin
         email: sistemas@cekurte.com
-        enabled: true
+        enabled: false
         plainPassword: 123
         city: @city4549
         created: <dateTime()>
@@ -20,14 +20,3 @@ Cekurte\Custom\UserBundle\Entity\User:
         deleted: false
         groups:
             - @groupApi
-    userDefault:
-        username: default
-        name: Default
-        email: jpcercal@gmail.com
-        enabled: true
-        plainPassword: 123
-        city: @city4549
-        created: <dateTime()>
-        deleted: false
-        groups:
-            - @groupDefault
