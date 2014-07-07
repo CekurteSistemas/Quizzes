@@ -94,36 +94,6 @@ class QuestionController extends CekurteController implements RepositoryInterfac
     }
 
     /**
-     * Preview mail.
-     *
-     * @Route("/{question}/preview-mail", name="admin_question_preview_mail")
-     * @Method("GET")
-     * @Secure(roles="ROLE_GMAIL")
-     *
-     * @author João Paulo Cercal <sistemas@cekurte.com>
-     * @version 0.1
-     */
-    public function previewMailAction($question)
-    {
-        $dataFilter = $this->get('security.context')->isGranted('ROLE_ADMIN')
-            ? array('id' => $question)
-            : array('id' => $question, 'createdBy' => $this->getUser())
-        ;
-
-        $entity = $this->getEntityRepository()->findOneBy($dataFilter);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Question entity.');
-        }
-
-        $listener = new QuestionAnswerListener($this->container);
-
-        return new Response(
-            $listener->getTemplateBody($entity)
-        );
-    }
-
-    /**
      * Send mail.
      *
      * @Route("/{question}/send-mail", name="admin_question_send_mail")
@@ -327,9 +297,12 @@ class QuestionController extends CekurteController implements RepositoryInterfac
 
         $deleteForm = $this->createDeleteForm($id);
 
+        $listener = new QuestionAnswerListener($this->container);
+
         return array(
-            'entity'      => $entity,
-            'delete_form' => $this->createDeleteForm()->createView(),
+            'entity'        => $entity,
+            'delete_form'   => $this->createDeleteForm()->createView(),
+            'preview'       => nl2br($listener->getTemplateBody($entity)),
         );
     }
 

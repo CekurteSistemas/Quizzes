@@ -4,32 +4,11 @@
 {% set subtitle = 'Details'|trans %}
 
 {% block search -%}
-    {% embed 'CekurteZCPEBundle:Question:preview.html.twig' %}
-        {% block container_open %}<div class="modal fade" id="modalPreview" style="width: 80%;" tabindex="-1" role="dialog" aria-labelledby="modalPreviewLabel" aria-hidden="true">{% endblock %}
-        {% block action_submit_label %}{{ 'Send Mail' | trans }}{% endblock %}
-    {% endembed %}
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script>
-        jQuery(document).ready(function($) {
-
-            $('#btnModalPreview').on('click', function(e) {
-
-                var src     = $(this).attr('data-iframe-src');
-                var height  = $(this).attr('data-iframe-height');
-                var width   = $(this).attr('data-iframe-width');
-
-                var iframeElement = $("#modalPreview iframe");
-
-                iframeElement.attr('src',   src);
-                iframeElement.attr('height',height);
-                iframeElement.attr('width', width);
-            });
-
-        });
-    </script>
+    {% if is_granted('ROLE_GMAIL') %}
+        {% embed 'CekurteZCPEBundle:Question:preview.html.twig' %}
+            {% block content %}{{ preview|raw }}{% endblock %}
+        {% endembed %}
+    {% endif %}
 {% endblock %}
 
 {% block links -%}
@@ -37,13 +16,13 @@
         'route'      : 'admin_question'
     } only %}
     {% endembed %}
-    {% embed 'CekurteGeneratorBundle:Action:retrieve.html.twig' %}
-        {% block action %}
-            <a id="btnModalPreview" href="#modalPreview" class="btn btn-warning" data-toggle="modal" data-iframe-src="{{ url('admin_question_preview_mail', {'question': entity.id}) }}" data-iframe-height="500" data-iframe-width="860">
-                <span class="glyphicon glyphicon-envelope"></span> {{ 'Send Mail' | trans }}
-            </a>
-        {% endblock %}
-    {% endembed %}
+    {% if is_granted('ROLE_GMAIL') %}
+        {% embed 'CekurteGeneratorBundle:Action:retrieve.html.twig' %}
+            {% block action %}
+                <a href="#modalPreview" class="btn btn-warning" data-toggle="modal"><span class="glyphicon glyphicon-envelope"></span> {{ 'Send Mail' | trans }}</a>
+            {% endblock %}
+        {% endembed %}
+    {% endif %}
     {% embed 'CekurteGeneratorBundle:Action:update.html.twig' with {
         'route'             : 'admin_question_edit',
         'identifierKey'     : 'id',

@@ -1,5 +1,7 @@
 {% extends 'CekurteGeneratorBundle::modal.html.twig' %}
 
+{% block container_open %}<div class="modal fade" id="modalPreview" tabindex="-1" role="dialog" aria-labelledby="modalPreviewLabel" aria-hidden="true">{% endblock %}
+
 {% block title -%}{{ 'Preview' | trans }}{% endblock %}
 
 {% block form_open -%}
@@ -8,10 +10,14 @@
 
 {% block dialog_open %}<div class="modal-dialog modal-lg">{% endblock %}
 
-{% block content -%}
-    <iframe id="iframePreview" frameborder="0" scrolling="yes"></iframe>
-{% endblock %}
+{% block content -%}{% endblock %}
 
 {% block action_close -%}
-    <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-default">{{ 'Close' | trans }}</a>
+    <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> {{ 'Close' | trans }}</a>
+{% endblock %}
+
+{% block action_submit %}
+    <button type="submit" class="btn btn-success">
+        <span class="glyphicon glyphicon-ok"></span> {{ 'Send Mail' | trans }}
+    </button>
 {% endblock %}

@@ -41,11 +41,10 @@ class QuestionAnswerListener extends ContainerAware implements EventSubscriberIn
 
     public function getTemplateBody(Question $question)
     {
-        $filename = 'CekurteZCPEBundle::email.html.twig';
+        $filename = 'CekurteZCPEBundle::email.txt.twig';
 
         return $this->getContainer()->get('templating')->render($filename, array(
-            'title'     => 'Cekurte ZCPE',
-            'footer'    => '@CekurteZCPE 2014',
+            'footer'    => '@CekurteSistemas',
             'subject'   => $this->getSubject($question),
             'question'  => $question,
         ));
@@ -97,20 +96,17 @@ class QuestionAnswerListener extends ContainerAware implements EventSubscriberIn
 
             $message
                 ->addTo(
-                    $container->getParameter('cekurte_zcpe_google_group_mail'),
-                    $container->getParameter('cekurte_zcpe_google_group_name')
+                    $container->getParameter('cekurte_zcpe_google_group_mail')
                 )
                 ->addFrom(
-                    $this->getUser()->getEmail(),
-                    $this->getUser()->getName()
+                    $this->getUser()->getEmail()
                 )
                 ->setSubject(
                     $this->getSubject($question)
                 )
 
-                ->setContentType('text/html')
                 ->setBody(
-                    $this->getTemplateBody($question)
+                    $this->getTemplateBody($question), 'text/plain'
                 )
 
                 ->setEncoder(\Swift_Encoding::getBase64Encoding())

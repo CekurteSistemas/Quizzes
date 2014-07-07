@@ -199,3 +199,6 @@ msgstr "Email foi enviado"
 
 msgid "Approved"
 msgstr "Aprovado"
+
+msgid "Preview"
+msgstr "Pré-visualização"

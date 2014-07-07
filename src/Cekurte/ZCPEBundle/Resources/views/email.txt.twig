@@ -1,0 +1,41 @@
+{{ question.title|striptags ~ "\n\n" }}
+
+{%- if question.questionType|lower == 'text' -%}
+    {{ "__________" ~ "\n" }}
+{%- else -%}
+    {%- set letters = [
+        'A',
+        'B',
+        'C',
+        'D',
+        'E',
+        'F',
+        'G',
+        'H',
+        'I',
+        'J',
+        'K',
+        'L',
+        'M',
+        'N',
+        'O',
+        'P',
+        'Q',
+        'R',
+        'S',
+        'T',
+        'U',
+        'V',
+        'W',
+        'X',
+        'Y',
+        'Z'
+    ] -%}
+
+    {%- for item in question.questionHasAnswer -%}
+        {{ letters[loop.index0] }}) {{ item.answer.title ~ "\n" }}
+    {%- endfor -%}
+
+{%- endif -%}
+
+{{ "\n" ~ footer }}
