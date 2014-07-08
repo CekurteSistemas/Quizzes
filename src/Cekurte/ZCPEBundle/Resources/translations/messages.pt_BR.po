@@ -106,25 +106,25 @@ msgstr "Removido em"
 #: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/TagController.php:154
 #: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/CategoryController.php:151
 #: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:209
-msgid "Updatedby"
+msgid "Updated by"
 msgstr "Atualizado por"
 
 #: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/TagController.php:155
 #: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/CategoryController.php:157
 #: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:217
-msgid "Updatedat"
+msgid "Updated at"
 msgstr "Atualizado em"
 
 #: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/TagController.php:156
 #: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/CategoryController.php:152
 #: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:210
-msgid "Createdby"
+msgid "Created by"
 msgstr "Criado por"
 
 #: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/TagController.php:157
 #: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/CategoryController.php:158
 #: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:218
-msgid "Createdat"
+msgid "Created at"
 msgstr "Criado em"
 
 #: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/CategoryController.php:144
@@ -142,7 +142,7 @@ msgid "Deleted"
 msgstr "Removido"
 
 #: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:204
-msgid "Questiontype"
+msgid "Question Type"
 msgstr "Tipo de Questão"
 
 msgid "Answers"
@@ -171,7 +171,7 @@ msgid "Answer"
 msgstr "Resposta"
 
 #: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:211
-msgid "Googlegroupsid"
+msgid "Google Groups ID"
 msgstr "Google Groups ID"
 
 #: /var/www/zcpe/src/Cekurte/ZCPEBundle/Controller/QuestionController.php:213

@@ -93,7 +93,7 @@
         <table class="table table-hover table-show">
             <tbody>
                 <tr>
-                    <th>{{ 'Questiontype'|trans }}</th>
+                    <th>{{ 'Question Type'|trans }}</th>
                     <td>{{ entity.questionType }}</td>
                 </tr>
                 <tr>
@@ -110,24 +110,24 @@
                 </tr>
                 {% if entity.updatedBy %}
                     <tr>
-                        <th>{{ 'Updatedby'|trans }}</th>
+                        <th>{{ 'Updated by'|trans }}</th>
                         <td>{{ entity.updatedBy }}</td>
                     </tr>
                     <tr>
-                        <th>{{ 'Updatedat'|trans }}</th>
+                        <th>{{ 'Updated at'|trans }}</th>
                         <td>{{ entity.updatedAt|date('d/m/Y H:i:s') }}</td>
                     </tr>
                 {% endif %}
                 <tr>
-                    <th>{{ 'Createdby'|trans }}</th>
+                    <th>{{ 'Created by'|trans }}</th>
                     <td>{{ entity.createdBy }}</td>
                 </tr>
                 <tr>
-                    <th>{{ 'Createdat'|trans }}</th>
+                    <th>{{ 'Created at'|trans }}</th>
                     <td>{{ entity.createdAt|date('d/m/Y H:i:s') }}</td>
                 </tr>
                 <tr>
-                    <th>{{ 'Googlegroupsid'|trans }}</th>
+                    <th>{{ 'Google Groups ID'|trans }}</th>
                     <td>{{ entity.googleGroupsId }}</td>
                 </tr>
                 <tr>
