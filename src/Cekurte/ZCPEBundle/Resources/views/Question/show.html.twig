@@ -58,6 +58,24 @@
                         {% endif %}
                     </td>
                 </tr>
+                <tr>
+                    <th>{{ 'Question has one or more correct answers'|trans ~ '?'}}</th>
+                    <td>
+                        {% set questionHasOneOrMoreCorrectAnswers = false %}
+
+                        {% for item in entity.questionHasAnswer %}
+                            {% if item.correct %}
+                                {% set questionHasOneOrMoreCorrectAnswers = true %}
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if questionHasOneOrMoreCorrectAnswers == true %}
+                            <button type="button" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-ok"></span> {{ 'Yes'|trans }}</button>
+                        {% else %}
+                            <button type="button" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ 'No'|trans }}</button>
+                        {% endif %}
+                    </td>
+                </tr>
                 {% if is_granted('ROLE_ADMIN') %}
                     <tr>
                         <th>{{ 'Approved'|trans ~ '?'}}</th>

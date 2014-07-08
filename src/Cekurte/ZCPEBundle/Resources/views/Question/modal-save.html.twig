@@ -1,0 +1,19 @@
+{% embed 'CekurteGeneratorBundle::modal.html.twig' %}
+    {% block title %}
+        {{ 'Confirmation'|trans }}
+    {% endblock %}
+    {% block container_open %}
+        <div class="modal fade" id="modalFormSubmit" tabindex="-1" role="dialog" aria-labelledby="modalFormSubmitLabel" aria-hidden="true">
+    {% endblock %}
+    {% block content %}
+        {{ 'You do not set any answer, are you sure want to save the record like this?'|trans }}
+    {% endblock %}
+    {% block action_close %}
+        <a class="btn btn-danger" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span> {{ 'No' | trans }}</a>
+    {% endblock %}
+    {% block action_submit %}
+        <button id="btnModalFormSubmit" type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> {{ 'Yes' | trans }}</button>
+    {% endblock %}
+{% endembed %}
+
+<a id="modalFormSubmitButton" href="#modalFormSubmit" class="hide" data-toggle="modal">Modal</a>

@@ -74,11 +74,11 @@ class QuestionFormHandler extends CustomFormHandler
         $answers = array_filter($this->getRequest()->get('option_answers',  array()));
         $correct = array_filter($this->getRequest()->get('correct_answers', array()));
 
-        if (empty($correct)) {
+        if (empty($answers)) {
 
             $this->getFlashBag()->add('message', array(
                 'type'      => 'error',
-                'message'   => 'Select correct answer!',
+                'message'   => 'Set the answers!',
             ));
 
             return false;

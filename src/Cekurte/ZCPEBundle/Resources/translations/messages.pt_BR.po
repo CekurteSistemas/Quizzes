@@ -148,8 +148,20 @@ msgstr "Tipo de Questão"
 msgid "Answers"
 msgstr "Respostas"
 
-msgid "Select correct answer."
-msgstr "Selecione a resposta correta."
+msgid "Question has one or more correct answers"
+msgstr "Pergunta tem uma ou mais respostas corretas"
+
+msgid "Set the answers!"
+msgstr "Configure as respostas!"
+
+msgid "Confirmation"
+msgstr "Confirmação"
+
+msgid "You do not set any answer, are you sure want to save the record like this?"
+msgstr "Você não configurou nenhuma resposta, tem certeza que deseja gravar o registro desta forma?"
+
+msgid "New answer"
+msgstr "Nova resposta"
 
 msgid "Question type"
 msgstr "Tipo de Questão"

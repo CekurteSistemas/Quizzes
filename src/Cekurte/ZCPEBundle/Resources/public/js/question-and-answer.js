@@ -1,13 +1,15 @@
 jQuery(document).ready(function($) {
 
-    $('#question button[type="submit"]').on('click', function() {
+    $('#formQuestionSubmit').on('click', function() {
 
         var hasAnswerCorrect = false;
 
         $(document).find('div.form-group-options div.input-group-option .correct_answers').each(function(index, element) {
 
             var isChecked = $(element).is(':checked');
-            var inputText = $(element).parent().find('input[type="text"]').val();
+            var inputText = $(element).parent().parent().find('input[type="text"]').val();
+
+            console.info(isChecked && inputText.length > 0);
 
             if (isChecked && inputText.length > 0) {
                 hasAnswerCorrect = true;
@@ -16,14 +18,15 @@ jQuery(document).ready(function($) {
 
         if (hasAnswerCorrect === false) {
 
-            $('#answer-message').removeClass('out').addClass('in');
+            $('#modalFormSubmitButton').trigger('click');
 
-            return false;
+        } else {
+
+            $('#btnModalFormSubmit').trigger('click');
+
         }
-    });
 
-    $(document).on('change', 'div.form-group-options div.input-group-option .correct_answers', function() {
-        $('#answer-message').removeClass('in').addClass('out');
+        return false;
     });
 
     $(document).on('blur', 'div.form-group-options div.input-group-option input[type="text"]', function() {
