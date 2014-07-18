@@ -18,6 +18,10 @@
     "jquery.validation": "1.11.1",
     "jQuery-Mask-Plugin": "1.5.4",
     "blueimp-file-upload": "9.5.7",
-    "select2": "3.4.8"
+    "select2": "3.4.8",
+    "zeroclipboard": "2.1.5"
+  },
+  "resolutions": {
+    "zeroclipboard": "2.1.5"
   }
 }

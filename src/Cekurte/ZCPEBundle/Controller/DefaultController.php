@@ -2,6 +2,8 @@
 
 namespace Cekurte\ZCPEBundle\Controller;
 
+use Cekurte\ZCPEBundle\Entity\Question;
+use Cekurte\ZCPEBundle\Form\Type\QuestionAnonymousFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -16,7 +18,12 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return array('name' => 'ZCPE');
+        $form = $this->createForm(new QuestionAnonymousFormType(), new Question());
+
+        return array(
+            'form'              => $form->createView(),
+            'subject_template'  => sprintf('%s: ', $this->container->getParameter('cekurte_zcpe_google_group_subject')),
+        );
     }
 
     /**

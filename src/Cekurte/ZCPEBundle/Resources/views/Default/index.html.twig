@@ -1,1 +1,94 @@
-Hello {{ name }}!
+{% extends 'CekurteGeneratorBundle::layout.html.twig' %}
+
+{% block menu %}
+    {% set menu_active = 'home' %}
+    {{ parent() }}
+{% endblock %}
+
+{% set title    = 'Question'|trans %}
+{% set subtitle = 'Generate E-mail Template'|trans %}
+
+{% block links %}
+    <a href="{{ path('_admin_fos_user_security_login') }}" class="btn btn-default" title="{{ 'Send email using Google Gmail Account'|trans }}">
+        <span class="glyphicon glyphicon-user"></span> {{ 'Send email using Google Gmail Account'|trans }}
+    </a>
+{% endblock %}
+
+{% block content -%}
+    <form id="question" class="form-horizontal" role="form">
+        {{ form_widget(form) }}
+
+        <div class="form-group">
+            <div class="col-lg-2">
+                <label for="answers">{{ 'Answers'|trans }}</label>:
+            </div>
+            <div class="col-lg-10">
+                <div class="form-group form-group-options col-lg-12 col-sm-8 col-md-4">
+                    <div class="input-group input-group-option col-lg-12">
+                        <span class="input-group-addon">
+                            <input tabindex="-1" type="checkbox" class="correct_answers" name="correct_answers[]" value="1">
+                        </span>
+                        <input type="text" name="option_answers[1]" class="form-control" placeholder="{{ 'New answer'|trans }}">
+                        <span class="input-group-addon input-group-addon-remove">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% include 'CekurteZCPEBundle:Default:modal-email-template.html.twig' %}
+        {% include 'CekurteZCPEBundle:Default:modal-validation-error.html.twig' %}
+
+        {% embed 'CekurteGeneratorBundle:Action:form-actions.html.twig' %}
+            {% block action_reset %}{% endblock %}
+            {% block action_submit %}
+                <button id="formQuestionSubmit" type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-envelope"></span> {{ 'Generate E-mail Template'|trans }}
+                </button>
+            {% endblock %}
+        {% endembed %}
+    </form>
+{% endblock %}
+
+{%- block stylesheets -%}
+    {{ parent() }}
+    <link href="{{ asset('bundles/cekurtezcpe/css/question-and-answer.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('vendor/select2/select2.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('vendor/select2/select2-bootstrap.css') }}" rel="stylesheet"/>
+{%- endblock -%}
+
+{%- block javascripts -%}
+    {{ parent() }}
+    <script src="{{ asset('bundles/cekurtezcpe/js/question-and-answer.js') }}"></script>
+    <script src="{{ asset('bundles/cekurtezcpe/js/question-and-answer-anonymous.js') }}"></script>
+    <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('vendor/select2/select2_locale_pt-BR.js') }}"></script>
+
+    <script src="{{ asset('vendor/zeroclipboard/dist/ZeroClipboard.js') }}"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+
+            $('select#cekurte_zcpebundle_questionform_category').select2({
+                width: '100%'
+            });
+            $('select#cekurte_zcpebundle_questionform_questionType').select2({
+                width: '400px'
+            });
+
+            ZeroClipboard.config({
+                swfPath: "{{ asset('vendor/zeroclipboard/dist/ZeroClipboard.swf') }}"
+            });
+
+            var client = new ZeroClipboard($("#btnModalFormSubmit"));
+
+            client.on('copy', function(client) {
+
+                $('#message_clipboard_text_has_copied').removeClass('hide').fadeIn();
+
+                ZeroClipboard.setData('text/plain', $('#email_template').text());
+            });
+        });
+    </script>
+{%- endblock -%}

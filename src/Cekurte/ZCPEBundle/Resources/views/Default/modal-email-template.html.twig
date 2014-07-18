@@ -1,0 +1,40 @@
+{% embed 'CekurteGeneratorBundle::modal.html.twig' %}
+    {% block title %}
+        {{ 'E-mail Template'|trans }}
+    {% endblock %}
+    {% block container_open %}
+        <div class="modal fade" id="modalFormSubmit" tabindex="-1" role="dialog" aria-labelledby="modalFormSubmitLabel" aria-hidden="true">
+    {% endblock %}
+    {% block content %}
+        <div class="form-group">
+            <div class="col-lg-2">
+                <label for="subject">{{ 'Subject'|trans }}</label>:
+            </div>
+            <div class="col-lg-10">
+                <input id="subject" name="subject" class="form-control" type="text" value="" />
+                <input type="hidden" id="subject_template" value="{{ subject_template }}"/>
+            </div>
+        </div>
+        <pre id="email_template">
+{{- 'Category'|trans }}: <span id="question_category"></span>.
+
+{{ 'Question type'|trans }}: <span id="question_type"></span>.
+
+<div id="question_title"></div>
+
+<div id="question_answers"></div>
+{{ '@CekurteSistemas' -}}
+        </pre>
+        <div id="message_clipboard_text_has_copied" class="alert alert-success alert-dismissible hide" role="alert">
+            <strong>{{ 'Success'|trans }}!</strong> {{ 'The text has copied to clipboard with successfully' }}.
+        </div>
+    {% endblock %}
+    {% block action_close %}
+        <a class="btn btn-danger" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span> {{ 'Close' | trans }}</a>
+    {% endblock %}
+    {% block action_submit %}
+        <button id="btnModalFormSubmit" type="button" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> {{ 'Copy to Clipboard' | trans }}</button>
+    {% endblock %}
+{% endembed %}
+
+<a id="modalFormSubmitButton" href="#modalFormSubmit" class="hide" data-toggle="modal">Modal</a>

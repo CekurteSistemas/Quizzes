@@ -1,0 +1,17 @@
+{% embed 'CekurteGeneratorBundle::modal.html.twig' %}
+    {% block title %}
+        {{ 'Confirmation'|trans }}
+    {% endblock %}
+    {% block container_open %}
+        <div class="modal fade" id="modalErrorValidation" tabindex="-1" role="dialog" aria-labelledby="modalErrorValidationLabel" aria-hidden="true">
+    {% endblock %}
+    {% block content %}
+        <div id="validation_error"></div>
+    {% endblock %}
+    {% block action_close %}
+        <a class="btn btn-default" data-dismiss="modal" aria-hidden="true">{{ 'Close' | trans }}</a>
+    {% endblock %}
+    {% block action_submit %}{% endblock %}
+{% endembed %}
+
+<a id="btnModalErrorValidation" href="#modalErrorValidation" class="hide" data-toggle="modal">Modal</a>
