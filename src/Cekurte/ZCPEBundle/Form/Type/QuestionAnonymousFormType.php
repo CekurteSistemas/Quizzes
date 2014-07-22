@@ -29,6 +29,7 @@ class QuestionAnonymousFormType extends QuestionFormType
                     'empty_value'   => ''
                 ))
                 ->add('choose', 'choice', array(
+                    'label'         => 'Number of correct answers',
                     'mapped'        => false,
                     'choices'       => array(1, 2, 3, 4, 5),
                     'empty_value'   => '',

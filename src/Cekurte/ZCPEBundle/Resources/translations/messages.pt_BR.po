@@ -215,6 +215,9 @@ msgstr "Aprovado"
 msgid "Preview"
 msgstr "Pré-visualização"
 
+msgid "Number of correct answers"
+msgstr "Número de respostas corretas"
+
 msgid "Select one or more categories"
 msgstr "Selecione ao menos uma categoria"
 
