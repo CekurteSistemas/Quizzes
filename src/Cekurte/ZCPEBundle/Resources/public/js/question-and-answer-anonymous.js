@@ -39,27 +39,32 @@ jQuery(document).ready(function($) {
             };
 
             if (!this.data.categories.length > 0) {
-                result.message.push('Selecione ao menos uma categoria!');
+                result.message.push(Translator.trans('Select one or more categories') + '.');
+                // Selecione ao menos uma categoria
                 result.success = false;
             }
 
             if (!this.data.googleGroupsId.length > 0) {
-                result.message.push('O ID do Google Groups não pode ser vazio!');
+                result.message.push(Translator.trans('The Google Groups ID cannot be empty') + '.');
+                // O ID do Google Groups não pode ser vazio
                 result.success = false;
             }
 
             if (!this.data.questionTitle.length > 0) {
-                result.message.push('O enunciado da questão não pode ser estar vazio!');
+                result.message.push(Translator.trans('The question title cannot be empty') + '.');
+                // O enunciado da questão não pode ser estar vazio
                 result.success = false;
             }
 
             if (!this.data.questionType.length > 0) {
-                result.message.push('Informe o tipo de questão!');
+                result.message.push(Translator.trans('Set the question type') + '.');
+                // Informe o tipo de questão
                 result.success = false;
             }
 
             if (this.data.questionType.toLowerCase() != 'text' && !this.data.questionAnswers.length > 0) {
-                result.message.push('Você deve informar as alternativas de resposta!');
+                result.message.push(Translator.trans('The question answer(s) cannot be empty') + '.');
+                // 'Você deve informar as alternativas de resposta'
                 result.success = false;
             }
 

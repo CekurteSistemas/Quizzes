@@ -214,3 +214,48 @@ msgstr "Aprovado"
 
 msgid "Preview"
 msgstr "Pré-visualização"
+
+msgid "Select one or more categories"
+msgstr "Selecione ao menos uma categoria"
+
+msgid "The Google Groups ID cannot be empty"
+msgstr "O ID do Google Groups não pode ser vazio"
+
+msgid "The question title cannot be empty"
+msgstr "O enunciado da questão não pode ser estar vazio"
+
+msgid "Set the question type"
+msgstr "Informe o tipo de questão"
+
+msgid "The question answer(s) cannot be empty"
+msgstr "Você deve informar as alternativas de resposta"
+
+msgid "Generate E-mail Template"
+msgstr "Gerar Template de E-mail"
+
+msgid "Send email using Google Gmail Account"
+msgstr "Enviar email usando uma conta Gmail"
+
+msgid "E-mail Template"
+msgstr "Template de E-mail"
+
+msgid "Subject"
+msgstr "Assunto"
+
+msgid "Copy to Clipboard"
+msgstr "Copiar para a Área de Transferência"
+
+msgid "Success"
+msgstr "Sucesso"
+
+msgid "The text has copied to clipboard with successfully"
+msgstr "O texto foi copiado para a área de transferência com sucesso"
+
+msgid "Login"
+msgstr "Entrar"
+
+msgid "Authentication"
+msgstr "Autenticação"
+
+msgid "Login with Google Account"
+msgstr "Entrar com Conta Google"

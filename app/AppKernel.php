@@ -46,6 +46,7 @@ class AppKernel extends Kernel
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Oneup\UploaderBundle\OneupUploaderBundle(),
             new Cekurte\UploaderBundle\CekurteUploaderBundle(),
+            new Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle(),
 
             // -----------------------------------------------------------------
             // Bundles do Projeto "/src"

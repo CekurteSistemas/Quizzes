@@ -45,7 +45,8 @@
 
         "google/apiclient": "1.0.*@dev",
         "cekurte/google-api-bundle": "1.0.*@dev",
-        "jms/translation-bundle": "1.1.0"
+        "jms/translation-bundle": "1.1.0",
+        "willdurand/js-translation-bundle": "2.1.0"
     },
     "scripts": {
         "post-install-cmd": [

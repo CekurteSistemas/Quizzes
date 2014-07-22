@@ -1,8 +1,9 @@
-{% extends 'CekurteGeneratorBundle::layout.html.twig' %}
+{% extends 'CekurteZCPEBundle::layout.html.twig' %}
 
 {% block menu %}
-    {% set menu_active = 'home' %}
-    {{ parent() }}
+    <li class="active">
+        <a href="{{ path("home") }}"><span class="glyphicon glyphicon-home"></span> {{ 'Home' | trans }}</a>
+    </li>
 {% endblock %}
 
 {% set title    = 'Question'|trans %}

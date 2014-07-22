@@ -3,6 +3,11 @@
 {% set title    = 'Dashboard'|trans %}
 {% set subtitle = 'Welcome'|trans %}
 
+{% block menu %}
+    {% set menu_active = 'home' %}
+    {{ parent() }}
+{% endblock %}
+
 {% block search -%}
 {% endblock %}
 

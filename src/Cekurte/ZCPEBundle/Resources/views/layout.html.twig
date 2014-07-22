@@ -1,0 +1,9 @@
+{% extends 'CekurteGeneratorBundle::layout.html.twig' %}
+
+{%- block html_open_tag -%}<html lang="{{ app.request.locale }}">{%- endblock -%}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/bazingajstranslation/js/translator.min.js') }}"></script>
+    <script src="{{ url('bazinga_jstranslation_js') }}"></script>
+{% endblock %}

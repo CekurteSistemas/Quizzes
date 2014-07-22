@@ -29,7 +29,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>{{ 'Questiontype'|trans }}</th>
+                    <th>{{ 'Question type'|trans }}</th>
                     <th>{{ 'Category'|trans }}</th>
                     <th{% if pagination.isSorted('ck.title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'ck.title', {'title' : 'Order by'|trans ~ ' ' ~ 'Title'|trans}) }}</th>
                     <th{% if pagination.isSorted('ck.emailHasSent') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Email has sent'|trans ~ '?', 'ck.emailHasSent', {'title' : 'Order by'|trans ~ ' ' ~ 'Email has sent'|trans ~ '?'}) }}</th>
