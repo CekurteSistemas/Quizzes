@@ -95,7 +95,7 @@ jQuery(document).ready(function($) {
 
                 for (var index in answers) {
 
-                    var answer = letters[index] + ') ' + answers[index] + this.data.breakLine;
+                    var answer = letters[index] + ': ' + answers[index] + this.data.breakLine;
 
                     $('#question_answers').append(answer);
                 }
