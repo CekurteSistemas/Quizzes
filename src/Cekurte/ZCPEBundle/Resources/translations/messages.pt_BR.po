@@ -227,6 +227,9 @@ msgstr "O enunciado da questão não pode ser estar vazio"
 msgid "Set the question type"
 msgstr "Informe o tipo de questão"
 
+msgid "Set a number of correct choices"
+msgstr "Informe um número de respostas corretas"
+
 msgid "The question answer(s) cannot be empty"
 msgstr "Você deve informar as alternativas de resposta"
 

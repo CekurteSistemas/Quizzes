@@ -25,10 +25,15 @@ jQuery(document).ready(function($) {
                 'subjectTemplate'   : $('#subject_template').val(),
                 'categories'        : categories,
                 'questionType'      : $('option:selected', '#cekurte_zcpebundle_questionform_questionType').text(),
+                'questionChoose'    : $('option:selected', '#cekurte_zcpebundle_questionform_choose').text(),
                 'questionTitle'     : $('#cekurte_zcpebundle_questionform_title').val(),
                 'questionAnswers'   : answers,
                 'breakLine'         : "\r\n"
             };
+        },
+
+        'validateQuestionChoiceForQuestionType': function() {
+            return 'Multiple Choice';
         },
 
         'dataIsValid': function() {
@@ -40,31 +45,31 @@ jQuery(document).ready(function($) {
 
             if (!this.data.categories.length > 0) {
                 result.message.push(Translator.trans('Select one or more categories') + '.');
-                // Selecione ao menos uma categoria
                 result.success = false;
             }
 
             if (!this.data.googleGroupsId.length > 0) {
                 result.message.push(Translator.trans('The Google Groups ID cannot be empty') + '.');
-                // O ID do Google Groups não pode ser vazio
                 result.success = false;
             }
 
             if (!this.data.questionTitle.length > 0) {
                 result.message.push(Translator.trans('The question title cannot be empty') + '.');
-                // O enunciado da questão não pode ser estar vazio
                 result.success = false;
             }
 
             if (!this.data.questionType.length > 0) {
                 result.message.push(Translator.trans('Set the question type') + '.');
-                // Informe o tipo de questão
                 result.success = false;
+            } else {
+                if (this.data.questionType == this.validateQuestionChoiceForQuestionType() && !this.data.questionChoose.length > 0) {
+                    result.message.push(Translator.trans('Set a number of correct choices') + '.');
+                    result.success = false;
+                }
             }
 
             if (this.data.questionType.toLowerCase() != 'text' && !this.data.questionAnswers.length > 0) {
                 result.message.push(Translator.trans('The question answer(s) cannot be empty') + '.');
-                // 'Você deve informar as alternativas de resposta'
                 result.success = false;
             }
 
@@ -79,7 +84,19 @@ jQuery(document).ready(function($) {
 
             $('#question_type').text(this.data.questionType);
 
-            $('#question_title').text(this.data.questionTitle);
+            var choose = '';
+
+            if (this.data.questionType == this.validateQuestionChoiceForQuestionType()) {
+                choose = this.data.breakLine
+                    + '('
+                    + Translator.trans('Choose')
+                    + ' '
+                    + this.data.questionChoose
+                    + ')'
+                ;
+            }
+
+            $('#question_title').text(this.data.questionTitle + choose);
 
             if (this.data.questionType.toLowerCase() == 'text') {
 

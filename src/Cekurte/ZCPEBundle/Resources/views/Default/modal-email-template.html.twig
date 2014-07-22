@@ -16,13 +16,14 @@
             </div>
         </div>
         <pre id="email_template">
-{{- 'Category'|trans }}: <span id="question_category"></span>.
+<span>{{- 'Category'|trans }}:</span> <span id="question_category"></span>.
 
-{{ 'Question type'|trans }}: <span id="question_type"></span>.
+<span>{{ 'Question type'|trans }}:</span> <span id="question_type"></span>.
 
-<div id="question_title"></div>
-<div id="question_answers"></div>
-{{ '@CekurteSistemas' -}}
+<span id="question_title"></span>
+
+<span id="question_answers"></span>
+<span>{{ '@CekurteSistemas' -}}</span>{{- '' -}}
         </pre>
         <div id="message_clipboard_text_has_copied" class="alert alert-success alert-dismissible hide" role="alert">
             <strong>{{ 'Success'|trans }}!</strong> {{ 'The text has copied to clipboard with successfully'|trans }}.

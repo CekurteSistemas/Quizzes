@@ -25,7 +25,14 @@ class QuestionAnonymousFormType extends QuestionFormType
                 ->remove('title')
                 ->remove('questionType')
                 ->add('title', 'textarea')
-                ->add('questionType')
+                ->add('questionType', null, array(
+                    'empty_value'   => ''
+                ))
+                ->add('choose', 'choice', array(
+                    'mapped'        => false,
+                    'choices'       => array(1, 2, 3, 4, 5),
+                    'empty_value'   => '',
+                ))
             ;
 
         }
