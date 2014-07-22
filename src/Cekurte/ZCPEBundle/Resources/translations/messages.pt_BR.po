@@ -260,5 +260,5 @@ msgstr "Entrar"
 msgid "Authentication"
 msgstr "Autenticação"
 
-msgid "Login with Google Account"
-msgstr "Entrar com Conta Google"
+msgid "Login with a Google Account"
+msgstr "Entrar com uma Conta Google"
