@@ -2,9 +2,9 @@
 
 namespace Cekurte\ZCPEBundle\EventListener;
 
+use Cekurte\ComponentBundle\Util\DoctrineContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Cekurte\ComponentBundle\Util\ContainerAware;
 use Cekurte\ZCPEBundle\Event\QuestionAnswerEvent;
 use Cekurte\ZCPEBundle\Events;
 use Cekurte\ZCPEBundle\Entity\Question;
@@ -15,7 +15,7 @@ use Cekurte\ZCPEBundle\Entity\Question;
  * @author João Paulo Cercal <sistemas@cekurte>
  * @version 1.0
  */
-class QuestionAnswerListener extends ContainerAware implements EventSubscriberInterface
+class QuestionAnswerListener extends DoctrineContainerAware implements EventSubscriberInterface
 {
     /**
      * Constructor
@@ -39,19 +39,64 @@ class QuestionAnswerListener extends ContainerAware implements EventSubscriberIn
         );
     }
 
+    /**
+     * Get a question type of question
+     *
+     * @param Question $question
+     *
+     * @return string
+     */
+    public function getQuestionType(Question $question)
+    {
+        return $this
+            ->getRepository('CekurteZCPEBundle:QuestionType')
+            ->find($question->getQuestionType()->getId())
+            ->getTitle()
+        ;
+    }
+
+    /**
+     * Get the categories of question
+     *
+     * @param Question $question
+     *
+     * @return array
+     */
+    public function getCategories(Question $question)
+    {
+        $categories = $question->getCategory()->getValues();
+
+        $data = array();
+
+        foreach ($categories as $category) {
+            $data[] = $category->getTitle();
+        }
+
+        return $data;
+    }
+
+    /**
+     * @param Question $question
+     *
+     * @return mixed
+     */
     public function getTemplateBody(Question $question)
     {
         $filename = 'CekurteZCPEBundle::email.txt.twig';
 
         return $this->getContainer()->get('templating')->render($filename, array(
-            'footer'    => '@CekurteSistemas',
-            'subject'   => $this->getSubject($question),
-            'question'  => $question,
+            'footer'                => '@CekurteSistemas',
+            'subject'               => $this->getSubject($question),
+            'question'              => $question,
+            'questionType'          => $this->getQuestionType($question),
+            'questionCategories'    => $this->getCategories($question),
         ));
     }
 
     /**
      * Get subject
+     *
+     * @param Question $question
      *
      * @return string
      */

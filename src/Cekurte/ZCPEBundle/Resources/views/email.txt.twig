@@ -1,4 +1,21 @@
-{{ question.title|striptags ~ "\n\n" }}
+Category: {% for item in questionCategories -%}
+    {{ item }}{% if not loop.last %}, {% endif %}
+{% endfor -%}.
+
+Question type: {{ questionType }}.
+
+{{ question.title|striptags ~ "\n" }}
+{%- if question.questionType|lower == 'multiple choice' -%}
+    {%- set numberChoices = 0 -%}
+    {%- for item in question.questionHasAnswer -%}
+        {%- if item.correct -%}
+            {%- set numberChoices = numberChoices + 1 -%}
+        {%- endif -%}
+    {%- endfor -%}
+    (Choose {{ numberChoices }}){{ "\n" }}
+{%- endif -%}
+
+{{ "\n" }}
 
 {%- if question.questionType|lower == 'text' -%}
     {{ "__________" ~ "\n" }}
@@ -33,7 +50,7 @@
     ] -%}
 
     {%- for item in question.questionHasAnswer -%}
-        {{ letters[loop.index0] }}) {{ item.answer.title ~ "\n" }}
+        {{ letters[loop.index0] }}: {{ item.answer.title ~ "\n" }}
     {%- endfor -%}
 
 {%- endif -%}
