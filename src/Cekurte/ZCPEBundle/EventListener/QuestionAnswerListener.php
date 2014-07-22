@@ -2,7 +2,7 @@
 
 namespace Cekurte\ZCPEBundle\EventListener;
 
-use Cekurte\ComponentBundle\Util\DoctrineContainerAware;
+use Cekurte\ComponentBundle\Util\ContainerAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Cekurte\ZCPEBundle\Event\QuestionAnswerEvent;
@@ -15,7 +15,7 @@ use Cekurte\ZCPEBundle\Entity\Question;
  * @author João Paulo Cercal <sistemas@cekurte>
  * @version 1.0
  */
-class QuestionAnswerListener extends DoctrineContainerAware implements EventSubscriberInterface
+class QuestionAnswerListener extends ContainerAware implements EventSubscriberInterface
 {
     /**
      * Constructor
@@ -48,11 +48,7 @@ class QuestionAnswerListener extends DoctrineContainerAware implements EventSubs
      */
     public function getQuestionType(Question $question)
     {
-        return $this
-            ->getRepository('CekurteZCPEBundle:QuestionType')
-            ->find($question->getQuestionType()->getId())
-            ->getTitle()
-        ;
+        return $question->getQuestionType()->getTitle();
     }
 
     /**
