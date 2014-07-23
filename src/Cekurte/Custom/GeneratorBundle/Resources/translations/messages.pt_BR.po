@@ -1,0 +1,8 @@
+msgid "Choose"
+msgstr "Escolher"
+
+msgid "en_US"
+msgstr "Inglês (US)"
+
+msgid "pt_BR"
+msgstr "Português (BR)"

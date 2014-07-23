@@ -1,0 +1,5 @@
+msgid "en_US"
+msgstr "English (US)"
+
+msgid "pt_BR"
+msgstr "Portuguese (BR)"

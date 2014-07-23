@@ -1,0 +1,19 @@
+.icon-country {
+    width: 16px;
+    height: 11px;
+    display: inline-block;
+    position: relative;
+    background-color: transparent;
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+}
+
+.icon-country-pt_BR {
+    background-image: url("../img/gif/br.gif");
+}
+
+.icon-country-en_US {
+    background-image: url("../img/gif/us.gif");
+}
+
+

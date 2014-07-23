@@ -40,6 +40,18 @@
             </ul>
         </li>
     {%- endif -%}
+    <li class="dropdown pull-right">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="icon-country icon-country-{{ app.request.locale }}"></span> <span>{{ 'Choose'|trans }}</span> <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'en_US'})) }}"><span class="icon-country icon-country-en_US"></span> {{ 'en_US'|trans }}</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="{{ path(app.request.get('_route'), app.request.attributes.get('_route_params')|merge({'_locale': 'pt_BR'})) }}"><span class="icon-country icon-country-pt_BR"></span> {{ 'pt_BR'|trans }}</a>
+            </li>
+        </ul>
+    </li>
 {%- endblock -%}
 
 {%- block footer_content -%}
@@ -51,6 +63,7 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Lobster:400" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('bundles/cekurtecustomgenerator/css/country-flags.css') }}"/>
     <style type="text/css">
         span, p, small, a, button, input, label, table td {
             font-family: "Open Sans";
