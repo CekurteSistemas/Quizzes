@@ -47,6 +47,7 @@ class AppKernel extends Kernel
             new Oneup\UploaderBundle\OneupUploaderBundle(),
             new Cekurte\UploaderBundle\CekurteUploaderBundle(),
             new Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle(),
+            new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
 
             // -----------------------------------------------------------------
             // Bundles do Projeto "/src"

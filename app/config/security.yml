@@ -13,19 +13,19 @@ security:
 
     firewalls:
         admin:
-            pattern:                    ^/admin(.*)
+            pattern:                    ^/((admin|pt_BR/admin).)(.*)
             oauth:
                 resource_owners:
-                    google:             /admin/connect/check-google
-                default_target_path:    /admin
-                login_path:             /admin/login
-                failure_path:           /admin/login
-                check_path:             /admin/login/login_check
+                    google:             google_login
+                default_target_path:    admin
+                login_path:             admin_fos_user_security_login
+                failure_path:           admin_fos_user_security_login
+                check_path:             admin_fos_user_security_check
                 oauth_user_provider:
                     service:            oauth_custom_user_provider
             logout:
-                path:                   /admin/logout
-                target:                 /admin/login
+                path:                   admin_fos_user_security_logout
+                target:                 admin_fos_user_security_login
             anonymous:                  true
 
 
@@ -40,41 +40,36 @@ security:
             form_login:
                 provider:               fos_userbundle
                 csrf_provider:          form.csrf_provider
-                default_target_path:    /area-do-usuario
+                default_target_path:    home
                 login_path:             fos_user_security_login
                 failure_path:           fos_user_security_login
                 check_path:             fos_user_security_check
                 use_forward:            false
-            oauth:
-                resource_owners:
-                    facebook:           /connect/check-facebook
-                default_target_path:    /area-do-usuario
-                login_path:             /login
-                failure_path:           /login
-                oauth_user_provider:
-                    service:            oauth_custom_user_provider
             logout:
-                path:                   /logout
-                target:                 /
+                path:                   fos_user_security_logout
+                target:                 home
             anonymous:                  true
 
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
 
         # -> Admin URL's
-        - { path: ^/admin/login$,       role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/logout$,      role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/login-check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/connect/check-google$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        # -> end
+        - { path: ^/admin/login$,             role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/pt_BR/admin/login$,       role: IS_AUTHENTICATED_ANONYMOUSLY }
 
-        # -> User Profile URL's
-        - { path: ^/login$,     role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register$,  role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/logout$,            role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/pt_BR/admin/logout$,      role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        - { path: ^/admin/login-check$,       role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/pt_BR/admin/login-check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        - { path: ^/admin/connect/check-google$,        role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/pt_BR/admin/connect/check-google$,  role: IS_AUTHENTICATED_ANONYMOUSLY }
         # -> end
 
         # -> Secured Area
-        - { path: ^/area-do-usuario,    role: [ROLE_USER] }
         - { path: ^/api,                role: [ROLE_API] }
+
         - { path: ^/admin,              role: [ROLE_CONTRIBUTOR] }
+        - { path: ^/pt_BR/admin,        role: [ROLE_CONTRIBUTOR] }
         # -> end

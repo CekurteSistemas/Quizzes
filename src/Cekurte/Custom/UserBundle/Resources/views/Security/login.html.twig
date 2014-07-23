@@ -1,37 +1,33 @@
-{%- if app.request.attributes.get('_route') == 'fos_user_security_login' -%}
-    {%- embed '@CekurteUserBundleVendor/Security/login.html.twig' -%}
-        {%- block stylesheets -%}
-            {{ parent() }}
-            <link rel="stylesheet" type="text/css" href="{{ asset('bundles/cekurtecustomuser/css/login.css') }}" />
-        {%- endblock -%}
-        {% block container_page_header_h2_title_open_tag %}{%- endblock -%}
-        {% block container_page_header_h2_subtitle_open_tag %}{%- endblock -%}
-        {%- block content -%}
-            <div class="container">
-                <div class="login-container">
-                    <div id="output"></div>
-                    <div class="form-box">
-                        <div class="row">
-                            <h2 class="pull-left">Login<small> Autenticação</small></h2>
-                        </div>
-                        <a href="{{ hwi_oauth_login_url('facebook') }}" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span> Login com Facebook</a>
-                    </div>
+{% extends '@CekurteUserBundleVendor/Security/login.html.twig' %}
+
+{%- block stylesheets -%}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/cekurtecustomuser/css/login.css') }}" />
+{%- endblock -%}
+
+{% block container_page_header_h2_title_open_tag %}{%- endblock -%}
+
+{% block container_page_header_h2_subtitle_open_tag %}{%- endblock -%}
+
+{%- block content -%}
+    <div class="container">
+        <div class="login-container">
+            <div id="output"></div>
+            <div class="form-box">
+                <div class="row">
+                    <h2 class="pull-left">{{ 'Login'|trans }}<small> {{ 'Authentication'|trans }}</small></h2>
                 </div>
+                <a href="{{ hwi_oauth_login_url('google') }}" class="btn btn-danger">{{ 'Login with a Google Account'|trans }}</a>
             </div>
-        {%- endblock -%}
-        {% block footer %}
-            <div class="navbar navbar-default navbar-fixed-bottom">
-                <div class="container">
-                    <p class="navbar-text pull-left">© 2014 - Cekurte ZCPE</p>
-                    <a href="http://sistemas.cekurte.com" target="_blank" class="navbar-btn btn-default btn pull-right"><span class="glyphicon glyphicon-thumbs-up"></span> Cekurte Sistemas</a>
-                </div>
-            </div>
-        {% endblock %}
-    {%- endembed -%}
-{%- else -%}
-    {%- embed '@CekurteUserBundleVendor/Security/login.html.twig' -%}
-        {%- block form_open -%}
-            <form method="post" action="{{ path("_admin_fos_user_security_check") }}" role="form" class="form-horizontal">
-        {%- endblock -%}
-    {%- endembed -%}
-{%- endif -%}
+        </div>
+    </div>
+{%- endblock -%}
+
+{% block footer %}
+    <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
+            <p class="navbar-text pull-left">© 2014 - Cekurte ZCPE</p>
+            <a href="http://sistemas.cekurte.com" target="_blank" class="navbar-btn btn-default btn pull-right"><span class="glyphicon glyphicon-thumbs-up"></span> Cekurte Sistemas</a>
+        </div>
+    </div>
+{% endblock %}

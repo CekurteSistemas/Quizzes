@@ -11,21 +11,25 @@ _bazinga_jstranslation:
 
 _imagine:
     resource:   "@LiipImagineBundle/Resources/config/routing.xml"
+    options: { i18n: false }
 
 oneup_uploader:
     resource:   .
     type:       uploader
+    options: { i18n: false }
 
 cekurte_uploader:
     resource:   "@CekurteUploaderBundle/Controller/"
     type:       annotation
     prefix:     /uploader/
+    options: { i18n: false }
 
 # ------------------------------------------------------------------------------
 # FOSJsRoutingBundle
 
 fos_js_routing:
     resource:   "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+    options: { i18n: false }
 
 # ------------------------------------------------------------------------------
 # FOSUserBundle

@@ -14,7 +14,7 @@ use Cekurte\ZCPEBundle\Entity\Question;
 /**
  * Api controller.
  *
- * @Route("/api")
+ * @Route("/api", options={"i18n" = false})
  *
  * @author João Paulo Cercal <sistemas@cekurte.com>
  * @version 0.1

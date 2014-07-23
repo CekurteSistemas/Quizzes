@@ -35,14 +35,4 @@ class DefaultController extends Controller
     {
         return array();
     }
-
-    /**
-     * @Route("/admin/login", name="admin_login")
-     * @Method("GET")
-     * @Template()
-     */
-    public function loginAdminAction()
-    {
-        return array();
-    }
 }
