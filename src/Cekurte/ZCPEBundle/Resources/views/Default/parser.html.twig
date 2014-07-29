@@ -1,0 +1,24 @@
+{% extends 'CekurteZCPEBundle::layout.html.twig' %}
+
+{% block menu %}
+    <li class="active">
+        <a href="{{ path("home") }}"><span class="glyphicon glyphicon-home"></span> {{ 'Home' | trans }}</a>
+    </li>
+{% endblock %}
+
+{% set title    = 'Parser'|trans %}
+{% set subtitle = 'Import Questions from Google Groups'|trans %}
+
+{% block links %}{% endblock %}
+
+{% block content -%}
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">{{ 'Close'|trans }}</span></button>
+        {{ 'Questions imported with successfully!'|trans }}
+    </div>
+
+{% endblock %}
+
+{%- block stylesheets -%}{%- endblock -%}
+
+{%- block javascripts -%}{%- endblock -%}
