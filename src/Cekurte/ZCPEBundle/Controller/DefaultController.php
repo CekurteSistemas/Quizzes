@@ -99,6 +99,34 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/parser-database")
+     * @Method("GET")
+     * @Template("CekurteZCPEBundle:Default:parser.html.twig")
+     */
+    public function parserDatabaseAction()
+    {
+        set_time_limit(0);
+
+        $content = file_get_contents(
+            'https://groups.google.com/forum/?hl=pt-BR'
+            . '#!topic/rumo-a-certificacao-php/iXhNQFBv6iE'
+        );
+
+        echo $content;
+        exit;
+
+        $crawler = new Crawler($content);
+
+        $crawler->filter('body > table > tbody > tr > td > div > div > div:first-child')->each(function (Crawler $node, $i) use (&$subjectFilterPrefix, $em) {
+
+            $subject    = $node->filter('a')->first();
+
+        });
+
+        return array();
+    }
+
+    /**
      * @Route("/admin/", name="admin")
      * @Method("GET")
      * @Template()
