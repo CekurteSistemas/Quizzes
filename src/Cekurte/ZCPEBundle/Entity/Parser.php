@@ -49,6 +49,12 @@ class Parser
      */
     private $createdAt;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="content", type="text")
+     */
+    private $content;
 
     /**
      * Get id
@@ -150,5 +156,28 @@ class Parser
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Set content
+     *
+     * @param string $content
+     * @return Parser
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get content
+     *
+     * @return string 
+     */
+    public function getContent()
+    {
+        return $this->content;
     }
 }
