@@ -14,6 +14,11 @@ use Symfony\Component\DomCrawler\Crawler;
 class DefaultController extends Controller
 {
     /**
+     * @var string
+     */
+    const GOOGLE_GROUPS_TOPIC_URL = 'https://groups.google.com/d/topic/<GROUP>/<TOPIC>';
+
+    /**
      * @Route("/", name="home")
      * @Method("GET")
      * @Template()
@@ -99,6 +104,16 @@ class DefaultController extends Controller
     }
 
     /**
+     * Get the google group
+     *
+     * @return string
+     */
+    protected function getGoogleGroup()
+    {
+        return 'rumo-a-certificacao-php';
+    }
+
+    /**
      * @Route("/parser-database")
      * @Method("GET")
      * @Template("CekurteZCPEBundle:Default:parser.html.twig")
@@ -107,21 +122,34 @@ class DefaultController extends Controller
     {
         set_time_limit(0);
 
-        $content = file_get_contents(
-            'https://groups.google.com/forum/?hl=pt-BR'
-            . '#!topic/rumo-a-certificacao-php/iXhNQFBv6iE'
-        );
+        $baseUrl = str_replace('<GROUP>', $this->getGoogleGroup(), self::GOOGLE_GROUPS_TOPIC_URL);
 
-        echo $content;
-        exit;
+        $em     = $this->get('doctrine')->getManager();
+        $itens  = $em->getRepository('CekurteZCPEBundle:Parser')->findAll();
 
-        $crawler = new Crawler($content);
+        foreach ($itens as $item) {
 
-        $crawler->filter('body > table > tbody > tr > td > div > div > div:first-child')->each(function (Crawler $node, $i) use (&$subjectFilterPrefix, $em) {
+            $url  = str_replace('<TOPIC>', $item->getUrl(), $baseUrl);
 
-            $subject    = $node->filter('a')->first();
+            $curl = curl_init($url);
 
-        });
+            curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (compatible;  MSIE 7.01; Windows NT 5.0)");
+
+            $response = curl_exec($curl);
+
+            $crawler  = new Crawler($response);
+
+            $content  = $crawler->filter('body > table > tr:first-child > td.snippet')->first()->html();
+
+            $contentFiltered = trim(utf8_decode(strip_tags(str_replace('<br>', "\r\n", $content))));
+
+            $item->setContent($contentFiltered);
+
+            $em->persist($item);
+            $em->flush();
+        }
 
         return array();
     }
