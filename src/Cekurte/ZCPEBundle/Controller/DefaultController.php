@@ -155,6 +155,44 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/parser-database-content")
+     * @Method("GET")
+     * @Template("CekurteZCPEBundle:Default:parser.html.twig")
+     */
+    public function parserDatabaseContentAction()
+    {
+        set_time_limit(0);
+
+        $em     = $this->get('doctrine')->getManager();
+        $itens  = $em->getRepository('CekurteZCPEBundle:Parser')->findAll();
+
+        $index  = 0;
+
+        foreach ($itens as $item) {
+
+            $index++;
+
+            if ($index < 1066) {
+                continue;
+            }
+
+            $content = $item->getContent();
+
+            if (preg_match_all("/[\r\n]+[^:alpha]{1}\s*[\:\)\/]{1}\s*(.*)/", $content, $matches)) {
+
+                $answers = end($matches);
+
+                echo "Match was found <br />";
+                var_dump($matches, $content, $answers);
+            }
+
+            exit;
+        }
+
+        return array();
+    }
+
+    /**
      * @Route("/admin/", name="admin")
      * @Method("GET")
      * @Template()
