@@ -172,13 +172,13 @@ class DefaultController extends Controller
 
             $index++;
 
-            if ($index < 1) {
-                continue;
-            }
-
-//            if ($item->getId() != 98) {
+//            if ($index < 5) {
 //                continue;
 //            }
+
+            if ($item->getId() != 195) {
+                continue;
+            }
 
             $subject = $item->getSubject();
 
@@ -208,10 +208,10 @@ class DefaultController extends Controller
                 }
             }
 
-            $questionType = 'single choice';
+            $questionType = 'Single Choice';
 
             if (preg_match_all("/.*(\_{5}).*/", $content, $matches)) {
-                $questionType = 'text';
+                $questionType = 'Text';
             }
 
             if (preg_match("/\(\s*choose\s*(\d+)\)/i", $content, $matches)) {
@@ -219,7 +219,7 @@ class DefaultController extends Controller
                 $choose = (int) end($matches);
 
                 if ($choose > 1) {
-                    $questionType = 'multiple choices';
+                    $questionType = 'Multiple Choice';
                 }
 
                 $question = str_replace($matches[0], '', $question);
@@ -229,14 +229,22 @@ class DefaultController extends Controller
                 $googleGroupsId = (int) $matches[0];
             }
 
+            $category = array();
+
+            if (preg_match("/(Categoria|Category){1}\:{1}\s+(.*)\./i", $content, $matches)) {
+                $category = explode(', ', end($matches));
+            }
+
             var_dump(array(
-                'google_groups_id'  => $googleGroupsId,
-                'question_type'     => trim($questionType),
-                'question'          => trim($question),
-                'answers'           => $answers,
-                'author'            => $item->getAuthor(),
-                'created_at'        => $item->getCreatedAt(),
-                'content'           => $content,
+                'google_groups_id'          => $googleGroupsId,
+                'question_type'             => trim($questionType),
+                'category'                  => $category,
+                'question'                  => trim($question),
+                'number_of_answers_correct' => isset($choose) ? $choose : (strtolower(trim($questionType)) == 'text' ? null : 1),
+                'answers'                   => $answers,
+                'author'                    => $item->getAuthor(),
+                'created_at'                => $item->getCreatedAt(),
+                'content'                   => $content,
             ));
 
             exit;
