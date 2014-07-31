@@ -30,6 +30,13 @@ class Question extends DefaultFieldsBaseEntity
     private $googleGroupsId;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="google_groups_author", type="integer", nullable=true)
+     */
+    private $googleGroupsAuthor;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="title", type="text", nullable=false)
@@ -160,6 +167,29 @@ class Question extends DefaultFieldsBaseEntity
     public function getGoogleGroupsId()
     {
         return $this->googleGroupsId;
+    }
+
+    /**
+     * Set googleGroupsAuthor
+     *
+     * @param string $googleGroupsAuthor
+     * @return Question
+     */
+    public function setGoogleGroupsAuthor($googleGroupsAuthor)
+    {
+        $this->googleGroupsAuthor = $googleGroupsAuthor;
+
+        return $this;
+    }
+
+    /**
+     * Get googleGroupsAuthor
+     *
+     * @return string
+     */
+    public function getGoogleGroupsAuthor()
+    {
+        return $this->googleGroupsAuthor;
     }
 
     /**
