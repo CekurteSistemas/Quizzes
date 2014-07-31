@@ -176,27 +176,26 @@ class DefaultController extends Controller
 //                continue;
 //            }
 
-            if ($item->getId() != 213) {
+            if ($item->getId() != 85) {
                 continue;
             }
 
             $content = $item->getContent();
 
-            if (preg_match_all("/([\r\n\s]+.*)(?![^:alpha]{1}\s*[\:\)\/]{1})/", $content, $matches)) {
+            if (preg_match_all("/[\r\n]+[^:alpha]{1}\s*[\:\)\/]{1}\s*(.*)/", $content, $matches)) {
 
-                $answers = end($matches);
+                $answers            = end($matches);
+                $answersComplete    = $matches[0];
+
+                $question           = $content;
+
+                foreach ($answersComplete as $answer) {
+                    $question = str_replace($answer, '', $question);
+                }
 
                 echo "Match was found <br />";
-                var_dump($matches, $content, $answers);
+                var_dump($matches, $content, $question, $answers);
             }
-
-//            if (preg_match_all("/[\r\n]+[^:alpha]{1}\s*[\:\)\/]{1}\s*(.*)/", $content, $matches)) {
-//
-//                $answers = end($matches);
-//
-//                echo "Match was found <br />";
-//                var_dump($matches, $content, $answers);
-//            }
 
 //            if (preg_match("/\(\s*choose\s*(\d+)\)/i", $content, $matches)) {
 //
