@@ -2,8 +2,12 @@
 
 namespace Cekurte\ZCPEBundle\Controller;
 
+use Cekurte\ZCPEBundle\Entity\Answer;
+use Cekurte\ZCPEBundle\Entity\Category;
 use Cekurte\ZCPEBundle\Entity\Parser;
 use Cekurte\ZCPEBundle\Entity\Question;
+use Cekurte\ZCPEBundle\Entity\QuestionHasAnswer;
+use Cekurte\ZCPEBundle\Entity\QuestionType;
 use Cekurte\ZCPEBundle\Form\Type\QuestionAnonymousFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -34,7 +38,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/parser")
+     * @Route("/admin/parser")
      * @Method("GET")
      * @Template()
      */
@@ -114,7 +118,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/parser-database")
+     * @Route("/admin/parser-database")
      * @Method("GET")
      * @Template("CekurteZCPEBundle:Default:parser.html.twig")
      */
@@ -155,7 +159,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/parser-database-content")
+     * @Route("/admin/parser-database-content")
      * @Method("GET")
      * @Template("CekurteZCPEBundle:Default:parser.html.twig")
      */
@@ -223,20 +227,88 @@ class DefaultController extends Controller
                 $category = explode(', ', end($matches));
             }
 
-            var_dump(array(
-                'google_groups_id'          => $googleGroupsId,
-                'question_type'             => trim($questionType),
-                'category'                  => $category,
-                'question'                  => trim($question),
-                'number_of_answers_correct' => isset($choose) ? $choose : (strtolower(trim($questionType)) == 'text' ? null : 1),
-                'answers'                   => $answers,
-                'author'                    => $item->getAuthor(),
-                'created_at'                => $item->getCreatedAt(),
-                'content'                   => $content,
+            $entity = $em->getRepository('CekurteZCPEBundle:Question')->findOneBy(array(
+                'googleGroupsId'    => $googleGroupsId,
             ));
-        }
 
-        exit;
+            if (!$entity instanceof Question) {
+
+                $entity = new Question();
+
+                $entity
+                    ->setDeleted(false)
+                    ->setCreatedBy($this->getUser())
+                    ->setCreatedAt($item->getCreatedAt())
+
+                    ->setGoogleGroupsId($googleGroupsId)
+                    ->setGoogleGroupsAuthor($item->getAuthor())
+
+                    ->setTitle(trim(nl2br($question)))
+                    ->setComment($content)
+                ;
+
+                $questionTypeEntity = $em->getRepository('CekurteZCPEBundle:QuestionType')->findOneBy(array(
+                    'title' => trim($questionType)
+                ));
+
+                if ($questionTypeEntity instanceof QuestionType) {
+                    $entity->setQuestionType($questionTypeEntity);
+                }
+
+                if (!empty($category)) {
+                    foreach ($category as $title) {
+
+                        $categoryEntity = $em->getRepository('CekurteZCPEBundle:Category')->findOneBy(array(
+                            'title' => trim($title)
+                        ));
+
+                        if ($categoryEntity instanceof Category) {
+                            $entity->addCategory($categoryEntity);
+                        }
+                    }
+                }
+
+                if (!empty($answers)) {
+
+                    $em->persist($entity);
+                    $em->flush();
+
+                    $entity
+                        ->setApproved(false)
+                        ->setDifficulty(0)
+                        ->setEmailHasSent(true)
+                    ;
+
+                    $em->persist($entity);
+                    $em->flush();
+
+                    foreach ($answers as $answer) {
+
+                        $answerEntity = new Answer();
+                        $answerEntity
+                            ->setTitle($answer)
+                            ->setDeleted(false)
+                            ->setCreatedBy($this->getUser())
+                            ->setCreatedAt(new \DateTime('NOW'))
+                        ;
+
+                        $em->persist($answerEntity);
+                        $em->flush();
+
+                        $answerEntityRel = new QuestionHasAnswer();
+                        $answerEntityRel
+                            ->setAnswer($answerEntity)
+                            ->setQuestion($entity)
+                            ->setCorrect(false)
+                        ;
+
+                        $em->persist($answerEntityRel);
+                        $em->flush();
+                    }
+
+                }
+            }
+        }
 
         return array();
     }

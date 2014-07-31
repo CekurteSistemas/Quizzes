@@ -32,7 +32,7 @@ class Question extends DefaultFieldsBaseEntity
     /**
      * @var integer
      *
-     * @ORM\Column(name="google_groups_author", type="integer", nullable=true)
+     * @ORM\Column(name="google_groups_author", type="string", length=255, nullable=true)
      */
     private $googleGroupsAuthor;
 

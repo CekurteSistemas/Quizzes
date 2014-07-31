@@ -49,8 +49,8 @@ class QuestionController extends CekurteController implements RepositoryInterfac
     /**
      * Lists all Question entities.
      *
-     * @Route("/", defaults={"page"=1, "sort"="ck.id", "direction"="asc"}, name="admin_question")
-     * @Route("/page/{page}/sort/{sort}/direction/{direction}/", defaults={"page"=1, "sort"="ck.id", "direction"="asc"}, name="admin_question_paginator")
+     * @Route("/", defaults={"page"=1, "sort"="ck.createdAt", "direction"="asc"}, name="admin_question")
+     * @Route("/page/{page}/sort/{sort}/direction/{direction}/", defaults={"page"=1, "sort"="ck.createdAt", "direction"="asc"}, name="admin_question_paginator")
      * @Method("GET")
      * @Template()
      * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION, ROLE_CONTRIBUTOR")
@@ -152,7 +152,7 @@ class QuestionController extends CekurteController implements RepositoryInterfac
     /**
      * Export Question entities to Excel.
      *
-     * @Route("/export/sort/{sort}/direction/{direction}/", defaults={"sort"="ck.id", "direction"="asc"}, name="admin_question_export")
+     * @Route("/export/sort/{sort}/direction/{direction}/", defaults={"sort"="ck.createdAt", "direction"="asc"}, name="admin_question_export")
      * @Method("GET")
      * @Template()
      * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION, ROLE_CONTRIBUTOR")
