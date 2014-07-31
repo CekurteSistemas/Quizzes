@@ -166,19 +166,7 @@ class DefaultController extends Controller
         $em     = $this->get('doctrine')->getManager();
         $itens  = $em->getRepository('CekurteZCPEBundle:Parser')->findAll();
 
-        $index  = 0;
-
         foreach ($itens as $item) {
-
-            $index++;
-
-//            if ($index < 5) {
-//                continue;
-//            }
-
-            if ($item->getId() != 195) {
-                continue;
-            }
 
             $subject = $item->getSubject();
 
@@ -246,9 +234,9 @@ class DefaultController extends Controller
                 'created_at'                => $item->getCreatedAt(),
                 'content'                   => $content,
             ));
-
-            exit;
         }
+
+        exit;
 
         return array();
     }
