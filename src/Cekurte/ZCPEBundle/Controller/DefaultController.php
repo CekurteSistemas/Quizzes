@@ -172,13 +172,15 @@ class DefaultController extends Controller
 
             $index++;
 
-//            if ($index < 1066) {
+            if ($index < 1) {
+                continue;
+            }
+
+//            if ($item->getId() != 98) {
 //                continue;
 //            }
 
-            if ($item->getId() != 85) {
-                continue;
-            }
+            $subject = $item->getSubject();
 
             $content = $item->getContent();
 
@@ -192,18 +194,50 @@ class DefaultController extends Controller
                 foreach ($answersComplete as $answer) {
                     $question = str_replace($answer, '', $question);
                 }
-
-                echo "Match was found <br />";
-                var_dump($matches, $content, $question, $answers);
             }
 
-//            if (preg_match("/\(\s*choose\s*(\d+)\)/i", $content, $matches)) {
-//
-//                $choose = (int) end($matches);
-//
-//                echo "Match was found <br />";
-//                var_dump($choose);
-//            }
+            if (preg_match_all("/[\r\n]+[^:alpha]{1}\s*[\:\)\/]{1}\s*(.*)/", $content, $matches)) {
+
+                $answers            = end($matches);
+                $answersComplete    = $matches[0];
+
+                $question           = $content;
+
+                foreach ($answersComplete as $answer) {
+                    $question = str_replace($answer, '', $question);
+                }
+            }
+
+            $questionType = 'single choice';
+
+            if (preg_match_all("/.*(\_{5}).*/", $content, $matches)) {
+                $questionType = 'text';
+            }
+
+            if (preg_match("/\(\s*choose\s*(\d+)\)/i", $content, $matches)) {
+
+                $choose = (int) end($matches);
+
+                if ($choose > 1) {
+                    $questionType = 'multiple choices';
+                }
+
+                $question = str_replace($matches[0], '', $question);
+            }
+
+            if (preg_match("/\d{1,4}/", $subject, $matches)) {
+                $googleGroupsId = (int) $matches[0];
+            }
+
+            var_dump(array(
+                'google_groups_id'  => $googleGroupsId,
+                'question_type'     => trim($questionType),
+                'question'          => trim($question),
+                'answers'           => $answers,
+                'author'            => $item->getAuthor(),
+                'created_at'        => $item->getCreatedAt(),
+                'content'           => $content,
+            ));
 
             exit;
         }
