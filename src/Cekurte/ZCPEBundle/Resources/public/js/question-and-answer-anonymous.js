@@ -82,8 +82,6 @@ jQuery(document).ready(function($) {
 
             $('#question_category').text(this.data.categories);
 
-            $('#question_type').text(this.data.questionType);
-
             var choose = '';
 
             if (this.data.questionType == this.validateQuestionChoiceForQuestionType()) {

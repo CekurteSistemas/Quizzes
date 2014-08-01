@@ -2,8 +2,6 @@ Category: {% for item in questionCategories -%}
     {{ item }}{% if not loop.last %}, {% endif %}
 {% endfor -%}.
 
-Question type: {{ questionType }}.
-
 {{ question.title|striptags ~ "\n" }}
 {%- if question.questionType|lower == 'multiple choice' -%}
     {%- set numberChoices = 0 -%}
@@ -54,5 +52,3 @@ Question type: {{ questionType }}.
     {%- endfor -%}
 
 {%- endif -%}
-
-{{ "\n" ~ footer }}

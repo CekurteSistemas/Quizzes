@@ -81,7 +81,6 @@ class QuestionAnswerListener extends ContainerAware implements EventSubscriberIn
         $filename = 'CekurteZCPEBundle::email.txt.twig';
 
         return $this->getContainer()->get('templating')->render($filename, array(
-            'footer'                => '@CekurteSistemas',
             'subject'               => $this->getSubject($question),
             'question'              => $question,
             'questionType'          => $this->getQuestionType($question),
