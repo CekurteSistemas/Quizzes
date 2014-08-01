@@ -146,6 +146,7 @@ class Question extends DefaultFieldsBaseEntity
     public function onPrePersist()
     {
         $this->setApproved(false);
+        $this->setRevised(false);
         $this->setImportedFromGoogleGroups(false);
         $this->setEmailHasSent(false);
         $this->setDifficulty(0);
