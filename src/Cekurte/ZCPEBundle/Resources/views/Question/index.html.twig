@@ -31,6 +31,7 @@
                 <tr>
                     <th>{{ 'Question type'|trans }}</th>
                     <th>{{ 'Category'|trans }}</th>
+                    <th{% if pagination.isSorted('ck.createdAt') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Created at'|trans, 'ck.createdAt', {'title' : 'Order by'|trans ~ ' ' ~ 'Created at'|trans}) }}</th>
                     <th{% if pagination.isSorted('ck.title') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'ck.title', {'title' : 'Order by'|trans ~ ' ' ~ 'Title'|trans}) }}</th>
                     <th{% if pagination.isSorted('ck.emailHasSent') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Email has sent'|trans ~ '?', 'ck.emailHasSent', {'title' : 'Order by'|trans ~ ' ' ~ 'Email has sent'|trans ~ '?'}) }}</th>
                     {% if is_granted('ROLE_ADMIN') %}
@@ -51,6 +52,7 @@
                             {{ category }}{% if not loop.last %}, {% endif %}
                         {% endfor %}
                     </td>
+                    <td>{{ entity.createdAt|date('d/m/Y') }}</td>
                     <td>{{ entity.title|truncate(50)|raw }}</td>
                     <td>
                         {% embed 'CekurteZCPEBundle:Question:boolean-action.html.twig' with {
