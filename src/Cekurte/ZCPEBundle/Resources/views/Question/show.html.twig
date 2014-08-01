@@ -101,11 +101,13 @@
                 <tr>
                     <th>{{ 'Revised'|trans ~ '?'}}</th>
                     <td>
-                        {% if entity.revised == true %}
-                            <button type="button" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-ok"></span> {{ 'Yes'|trans }}</button>
-                        {% else %}
-                            <button type="button" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ 'No'|trans }}</button>
-                        {% endif %}
+                        {% embed 'CekurteZCPEBundle:Question:boolean-action.html.twig' with {
+                            'route'             : 'admin_question_revised',
+                            'identifierKey'     : 'id',
+                            'identifierValue'   : entity.id,
+                            'fieldValue'        : entity.revised
+                        } only %}
+                        {% endembed %}
                     </td>
                 </tr>
             </tbody>

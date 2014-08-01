@@ -222,6 +222,15 @@ msgstr "Importado do Google Groups"
 msgid "Revised"
 msgstr "Revisado"
 
+msgid "The question was revised with successfully"
+msgstr "A questão foi revisada com sucesso"
+
+msgid "The question was not flagged as reviewed"
+msgstr "A questão não foi marcada como revisada"
+
+msgid "One or more problems was found on set the question to revised"
+msgstr "Um ou mais problemas foram encontrados ao configurar a questão como revisada"
+
 msgid "Preview"
 msgstr "Pré-visualização"
 

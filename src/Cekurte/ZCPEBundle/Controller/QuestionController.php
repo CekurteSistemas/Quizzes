@@ -269,6 +269,63 @@ class QuestionController extends CekurteController implements RepositoryInterfac
     }
 
     /**
+     * Set tue revision true to question.
+     *
+     * @Route("/{id}/revised/{action}", requirements={"action" = "\d+"}, name="admin_question_revised")
+     * @Method("GET")
+     * @Template()
+     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION_REVISED, ROLE_CONTRIBUTOR")
+     *
+     * @param int $id
+     * @return RedirectResponse
+     *
+     * @author João Paulo Cercal <sistemas@cekurte.com>
+     * @version 0.1
+     */
+    public function revisedAction($id, $action)
+    {
+        $dataFilter = $this->get('security.context')->isGranted('ROLE_ADMIN')
+            ? array('id' => $id)
+            : array('id' => $id, 'createdBy' => $this->getUser())
+        ;
+
+        $entity = $this->getEntityRepository()->findOneBy($dataFilter);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Question entity.');
+        }
+
+        try {
+
+            $entity->setRevised((bool) $action);
+
+            $em = $this->get('doctrine')->getManager();
+
+            $em->persist($entity);
+            $em->flush();
+
+            $message = $action
+                ? 'The question was revised with successfully'
+                : 'The question was not flagged as reviewed'
+            ;
+
+            $this->get('session')->getFlashBag()->add('message', array(
+                'type'      => 'success',
+                'message'   => $this->get('translator')->trans($message) . '!',
+            ));
+
+        } catch (\Exception $e) {
+
+            $this->get('session')->getFlashBag()->add('message', array(
+                'type'      => 'error',
+                'message'   => $this->get('translator')->trans('One or more problems was found on set the question to revised') . '!',
+            ));
+        }
+
+        return $this->redirect($this->generateUrl('admin_question_show', array('id' => $id)));
+    }
+
+    /**
      * Finds and displays a Question entity.
      *
      * @Route("/{id}", name="admin_question_show")

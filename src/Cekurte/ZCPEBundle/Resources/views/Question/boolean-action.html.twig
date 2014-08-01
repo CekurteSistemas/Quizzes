@@ -1,0 +1,20 @@
+{% block container %}
+    {% if route is defined %}
+        {% block link_open %}<a href="{{ path(route, {(identifierKey) : identifierValue, 'action': fieldValue == true ? 0 : 1}) }}" class="btn btn-xs btn-{% if fieldValue == true %}success{% else %}danger{% endif %}">{% endblock %}
+    {% else %}
+        {% block button_open %}<button type="button" class="btn btn-xs btn-{% if fieldValue == true %}success{% else %}danger{% endif %}">{% endblock %}
+    {% endif %}
+    {% block icon %}<span class="glyphicon glyphicon-{% if fieldValue == true %}ok{% else %}remove{% endif %}"></span>{% endblock %}
+    {% block label %}
+        {% if fieldValue == true %}
+            {{ 'Yes'|trans }}
+        {% else %}
+            {{ 'No'|trans }}
+        {% endif %}
+    {% endblock %}
+    {% if route is defined %}
+        {% block link_close %}</button>{% endblock %}
+    {% else %}
+        {% block button_close %}</button>{% endblock %}
+    {% endif %}
+{% endblock %}
