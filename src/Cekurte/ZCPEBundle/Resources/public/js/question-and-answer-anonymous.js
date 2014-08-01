@@ -174,4 +174,19 @@ jQuery(document).ready(function($) {
 
         return false;
     });
+
+    $(document).on('change', '#cekurte_zcpebundle_questionform_questionType', function() {
+
+        var questionType = $(this).val();
+
+        var element = $('#cekurte_zcpebundle_questionform_choose').parent().parent();
+
+        if (questionType == 2) {
+            $(element).show();
+        } else {
+            $(element).hide();
+        }
+    });
+
+    $('#cekurte_zcpebundle_questionform_choose').parent().parent().hide();
 });
