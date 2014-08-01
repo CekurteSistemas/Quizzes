@@ -60,6 +60,13 @@ class Question extends DefaultFieldsBaseEntity
     /**
      * @var boolean
      *
+     * @ORM\Column(name="is_revised", type="boolean", nullable=false)
+     */
+    private $revised;
+
+    /**
+     * @var boolean
+     *
      * @ORM\Column(name="email_has_sent", type="boolean", nullable=false)
      */
     private $emailHasSent;
@@ -267,6 +274,29 @@ class Question extends DefaultFieldsBaseEntity
     public function isImportedFromGoogleGroups()
     {
         return $this->importedFromGoogleGroups;
+    }
+
+    /**
+     * Set revised
+     *
+     * @param boolean $revised
+     * @return Question
+     */
+    public function setRevised($revised)
+    {
+        $this->revised = $revised;
+
+        return $this;
+    }
+
+    /**
+     * Get is revised
+     *
+     * @return boolean
+     */
+    public function isRevised()
+    {
+        return $this->revised;
     }
 
     /**

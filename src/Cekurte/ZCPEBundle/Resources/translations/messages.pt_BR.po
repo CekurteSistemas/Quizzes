@@ -219,6 +219,9 @@ msgstr "Aprovado"
 msgid "Imported from Google Groups"
 msgstr "Importado do Google Groups"
 
+msgid "Revised"
+msgstr "Revisado"
+
 msgid "Preview"
 msgstr "Pré-visualização"
 
