@@ -36,6 +36,7 @@
                     {% if is_granted('ROLE_ADMIN') %}
                         <th{% if pagination.isSorted('ck.approved') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Approved'|trans ~ '?', 'ck.approved', {'title' : 'Order by'|trans ~ ' ' ~ 'Approved'|trans ~ '?'}) }}</th>
                     {% endif %}
+                    <th{% if pagination.isSorted('ck.revised') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Revised'|trans ~ '?', 'ck.revised', {'title' : 'Order by'|trans ~ ' ' ~ 'Revised'|trans ~ '?'}) }}</th>
                     {% if cekurte_is_granted('RETRIEVE') or cekurte_is_granted('UPDATE') or cekurte_is_granted('DELETE') %}
                         <th class="action">{{ 'Actions'|trans }}</th>
                     {% endif %}
@@ -65,6 +66,12 @@
                             {% endembed %}
                         </td>
                     {% endif %}
+                    <td>
+                        {% embed 'CekurteZCPEBundle:Question:boolean-action.html.twig' with {
+                            'fieldValue'        : entity.revised
+                        } only %}
+                        {% endembed %}
+                    </td>
                     {% if cekurte_is_granted('RETRIEVE') or cekurte_is_granted('UPDATE') or cekurte_is_granted('DELETE') %}
                         <td>
                             {% embed 'CekurteGeneratorBundle:Action:retrieve.html.twig' with {
