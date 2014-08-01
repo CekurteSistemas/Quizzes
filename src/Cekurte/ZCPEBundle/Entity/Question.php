@@ -53,6 +53,13 @@ class Question extends DefaultFieldsBaseEntity
     /**
      * @var boolean
      *
+     * @ORM\Column(name="is_imported_from_google_groups", type="boolean", nullable=false)
+     */
+    private $importedFromGoogleGroups;
+
+    /**
+     * @var boolean
+     *
      * @ORM\Column(name="email_has_sent", type="boolean", nullable=false)
      */
     private $emailHasSent;
@@ -132,6 +139,7 @@ class Question extends DefaultFieldsBaseEntity
     public function onPrePersist()
     {
         $this->setApproved(false);
+        $this->setImportedFromGoogleGroups(false);
         $this->setEmailHasSent(false);
         $this->setDifficulty(0);
     }
@@ -236,6 +244,29 @@ class Question extends DefaultFieldsBaseEntity
     public function isApproved()
     {
         return $this->approved;
+    }
+
+    /**
+     * Set importedFromGoogleGroups
+     *
+     * @param boolean $importedFromGoogleGroups
+     * @return Question
+     */
+    public function setImportedFromGoogleGroups($importedFromGoogleGroups)
+    {
+        $this->importedFromGoogleGroups = $importedFromGoogleGroups;
+
+        return $this;
+    }
+
+    /**
+     * Get is importedFromGoogleGroups
+     *
+     * @return boolean
+     */
+    public function isImportedFromGoogleGroups()
+    {
+        return $this->importedFromGoogleGroups;
     }
 
     /**

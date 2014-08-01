@@ -88,6 +88,16 @@
                         </td>
                     </tr>
                 {% endif %}
+                <tr>
+                    <th>{{ 'Imported from Google Groups'|trans ~ '?'}}</th>
+                    <td>
+                        {% if entity.importedFromGoogleGroups == true %}
+                            <button type="button" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-ok"></span> {{ 'Yes'|trans }}</button>
+                        {% else %}
+                            <button type="button" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-remove"></span> {{ 'No'|trans }}</button>
+                        {% endif %}
+                    </td>
+                </tr>
             </tbody>
         </table>
         <table class="table table-hover table-show">
@@ -131,6 +141,10 @@
                     <td>{{ entity.googleGroupsId }}</td>
                 </tr>
                 <tr>
+                    <th>{{ 'Google Groups Author'|trans }}</th>
+                    <td>{{ entity.googleGroupsAuthor }}</td>
+                </tr>
+                <tr>
                     <th>{{ 'Title'|trans }}</th>
                     <td>{{ entity.title|raw }}</td>
                 </tr>
@@ -146,6 +160,10 @@
                             </div>
                         {% endfor %}
                     </td>
+                </tr>
+                <tr>
+                    <th>{{ 'Comment'|trans }}</th>
+                    <td>{{ entity.comment|nl2br }}</td>
                 </tr>
             </tbody>
         </table>

@@ -275,6 +275,7 @@ class DefaultController extends Controller
 
                     $entity
                         ->setApproved(false)
+                        ->setImportedFromGoogleGroups(true)
                         ->setDifficulty(0)
                         ->setEmailHasSent(true)
                     ;
