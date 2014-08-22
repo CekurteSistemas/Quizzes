@@ -11,7 +11,7 @@ parameters:
     mailer_user:       joao.dev.test@gmail.com
     mailer_password:   tesT@123
 
-    locale:            pt_BR
+    locale:            en_US
     secret:            c9ed0cf128c10a547fe74c2f4c132c25
 
     # number of items per page
