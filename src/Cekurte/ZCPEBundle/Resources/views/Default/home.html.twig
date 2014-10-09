@@ -1,0 +1,53 @@
+{% extends 'CekurteZCPEBundle::layout.html.twig' %}
+
+{% block menu %}
+    <li class="active">
+        <a href="{{ path("home") }}"><span class="glyphicon glyphicon-home"></span> {{ 'Home' | trans }}</a>
+    </li>
+{% endblock %}
+
+{% set title    = 'Home'|trans %}
+{% set subtitle = 'Welcome'|trans %}
+
+{% block links %}
+    {% include 'CekurteZCPEBundle:Default:modal-anonymous.html.twig' %}
+{% endblock %}
+
+{% block content -%}
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{ 'Choice how you want use this application'|trans }}</div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <a href="#modalAnonymous" data-toggle="modal" class="list-group-item">
+                        <span class="glyphicon glyphicon-chevron-right pull-right" style="top: 16px !important;"></span>
+                        <h4 class="list-group-item-heading">
+                            <span class="glyphicon glyphicon-tower"></span> {{ 'Anonymously'|trans }}
+                        </h4>
+                        <p class="list-group-item-text">
+                            {{ 'Allows the user to access the application anonymously (without authentication)'|trans }}.
+                        </p>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <span class="glyphicon glyphicon-chevron-right pull-right" style="top: 16px !important;"></span>
+                        <h4 class="list-group-item-heading">
+                            <span class="glyphicon glyphicon-user"></span> {{ 'With Username and Password'|trans }}
+                        </h4>
+                        <p class="list-group-item-text">
+                            {{ 'Allows the user access the application with your credentials (username and password)'|trans }}.
+                        </p>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <span class="glyphicon glyphicon-chevron-right pull-right" style="top: 16px !important;"></span>
+                        <h4 class="list-group-item-heading">
+                            <span class="glyphicon glyphicon-share"></span> {{ 'With a Google Account'|trans }}
+                        </h4>
+                        <p class="list-group-item-text">
+                            {{ 'Allows the user access the application with your Google account'|trans }}.
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

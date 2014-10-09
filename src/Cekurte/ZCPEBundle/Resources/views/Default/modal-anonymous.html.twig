@@ -1,0 +1,19 @@
+{% embed 'CekurteGeneratorBundle::modal.html.twig' %}
+    {% block title %}
+        {{ 'Confirmation'|trans }}
+    {% endblock %}
+    {% block container_open %}
+        <div class="modal fade" id="modalAnonymous" tabindex="-1" role="dialog" aria-labelledby="modalAnonymousLabel" aria-hidden="true">
+    {% endblock %}
+    {% block content %}
+        <div class="alert alert-danger" role="alert">
+            {{ 'This choice does not allow you to manage the questions and send emails with this application. Do you want continue?'|trans }}
+        </div>
+    {% endblock %}
+    {% block action_close %}
+        <a class="btn btn-default" data-dismiss="modal" aria-hidden="true">{{ 'Close' | trans }}</a>
+    {% endblock %}
+    {% block action_submit %}
+        <a class="btn btn-danger" href="{{ path('anonymous') }}">{{ 'Yes, i want continue' | trans }}</a>
+    {% endblock %}
+{% endembed %}

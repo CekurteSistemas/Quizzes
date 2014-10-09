@@ -255,11 +255,14 @@ msgstr "Informe um número de respostas corretas"
 msgid "The question answer(s) cannot be empty"
 msgstr "Você deve informar as alternativas de resposta"
 
-msgid "Generate E-mail Template"
-msgstr "Gerar Template de E-mail"
+msgid "Generate e-mail template"
+msgstr "Gerar template de e-mail"
 
-msgid "Send email using Google Gmail Account"
-msgstr "Enviar email usando uma conta Gmail"
+msgid "Go back"
+msgstr "Voltar"
+
+msgid "Go back to home"
+msgstr "Voltar para a home"
 
 msgid "E-mail Template"
 msgstr "Template de E-mail"
@@ -282,5 +285,29 @@ msgstr "Entrar"
 msgid "Authentication"
 msgstr "Autenticação"
 
-msgid "Login with a Google Account"
-msgstr "Entrar com uma Conta Google"
+msgid "Choice how you want use this application"
+msgstr "Escolha como você quer utilizar esta aplicação"
+
+msgid "Yes, i want continue"
+msgstr "Sim, eu quero continuar"
+
+msgid "This choice does not allow you to manage the questions and send emails with this application. Do you want continue?"
+msgstr "Esta opção não permite que você gerencie as questões e envie e-mails com esta aplicação. Você quer continuar?"
+
+msgid "Anonymously"
+msgstr "Anonimamente"
+
+msgid "With Username and Password"
+msgstr "Com Usuário e Senha"
+
+msgid "With a Google Account"
+msgstr "Com uma Conta Google"
+
+msgid "Allows the user to access the application anonymously (without authentication)"
+msgstr "Permite que o usuário acesse a aplicação anonimamente (sem autenticação)"
+
+msgid "Allows the user access the application with your credentials (username and password)"
+msgstr "Permite que o usuário acesse a aplicação com as suas credenciais (usuário e senha)"
+
+msgid "Allows the user access the application with your Google account"
+msgstr "Permite que o usuário acesse a aplicação com a sua conta Google"

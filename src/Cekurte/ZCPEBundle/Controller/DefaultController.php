@@ -38,6 +38,16 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/", name="home")
+     * @Method("GET")
+     * @Template()
+     */
+    public function homeAction()
+    {
+        return array();
+    }
+
+    /**
      * @Route("/admin/parser")
      * @Method("GET")
      * @Template()
