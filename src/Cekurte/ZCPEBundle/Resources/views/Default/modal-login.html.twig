@@ -1,0 +1,44 @@
+{% embed 'CekurteGeneratorBundle::modal.html.twig' %}
+    {% block title %}
+        {{ 'Authentication'|trans }}
+    {% endblock %}
+    {% block container_open %}
+        <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginLabel" aria-hidden="true">
+    {% endblock %}
+    {% block form_open %}
+        <form method="post" action="{{ path("admin_fos_user_security_check") }}" role="form" class="form-horizontal">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    {% endblock %}
+    {% block content %}
+        {% if error is defined %}
+            {% if error %}
+                <div class="alert alert-danger fade in">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>{{ 'Error'|trans }}!</strong> {{ error|trans({}, 'FOSUserBundle') }}
+                </div>
+            {% endif %}
+        {% endif %}
+        <div class="form-group">
+            <div class="col-lg-2">
+                <label for="username" class="required">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+            </div>
+            <div class="col-lg-10">
+                <input type="text" id="username" name="_username" required="required" maxlength="100" class="form-control" {% if last_username is defined %}value="{{ last_username }}"{% endif %}>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-2">
+                <label for="password" class="required">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+            </div>
+            <div class="col-lg-10">
+                <input type="password" id="password" name="_password" required="required" maxlength="100" class="form-control">
+            </div>
+        </div>
+    {% endblock %}
+    {% block action_close %}
+        <a class="btn btn-default" data-dismiss="modal" aria-hidden="true">{{ 'Close' | trans }}</a>
+    {% endblock %}
+    {% block action_submit %}
+        <input class="btn btn-danger" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+    {% endblock %}
+{% endembed %}

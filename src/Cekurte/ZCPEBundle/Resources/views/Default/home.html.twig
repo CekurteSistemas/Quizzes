@@ -11,6 +11,7 @@
 
 {% block links %}
     {% include 'CekurteZCPEBundle:Default:modal-anonymous.html.twig' %}
+    {% include 'CekurteZCPEBundle:Default:modal-login.html.twig' %}
 {% endblock %}
 
 {% block content -%}
@@ -20,7 +21,7 @@
             <div class="panel-body">
                 <div class="list-group">
                     <a href="#modalAnonymous" data-toggle="modal" class="list-group-item">
-                        <span class="glyphicon glyphicon-chevron-right pull-right" style="top: 16px !important;"></span>
+                        <span class="glyphicon glyphicon-log-in pull-right" style="top: 16px !important;"></span>
                         <h4 class="list-group-item-heading">
                             <span class="glyphicon glyphicon-tower"></span> {{ 'Anonymously'|trans }}
                         </h4>
@@ -28,8 +29,8 @@
                             {{ 'Allows the user to access the application anonymously (without authentication)'|trans }}.
                         </p>
                     </a>
-                    <a href="#" class="list-group-item">
-                        <span class="glyphicon glyphicon-chevron-right pull-right" style="top: 16px !important;"></span>
+                    <a href="#modalLogin" data-toggle="modal" class="list-group-item">
+                        <span class="glyphicon glyphicon-log-in pull-right" style="top: 16px !important;"></span>
                         <h4 class="list-group-item-heading">
                             <span class="glyphicon glyphicon-user"></span> {{ 'With Username and Password'|trans }}
                         </h4>
@@ -50,4 +51,15 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if app.request.get('_route') != 'home' %}
+        <script type="text/javascript">
+            jQuery(document).ready(function($) {
+                $('#modalLogin').modal('show');
+            });
+        </script>
+    {% endif %}
 {% endblock %}

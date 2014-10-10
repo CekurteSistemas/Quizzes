@@ -48,20 +48,17 @@ fos_user_register:
 # ------------------------------------------------------------------------------
 # OAuth
 
+google_login:
+    pattern:    /admin/connect/check-google
+
 hwi_oauth_security:
     resource:   "@HWIOAuthBundle/Resources/config/routing/login.xml"
-    prefix:     /connect
+    prefix:     /admin/connect
 
 hwi_oauth_connect:
     resource:   "@HWIOAuthBundle/Resources/config/routing/connect.xml"
-    prefix:     /connect
+    prefix:     /admin/connect
 
 hwi_oauth_redirect:
     resource:   "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
-    prefix:     /connect
-
-facebook_login:
-    pattern:    /connect/check-facebook
-
-google_login:
-    pattern:    /admin/connect/check-google
+    prefix:     /admin/connect

@@ -44,7 +44,14 @@ class DefaultController extends Controller
      */
     public function homeAction()
     {
-        return array();
+        $csrfToken = $this->container->has('form.csrf_provider')
+            ? $this->container->get('form.csrf_provider')->generateCsrfToken('authenticate')
+            : null
+        ;
+
+        return array(
+            'csrf_token' => $csrfToken,
+        );
     }
 
     /**

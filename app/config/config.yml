@@ -121,19 +121,10 @@ hwi_oauth:
     fosub:
         username_iterations: 30
         properties:
-            facebook:       facebook_id
             google:         google_id
     connect:
         account_connector:  oauth_custom_user_provider
     resource_owners:
-        facebook:
-            type:               facebook
-            client_id:          %facebook_client_id%
-            client_secret:      %facebook_client_secret%
-            scope:              "email"
-            infos_url:          "https://graph.facebook.com/me?fields=name,email,picture.height(128).width(128)"
-            paths:
-                profilepicture: picture.data.url
         google:
             type:               google
             client_id:          %cekurte_google_api_client_id%

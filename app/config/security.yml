@@ -14,6 +14,14 @@ security:
     firewalls:
         admin:
             pattern:                    ^/((admin|pt_BR/admin).)(.*)
+            form_login:
+                provider:               fos_userbundle
+                csrf_provider:          form.csrf_provider
+                default_target_path:    admin
+                login_path:             admin_fos_user_security_login
+                failure_path:           admin_fos_user_security_login
+                check_path:             admin_fos_user_security_check
+                use_forward:            false
             oauth:
                 resource_owners:
                     google:             google_login
@@ -25,30 +33,14 @@ security:
                     service:            oauth_custom_user_provider
             logout:
                 path:                   admin_fos_user_security_logout
-                target:                 admin_fos_user_security_login
+                target:                 home
             anonymous:                  true
-
 
         api:
             pattern:                    ^/api
             http_basic:
                 realm:                  "API Secured Area"
                 provider:               fos_userbundle
-
-        main:
-            pattern:                    ^/
-            form_login:
-                provider:               fos_userbundle
-                csrf_provider:          form.csrf_provider
-                default_target_path:    home
-                login_path:             fos_user_security_login
-                failure_path:           fos_user_security_login
-                check_path:             fos_user_security_check
-                use_forward:            false
-            logout:
-                path:                   fos_user_security_logout
-                target:                 home
-            anonymous:                  true
 
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
@@ -63,8 +55,9 @@ security:
         - { path: ^/admin/login-check$,       role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/pt_BR/admin/login-check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
-        - { path: ^/admin/connect/check-google$,        role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/pt_BR/admin/connect/check-google$,  role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/connect,            role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/pt_BR/admin/connect,      role: IS_AUTHENTICATED_ANONYMOUSLY }
+
         # -> end
 
         # -> Secured Area
