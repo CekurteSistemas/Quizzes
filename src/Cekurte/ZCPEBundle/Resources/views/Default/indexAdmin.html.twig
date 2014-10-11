@@ -18,4 +18,66 @@
 {% endblock %}
 
 {% block content -%}
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">{{ 'Statistics Of Questions'|trans }}</div>
+                <div class="panel-body">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <th>{{ 'Total'|trans }}</th>
+                                <td>{{ qtdQuestions.total }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'Revised'|trans }}</th>
+                                <td>{{ qtdQuestions.revised }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'Approved'|trans }}</th>
+                                <td>{{ qtdQuestions.approved }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'Email has sent'|trans }}</th>
+                                <td>{{ qtdQuestions.emailWasSent }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'Imported from Google Groups'|trans }}</th>
+                                <td>{{ qtdQuestions.importedFromGoogleGroups }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'Single Choice'|trans }}</th>
+                                <td>{{ qtdQuestions.typeSingleChoice }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'Multiple Choice'|trans }}</th>
+                                <td>{{ qtdQuestions.typeMultipleChoice }}</td>
+                            </tr>
+                            <tr>
+                                <th>{{ 'Text'|trans }}</th>
+                                <td>{{ qtdQuestions.typeText }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">{{ 'Number of Questions grouped by Category'|trans }}</div>
+                <div class="panel-body">
+                    <table class="table table-hover">
+                        <tbody>
+                            {% for item in categories %}
+                                <tr>
+                                    <th>{{ item.name }}</th>
+                                    <td>{{ item.questions }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

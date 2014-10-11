@@ -5,7 +5,7 @@
 
 {%- block menu %}
 <li class="{% if menu_active == 'home' %}active{% endif %}">
-    <a href="{{ path("admin") }}"><span class="glyphicon glyphicon-home"></span> {{ 'Home' | trans }}</a>
+    <a href="{{ path("admin") }}"><span class="glyphicon glyphicon-home"></span> {{ 'Dashboard' | trans }}</a>
 </li>
 {% if is_granted('ROLE_CONTRIBUTOR') %}
     <li class="dropdown {% if menu_active == 'question' %} active{% endif %}">

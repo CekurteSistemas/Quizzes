@@ -338,6 +338,23 @@ class DefaultController extends Controller
      */
     public function indexAdminAction()
     {
-        return array();
+        $questionRepository = $this
+            ->getDoctrine()
+            ->getRepository('CekurteZCPEBundle:Question')
+        ;
+
+        return array(
+            'categories'    => $questionRepository->getCategoriesOrderedByNumberOfQuestions(10),
+            'qtdQuestions'  => array(
+                'total'                     => $questionRepository->getTotal(),
+                'revised'                   => $questionRepository->getQtdRevised(),
+                'approved'                  => $questionRepository->getQtdApproved(),
+                'emailWasSent'              => $questionRepository->getQtdEmailWasSent(),
+                'importedFromGoogleGroups'  => $questionRepository->getQtdImportedFromGoogleGroups(),
+                'typeSingleChoice'          => $questionRepository->getQtdTypeSingleChoice(),
+                'typeMultipleChoice'        => $questionRepository->getQtdTypeMultipleChoice(),
+                'typeText'                  => $questionRepository->getQtdTypeText(),
+            ),
+        );
     }
 }

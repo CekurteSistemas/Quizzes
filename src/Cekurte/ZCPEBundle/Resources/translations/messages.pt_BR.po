@@ -267,6 +267,12 @@ msgstr "Voltar para a home"
 msgid "E-mail Template"
 msgstr "Template de E-mail"
 
+msgid "Statistics Of Questions"
+msgstr "Estatísticas de Questões"
+
+msgid "Number of Questions grouped by Category"
+msgstr "Número de Questões agrupadas por Categoria"
+
 msgid "Subject"
 msgstr "Assunto"
 

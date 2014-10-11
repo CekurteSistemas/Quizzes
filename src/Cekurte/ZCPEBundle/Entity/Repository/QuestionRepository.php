@@ -165,4 +165,150 @@ class QuestionRepository extends EntityRepository
             ->getQuery()
         ;
     }
+
+    /**
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    protected function getQueryBuilderNumberOfResults()
+    {
+        return $this->createQueryBuilder('ck')
+            ->select('COUNT(ck.id) AS numberOfResults')
+        ;
+    }
+
+    /**
+     * @param string $field
+     * @param mixed $value
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    protected function getQueryBuilderNumberOfResultsBy($field, $value)
+    {
+        $queryBuilder = $this->getQueryBuilderNumberOfResults();
+
+        return $queryBuilder
+            ->andWhere($queryBuilder->expr()->eq(sprintf('ck.%s', $field), sprintf(':%s', $field)))
+            ->setParameter($field, $value)
+        ;
+    }
+
+    /**
+     * Get total
+     *
+     * @return mixed
+     */
+    public function getTotal()
+    {
+        return $this->getQueryBuilderNumberOfResults()
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
+
+    /**
+     * Get qtd revised
+     *
+     * @return mixed
+     */
+    public function getQtdRevised()
+    {
+        return $this->getQueryBuilderNumberOfResultsBy('revised', true)
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
+
+    /**
+     * Get qtd approved
+     *
+     * @return mixed
+     */
+    public function getQtdApproved()
+    {
+        return $this->getQueryBuilderNumberOfResultsBy('approved', true)
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
+
+    /**
+     * Get qtd email was sent
+     *
+     * @return mixed
+     */
+    public function getQtdEmailWasSent()
+    {
+        return $this->getQueryBuilderNumberOfResultsBy('emailHasSent', true)
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
+
+    /**
+     * Get qtd imported from google groups
+     *
+     * @return mixed
+     */
+    public function getQtdImportedFromGoogleGroups()
+    {
+        return $this->getQueryBuilderNumberOfResultsBy('importedFromGoogleGroups', true)
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
+
+    /**
+     * Get qtd type single choice
+     *
+     * @return mixed
+     */
+    public function getQtdTypeSingleChoice()
+    {
+        return $this->getQueryBuilderNumberOfResultsBy('questionType', 1)
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
+
+    /**
+     * Get qtd type multiple choice
+     *
+     * @return mixed
+     */
+    public function getQtdTypeMultipleChoice()
+    {
+        return $this->getQueryBuilderNumberOfResultsBy('questionType', 2)
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
+
+    /**
+     * Get qtd type text
+     *
+     * @return mixed
+     */
+    public function getQtdTypeText()
+    {
+        return $this->getQueryBuilderNumberOfResultsBy('questionType', 3)
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
+
+    /**
+     * @param int $numberOfResults
+     * @return mixed
+     */
+    public function getCategoriesOrderedByNumberOfQuestions($numberOfResults = 10)
+    {
+        return $this->createQueryBuilder('ck')
+            ->select('COUNT(ck.id) AS questions')
+            ->addSelect('c.title AS name')
+            ->innerJoin('ck.category', 'c')
+            ->groupBy('c.id')
+            ->orderBy('c.title', 'asc')
+            ->getQuery()
+            ->getArrayResult()
+        ;
+    }
 }
