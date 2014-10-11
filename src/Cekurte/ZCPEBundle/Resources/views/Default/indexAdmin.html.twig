@@ -33,10 +33,12 @@
                                 <th>{{ 'Revised'|trans }}</th>
                                 <td>{{ qtdQuestions.revised }}</td>
                             </tr>
-                            <tr>
-                                <th>{{ 'Approved'|trans }}</th>
-                                <td>{{ qtdQuestions.approved }}</td>
-                            </tr>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <tr>
+                                    <th>{{ 'Approved'|trans }}</th>
+                                    <td>{{ qtdQuestions.approved }}</td>
+                                </tr>
+                            {% endif %}
                             <tr>
                                 <th>{{ 'Email has sent'|trans }}</th>
                                 <td>{{ qtdQuestions.emailWasSent }}</td>
