@@ -26,3 +26,8 @@ Cekurte\Custom\UserBundle\Entity\Group:
             - "Default"
             -
                 - ROLE_USER
+                - ROLE_CEKURTEZCPEBUNDLE_QUESTION
+                - ROLE_CEKURTEZCPEBUNDLE_QUESTION_CREATE
+                - ROLE_CEKURTEZCPEBUNDLE_QUESTION_RETRIEVE
+                - ROLE_CEKURTEZCPEBUNDLE_QUESTION_UPDATE
+                - ROLE_CEKURTEZCPEBUNDLE_QUESTION_DELETE

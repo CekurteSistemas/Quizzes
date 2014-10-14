@@ -63,6 +63,6 @@ security:
         # -> Secured Area
         - { path: ^/api,                role: [ROLE_API] }
 
-        - { path: ^/admin,              role: [ROLE_CONTRIBUTOR] }
-        - { path: ^/pt_BR/admin,        role: [ROLE_CONTRIBUTOR] }
+        - { path: ^/admin,              role: [ROLE_USER] }
+        - { path: ^/pt_BR/admin,        role: [ROLE_USER] }
         # -> end
