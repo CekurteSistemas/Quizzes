@@ -55,13 +55,23 @@ class UserQuestionsCommand extends ContainerAwareCommand
             ->createQueryBuilder('ck')
         ;
 
+        $username = 'admin';
+
+        $adminUser = $this->getUserManager()->findUserByUsername($username);
+
+        if (!$adminUser instanceof User) {
+            throw new \Exception(sprintf('The username "%s" not found.', $username));
+        }
+
         return $queryBuilder
             ->andWhere($queryBuilder->expr()->neq('ck.createdBy', ':createdBy'))
+            ->andWhere($queryBuilder->expr()->eq('ck.createdBy', ':createdByAdmin'))
             ->andWhere($queryBuilder->expr()->eq('ck.deleted', ':deleted'))
             ->andWhere($queryBuilder->expr()->eq('ck.importedFromGoogleGroups', ':importedFromGoogleGroups'))
             ->andWhere($queryBuilder->expr()->eq('ck.approved', ':approved'))
             ->andWhere($queryBuilder->expr()->eq('ck.revised', ':revised'))
             ->setParameter('createdBy', $user)
+            ->setParameter('createdByAdmin', $adminUser)
             ->setParameter('deleted', false)
             ->setParameter('importedFromGoogleGroups', true)
             ->setParameter('approved', false)
