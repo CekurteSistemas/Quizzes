@@ -53,7 +53,7 @@ class QuestionController extends CekurteController implements RepositoryInterfac
      * @Route("/page/{page}/sort/{sort}/direction/{direction}/", defaults={"page"=1, "sort"="ck.createdAt", "direction"="asc"}, name="admin_question_paginator")
      * @Method("GET")
      * @Template()
-     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION, ROLE_CONTRIBUTOR")
+     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION, ROLE_USER")
      *
      * @param int $page
      * @param string $sort
@@ -130,7 +130,7 @@ class QuestionController extends CekurteController implements RepositoryInterfac
      * @Route("/search", name="admin_question_search")
      * @Method({"GET", "POST"})
      * @Template()
-     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION, ROLE_CONTRIBUTOR")
+     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION, ROLE_USER")
      *
      * @param Request $request
      * @return RedirectResponse
@@ -155,7 +155,7 @@ class QuestionController extends CekurteController implements RepositoryInterfac
      * @Route("/export/sort/{sort}/direction/{direction}/", defaults={"sort"="ck.createdAt", "direction"="asc"}, name="admin_question_export")
      * @Method("GET")
      * @Template()
-     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION, ROLE_CONTRIBUTOR")
+     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION, ROLE_USER")
      *
      * @param string $sort
      * @param string $direction
@@ -216,7 +216,7 @@ class QuestionController extends CekurteController implements RepositoryInterfac
      * @Route("/", name="admin_question_create")
      * @Method("POST")
      * @Template("CekurteZCPEBundle:Question:new.html.twig")
-     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION_CREATE, ROLE_CONTRIBUTOR")
+     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION_CREATE, ROLE_USER")
      *
      * @param Request $request
      * @return array|RedirectResponse
@@ -252,7 +252,7 @@ class QuestionController extends CekurteController implements RepositoryInterfac
      * @Route("/new", name="admin_question_new")
      * @Method("GET")
      * @Template()
-     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION_CREATE, ROLE_CONTRIBUTOR")
+     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION_CREATE, ROLE_USER")
      *
      * @return array|Response
      *
@@ -274,7 +274,7 @@ class QuestionController extends CekurteController implements RepositoryInterfac
      * @Route("/{id}/revised/{action}", requirements={"action" = "\d+"}, name="admin_question_revised")
      * @Method("GET")
      * @Template()
-     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION_REVISED, ROLE_CONTRIBUTOR")
+     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION_REVISED, ROLE_USER")
      *
      * @param int $id
      * @return RedirectResponse
@@ -331,7 +331,7 @@ class QuestionController extends CekurteController implements RepositoryInterfac
      * @Route("/{id}", name="admin_question_show")
      * @Method("GET")
      * @Template()
-     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION_RETRIEVE, ROLE_CONTRIBUTOR")
+     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION_RETRIEVE, ROLE_USER")
      *
      * @param int $id
      * @return array|Response
@@ -369,7 +369,7 @@ class QuestionController extends CekurteController implements RepositoryInterfac
      * @Route("/{id}/edit", name="admin_question_edit")
      * @Method("GET")
      * @Template()
-     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION_UPDATE, ROLE_CONTRIBUTOR")
+     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION_UPDATE, ROLE_USER")
      *
      * @param int $id
      * @return array|Response
@@ -404,7 +404,7 @@ class QuestionController extends CekurteController implements RepositoryInterfac
      * @Route("/{id}", name="admin_question_update")
      * @Method("PUT")
      * @Template("CekurteZCPEBundle:Question:edit.html.twig")
-     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION_UPDATE, ROLE_CONTRIBUTOR")
+     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION_UPDATE, ROLE_USER")
      *
      * @param Request $request
      * @param int $id
@@ -454,7 +454,7 @@ class QuestionController extends CekurteController implements RepositoryInterfac
      *
      * @Route("/{id}", name="admin_question_delete")
      * @Method("DELETE")
-     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION_DELETE, ROLE_CONTRIBUTOR")
+     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_QUESTION_DELETE, ROLE_USER")
      *
      * @param Request $request
      * @param int $id

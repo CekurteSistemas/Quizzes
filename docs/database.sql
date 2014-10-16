@@ -74,7 +74,12 @@ CREATE TABLE `auth_group` (
 
 LOCK TABLES `auth_group` WRITE;
 /*!40000 ALTER TABLE `auth_group` DISABLE KEYS */;
-INSERT INTO `auth_group` VALUES (1,'Admin','a:2:{i:0;s:16:\"ROLE_SUPER_ADMIN\";i:1;s:10:\"ROLE_ADMIN\";}'),(2,'API Access','a:1:{i:0;s:8:\"ROLE_API\";}'),(3,'Contributor','a:7:{i:0;s:16:\"ROLE_CONTRIBUTOR\";i:1;s:10:\"ROLE_GMAIL\";i:2;s:31:\"ROLE_CEKURTEZCPEBUNDLE_QUESTION\";i:3;s:38:\"ROLE_CEKURTEZCPEBUNDLE_QUESTION_CREATE\";i:4;s:40:\"ROLE_CEKURTEZCPEBUNDLE_QUESTION_RETRIEVE\";i:5;s:38:\"ROLE_CEKURTEZCPEBUNDLE_QUESTION_UPDATE\";i:6;s:38:\"ROLE_CEKURTEZCPEBUNDLE_QUESTION_DELETE\";}'),(4,'Default','a:1:{i:0;s:9:\"ROLE_USER\";}');
+INSERT INTO `auth_group` (`id`, `name`, `roles`)
+VALUES
+	(1,'Admin','a:2:{i:0;s:16:\"ROLE_SUPER_ADMIN\";i:1;s:10:\"ROLE_ADMIN\";}'),
+	(2,'API Access','a:1:{i:0;s:8:\"ROLE_API\";}'),
+	(3,'Contributor','a:7:{i:0;s:16:\"ROLE_CONTRIBUTOR\";i:1;s:10:\"ROLE_GMAIL\";i:2;s:31:\"ROLE_CEKURTEZCPEBUNDLE_QUESTION\";i:3;s:38:\"ROLE_CEKURTEZCPEBUNDLE_QUESTION_CREATE\";i:4;s:40:\"ROLE_CEKURTEZCPEBUNDLE_QUESTION_RETRIEVE\";i:5;s:38:\"ROLE_CEKURTEZCPEBUNDLE_QUESTION_UPDATE\";i:6;s:38:\"ROLE_CEKURTEZCPEBUNDLE_QUESTION_DELETE\";}'),
+	(4,'Default','a:6:{i:0;s:9:\"ROLE_USER\";i:1;s:31:\"ROLE_CEKURTEZCPEBUNDLE_QUESTION\";i:2;s:38:\"ROLE_CEKURTEZCPEBUNDLE_QUESTION_CREATE\";i:3;s:40:\"ROLE_CEKURTEZCPEBUNDLE_QUESTION_RETRIEVE\";i:4;s:38:\"ROLE_CEKURTEZCPEBUNDLE_QUESTION_UPDATE\";i:5;s:38:\"ROLE_CEKURTEZCPEBUNDLE_QUESTION_DELETE\";}');
 /*!40000 ALTER TABLE `auth_group` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,7 +109,7 @@ CREATE TABLE `auth_user` (
   `roles` longtext COLLATE utf8_unicode_ci NOT NULL COMMENT '(DC2Type:array)',
   `credentials_expired` tinyint(1) NOT NULL,
   `credentials_expire_at` datetime DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `picture` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `birthday` date DEFAULT NULL,
   `gender` varchar(1) COLLATE utf8_unicode_ci DEFAULT NULL,

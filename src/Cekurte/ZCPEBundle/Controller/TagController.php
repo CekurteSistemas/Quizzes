@@ -49,7 +49,7 @@ class TagController extends CekurteController implements RepositoryInterface
      * @Route("/page/{page}/sort/{sort}/direction/{direction}/", defaults={"page"=1, "sort"="ck.id", "direction"="asc"}, name="admin_tag_paginator")
      * @Method("GET")
      * @Template()
-     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_TAG, ROLE_CONTRIBUTOR")
+     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_TAG, ROLE_USER")
      *
      * @param int $page
      * @param string $sort
@@ -89,7 +89,7 @@ class TagController extends CekurteController implements RepositoryInterface
      * @Route("/search", name="admin_tag_search")
      * @Method({"GET", "POST"})
      * @Template()
-     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_TAG, ROLE_CONTRIBUTOR")
+     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_TAG, ROLE_USER")
      *
      * @param Request $request
      * @return RedirectResponse
@@ -114,7 +114,7 @@ class TagController extends CekurteController implements RepositoryInterface
      * @Route("/export/sort/{sort}/direction/{direction}/", defaults={"sort"="ck.id", "direction"="asc"}, name="admin_tag_export")
      * @Method("GET")
      * @Template()
-     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_TAG, ROLE_CONTRIBUTOR")
+     * @Secure(roles="ROLE_CEKURTEZCPEBUNDLE_TAG, ROLE_USER")
      *
      * @param string $sort
      * @param string $direction
