@@ -6,6 +6,7 @@
 nbproject
 .project
 .settings
+.vagrant
 composer.lock
 composer.phar
 _reports

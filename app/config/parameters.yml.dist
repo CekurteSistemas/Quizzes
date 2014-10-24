@@ -3,8 +3,8 @@ parameters:
     database_host:     127.0.0.1
     database_port:     ~
     database_name:     cekurte_zcpe
-    database_user:     root
-    database_password: ~
+    database_user:     zcpe
+    database_password: 123
 
     mailer_transport:  gmail
     mailer_host:       ~
